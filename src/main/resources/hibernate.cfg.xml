@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+        
+<hibernate-configuration>
+	<session-factory>
+	
+		<!-- JDBC -->
+		<!-- These properties are set via env variables prior to Session being created -->
+		<property name="hibernate.connection.username">postgres</property> 
+		<property name="hibernate.connection.password">postgres</property>
+		<property name="hibernate.connection.url">jdbc:postgresql://javafs201130.c7jaqnx6gsaq.us-east-1.rds.amazonaws.com/madlibs</property>
+		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+		<!-- Hibernate Properties -->
+		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+		<property name="hibernate.default_schema">public</property>
+		<!-- Hibernate console output -->
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.format_sql">true</property>
+		<!-- DDL -->
+		<property name="hibernate.hbm2ddl.auto">create</property>
+		
+		<!-- We will map our classes here -->
+		<mapping class="com.revature.models.Book"/>
+		<mapping class="com.revature.models.Author"/>
+	</session-factory>
+</hibernate-configuration>
