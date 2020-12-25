@@ -22,12 +22,12 @@ public class Driver {
 
 	public static void main(String[] args) {
 		
+		UserLevelDAO ulDao = new UserLevelDAO();
 		UserDAO uDao = new UserDAO();
 		LoginDAO loginDao = new LoginDAO();
-		CompletedStoriesDAO csDao = new CompletedStoriesDAO();
-		IncompletedStoriesDAO isDao = new IncompletedStoriesDAO();
 		StoryCategoryDAO scDao = new StoryCategoryDAO();
-		UserLevelDAO ulDao = new UserLevelDAO();
+		IncompletedStoriesDAO isDao = new IncompletedStoriesDAO();
+		CompletedStoriesDAO csDao = new CompletedStoriesDAO();
 
 		UserLevel ul = new UserLevel("Rank Amateur");
 		User u = new User("John", "Smith", 2000, ul, "john.smith@gmail.com", Date.valueOf(LocalDate.now()));
