@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -22,7 +22,7 @@ public class CompletedStories {
 	private int completedStoryId;
 	@Column(length=10000)
 	private String completedStory;
-    @OneToOne(targetEntity=User.class, cascade = CascadeType.DETACH)
+    @ManyToOne(targetEntity=User.class, cascade = CascadeType.DETACH)
 	private User completer;	
 	private int upvoteCount;
 	@OneToOne(targetEntity=IncompleteStories.class, cascade = CascadeType.DETACH)
