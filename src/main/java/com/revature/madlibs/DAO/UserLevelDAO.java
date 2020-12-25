@@ -11,7 +11,7 @@ public class UserLevelDAO {
 	Session ses = HibernateUtilities.getSession();
 	
 	ses.save(cs);
-	//HibernateUtility.closeSession();
+	//HibernateUtilities.closeSession();
 	}
 
 }

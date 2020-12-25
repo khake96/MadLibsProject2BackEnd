@@ -7,10 +7,10 @@ import com.revature.madlibs.utils.HibernateUtilities;
 
 public class IncompletedStoriesDAO {
 	
-	public void insert(IncompleteStories cs) {
+	public void insert(IncompleteStories is) {
 	Session ses = HibernateUtilities.getSession();
 	
-	ses.save(cs);
+	ses.save(is);
 	//HibernateUtility.closeSession();
 	}
 

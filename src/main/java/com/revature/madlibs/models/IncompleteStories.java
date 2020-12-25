@@ -1,27 +1,30 @@
 package com.revature.madlibs.models;
 
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 
 @Entity
 public class IncompleteStories {
 	
 	@Id
-	private Integer storyId;
-    @OneToOne(targetEntity=UserLevel.class,cascade=CascadeType.ALL)
-    @JoinColumn(name = "LEVEL_ID")
-	private Integer storyLevel;
-    @OneToOne(targetEntity=StoryCategory.class,cascade=CascadeType.ALL)
-    @JoinColumn(name = "STORY_CATEGORY_ID")
-	private Integer categoryId;
+    @Column(name = "INCOMPLETE_STORY_ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int storyId;
+//    @OneToOne(targetEntity=UserLevel.class,cascade=CascadeType.ALL)
+//    @JoinColumn(name = "LEVEL_ID")
+	private int storyLevel;
+//    @OneToOne(targetEntity=StoryCategory.class,cascade=CascadeType.ALL)
+//    @JoinColumn(name = "STORY_CATEGORY_ID")
+	private int categoryId;
+    @Column(length=10000)
 	private String incompleteStory;
-	private Integer missingWordCount;
+	private int missingWordCount;
 	
-	public IncompleteStories(Integer storyId, Integer storyLevel, Integer categoryId, String incompleteStory,
-			Integer missingWordCount) {
+	public IncompleteStories(int storyId, int storyLevel, int categoryId, String incompleteStory,
+			int missingWordCount) {
 		super();
 		this.storyId = storyId;
 		this.storyLevel = storyLevel;
@@ -29,6 +32,16 @@ public class IncompleteStories {
 		this.incompleteStory = incompleteStory;
 		this.missingWordCount = missingWordCount;
 	}
+	
+	public IncompleteStories(int storyLevel, int categoryId, String incompleteStory, int missingWordCount) {
+		super();
+		this.storyLevel = storyLevel;
+		this.categoryId = categoryId;
+		this.incompleteStory = incompleteStory;
+		this.missingWordCount = missingWordCount;
+	}
+
+
 
 	public IncompleteStories() {
 		super();
@@ -40,27 +53,27 @@ public class IncompleteStories {
 				+ ", incompleteStory=" + incompleteStory + ", missingWordCount=" + missingWordCount + "]";
 	}
 
-	public Integer getStoryId() {
+	public int getStoryId() {
 		return storyId;
 	}
 
-	public void setStoryId(Integer storyId) {
+	public void setStoryId(int storyId) {
 		this.storyId = storyId;
 	}
 
-	public Integer getStoryLevel() {
+	public int getStoryLevel() {
 		return storyLevel;
 	}
 
-	public void setStoryLevel(Integer storyLevel) {
+	public void setStoryLevel(int storyLevel) {
 		this.storyLevel = storyLevel;
 	}
 
-	public Integer rgetCategoryId() {
+	public int rgetCategoryId() {
 		return categoryId;
 	}
 
-	public void setCategoryId(Integer categoryId) {
+	public void setCategoryId(int categoryId) {
 		this.categoryId = categoryId;
 	}
 
@@ -72,11 +85,11 @@ public class IncompleteStories {
 		this.incompleteStory = incompleteStory;
 	}
 
-	public Integer getMissingWordCount() {
+	public int getMissingWordCount() {
 		return missingWordCount;
 	}
 
-	public void setMissingWordCount(Integer missingWordCount) {
+	public void setMissingWordCount(int missingWordCount) {
 		this.missingWordCount = missingWordCount;
 	}
 	

@@ -1,11 +1,8 @@
 package com.revature.madlibs.models;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Login {
@@ -14,21 +11,23 @@ public class Login {
     @Column(name = "LOGIN_ID")
 	private String userName;
 	private String password;
-    @OneToOne(targetEntity=User.class,cascade=CascadeType.ALL)
-    @JoinColumn(name = "USER_ID")
-	private Integer userId;
-	
-	public Login(String userName, String password, Integer userId) {
-		super();
-		this.userName = userName;
-		this.password = password;
-		this.userId = userId;
-	}
+//    @OneToOne(targetEntity=User.class,cascade=CascadeType.ALL)
+//    @JoinColumn(name = "USER_ID")
+	private int userId;
 	
 	public Login(String userName, String password) {
 		super();
 		this.userName = userName;
 		this.password = password;
+
+	}
+	
+	public Login(int userId, String userName, String password) {
+		super();
+		this.userId = userId;
+		this.userName = userName;
+		this.password = password;
+
 	}
 	
 	
