@@ -22,63 +22,38 @@ public class CompletedStories {
 	private int completedStoryId;
 	@Column(length=10000)
 	private String completedStory;
-    @OneToOne(targetEntity=IncompleteStories.class, cascade = CascadeType.DETACH)
-    @JoinColumn(name = "INCOMPLETE_STORY_ID")
-	private int completerId;	
+    @OneToOne(targetEntity=User.class, cascade = CascadeType.DETACH)
+	private User completer;	
 	private int upvoteCount;
-	private int incompleteStoryId;
+	@OneToOne(targetEntity=IncompleteStories.class, cascade = CascadeType.DETACH)
+	private IncompleteStories parentStory;
 	@Temporal(TemporalType.DATE)
 	private Date completedDate;
 	
-	
-	
-	public CompletedStories(String completedStory, int completerId, int upvoteCount, int incompleteStoryId,
-			Date completedDate) {
-		super();
-		this.completedStory = completedStory;
-		this.completerId = completerId;
-		this.upvoteCount = upvoteCount;
-		this.incompleteStoryId = incompleteStoryId;
-		this.completedDate = completedDate;
-	}
-
-	public CompletedStories(int completedStoryId, String completedStory, int completerId, int upvoteCount,
-			int incompleteStoryId, Date completedDate) {
-		super();
-		this.completedStoryId = completedStoryId;
-		this.completedStory = completedStory;
-		this.completerId = completerId;
-		this.upvoteCount = upvoteCount;
-		this.incompleteStoryId = incompleteStoryId;
-		this.completedDate = completedDate;
-	}
-
-	public CompletedStories(String completedStory, int incompleteStoryId, int upvoteCount) {
-		super();
-		this.completedStory = completedStory;
-		this.incompleteStoryId = incompleteStoryId;
-		this.upvoteCount = upvoteCount;
-	}
-
-	public CompletedStories(String completedStory, int incompleteStoryId) {
-		super();
-		this.completedStory = completedStory;
-		this.incompleteStoryId = incompleteStoryId;
-	}
-
 	public CompletedStories() {
 		super();
 	}
-	
 
-	public int getIncompletStoryId() {
-		return incompleteStoryId;
+	public CompletedStories(int completedStoryId, String completedStory, User completer, int upvoteCount,
+			IncompleteStories parentStory, Date completedDate) {
+		super();
+		this.completedStoryId = completedStoryId;
+		this.completedStory = completedStory;
+		this.completer = completer;
+		this.upvoteCount = upvoteCount;
+		this.parentStory = parentStory;
+		this.completedDate = completedDate;
 	}
 
-	public void setIncompletStoryId(int incompletStoryId) {
-		this.incompleteStoryId = incompletStoryId;
+	public CompletedStories(String completedStory, User completer, int upvoteCount, IncompleteStories parentStory,
+			Date completedDate) {
+		super();
+		this.completedStory = completedStory;
+		this.completer = completer;
+		this.upvoteCount = upvoteCount;
+		this.parentStory = parentStory;
+		this.completedDate = completedDate;
 	}
-
 
 	public int getCompletedStoryId() {
 		return completedStoryId;
@@ -95,19 +70,29 @@ public class CompletedStories {
 	public void setCompletedStory(String completedStory) {
 		this.completedStory = completedStory;
 	}
-	
 
-	public int getCompleterId() {
- 
-		return completerId;
+	public User getCompleter() {
+		return completer;
 	}
 
-	public void setCompleterId(int completerId) {
-		this.completerId = completerId;
+	public void setCompleter(User completer) {
+		this.completer = completer;
 	}
 
 	public int getUpvoteCount() {
 		return upvoteCount;
+	}
+
+	public void setUpvoteCount(int upvoteCount) {
+		this.upvoteCount = upvoteCount;
+	}
+
+	public IncompleteStories getParentStory() {
+		return parentStory;
+	}
+
+	public void setParentStory(IncompleteStories parentStory) {
+		this.parentStory = parentStory;
 	}
 
 	public Date getCompletedDate() {
@@ -121,13 +106,11 @@ public class CompletedStories {
 	@Override
 	public String toString() {
 		return "CompletedStories [completedStoryId=" + completedStoryId + ", completedStory=" + completedStory
-				+ ", completerId=" + completerId + ", upvoteCount=" + upvoteCount + "]";
+				+ ", completer=" + completer + ", upvoteCount=" + upvoteCount + ", parentStory=" + parentStory
+				+ ", completedDate=" + completedDate + "]";
 	}
+	
+	
 
-	public void setUpvoteCount(int upvoteCount) {
-		this.upvoteCount = upvoteCount;
-	}
-	
-	
 
 }
