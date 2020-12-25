@@ -39,7 +39,7 @@ public class Driver {
 				+ "superlative degree of comparison only.", 5);
 		Login login = new Login("JohnSmith", "password", 100);
 		StoryCategory sc = new StoryCategory(1, "British Literature");
-		User u = new User(100, "John", "Smith", 2000, 2, "john.smith@gmail.com");
+		User u = new User("John", "Smith", 2000, 2, "john.smith@gmail.com");
 		UserLevel ul = new UserLevel(1, "Rank Amateur");
 		
 		uDao.insert(u);

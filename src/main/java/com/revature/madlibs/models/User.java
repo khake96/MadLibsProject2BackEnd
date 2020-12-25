@@ -16,39 +16,21 @@ import javax.persistence.TemporalType;
 @Entity
 public class User {
 	
-	private int user_id;
+    @Id
+    @Column(name = "USER_ID")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer user_id;
 	private String first_name;
 	private String last_name;
-	private int dob;
-	private int level_id;
+	private Integer dob;
+    @OneToOne(targetEntity=UserLevel.class, cascade = CascadeType.DETACH)
+    @JoinColumn(name = "LEVEL_ID")
+	private Integer level_id;
 	private String email;
 	private Timestamp enroll_date;
 	
-	public User(int user_id, String first_name, String last_name, int dob, int level_id, String email,
-			Timestamp enroll_date) {
-		super();
-		this.user_id = user_id;
-		this.first_name = first_name;
-		this.last_name = last_name;
-		this.dob = dob;
-		this.level_id = level_id;
-		this.email = email;
-		this.enroll_date = enroll_date;
-	}
 	
-	public User(int user_id, String first_name, String last_name, int dob, int level_id, String email) {
-		super();
-		this.user_id = user_id;
-		this.first_name = first_name;
-		this.last_name = last_name;
-		this.dob = dob;
-		this.level_id = level_id;
-		this.email = email;
-	}
-
-
-
-	public User(String first_name, String last_name, int dob, int level_id, String email) {
+	public User(String first_name, String last_name, Integer dob, Integer level_id, String email) {
 		super();
 		this.first_name = first_name;
 		this.last_name = last_name;
@@ -56,21 +38,19 @@ public class User {
 		this.level_id = level_id;
 		this.email = email;
 	}
+
 
 	public User() {
 		super();
 	}
-	
-    @Id
-    @Column(name = "USER_ID")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public int getUser_id() {
+
+	public Integer getUser_id() {
 		return user_id;
 	}
 
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
-	}
+//	public void setUser_id(Integer user_id) {
+//		this.user_id = user_id;
+//	}
 
 	public String getFirst_name() {
 		return first_name;
@@ -88,21 +68,20 @@ public class User {
 		this.last_name = last_name;
 	}
 
-	public int getDob() {
+	public Integer getDob() {
 		return dob;
 	}
 
-	public void setDob(int dob) {
+	public void setDob(Integer dob) {
 		this.dob = dob;
 	}
 	
-    @OneToOne(cascade = CascadeType.DETACH)
-    @JoinColumn(name = "LEVEL_ID")
-	public int getLevel_id() {
+
+	public Integer getLevel_id() {
 		return level_id;
 	}
 
-	public void setLevel_id(int level_id) {
+	public void setLevel_id(Integer level_id) {
 		this.level_id = level_id;
 	}
 
@@ -114,8 +93,7 @@ public class User {
 		this.email = email;
 	}
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "REGISTERED")
+
 	public Timestamp getEnroll_date() {
 		return enroll_date;
 	}
@@ -126,7 +104,7 @@ public class User {
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
+		final Integer prime = 31;
 		int result = 1;
 		result = prime * result + dob;
 		result = prime * result + ((email == null) ? 0 : email.hashCode());

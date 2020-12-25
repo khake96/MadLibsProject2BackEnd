@@ -7,10 +7,12 @@ import javax.persistence.Id;
 @Entity
 public class UserLevel {
 	
-	private int level_id;
+    @Id
+    @Column(name = "LEVEL_ID")
+	private Integer level_id;
 	private String level_desc;
 	
-	public UserLevel(int level_id, String level_desc) {
+	public UserLevel(Integer level_id, String level_desc) {
 		super();
 		this.level_id = level_id;
 		this.level_desc = level_desc;
@@ -20,13 +22,12 @@ public class UserLevel {
 		super();
 	}
 
-    @Id
-    @Column(name = "LEVEL_ID")
-	public int getLevel_id() {
+
+	public Integer getLevel_id() {
 		return level_id;
 	}
 
-	public void setLevel_id(int level_id) {
+	public void setLevel_id(Integer level_id) {
 		this.level_id = level_id;
 	}
 
@@ -40,8 +41,8 @@ public class UserLevel {
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
+		final Integer prime = 31;
+		Integer result = 1;
 		result = prime * result + ((level_desc == null) ? 0 : level_desc.hashCode());
 		result = prime * result + level_id;
 		return result;

@@ -9,24 +9,34 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class Login {
-
+	
+    @Id
+    @Column(name = "LOGIN_ID")
 	private String userName;
 	private String password;
-	private int userId;
+    @OneToOne(targetEntity=User.class,cascade=CascadeType.ALL)
+    @JoinColumn(name = "USER_ID")
+	private Integer userId;
 	
-	public Login(String userName, String password, int userId) {
+	public Login(String userName, String password, Integer userId) {
 		super();
 		this.userName = userName;
 		this.password = password;
 		this.userId = userId;
 	}
 	
+	public Login(String userName, String password) {
+		super();
+		this.userName = userName;
+		this.password = password;
+	}
+	
+	
 	public Login() {
 		super();
 	}
 	
-    @Id
-    @Column(name = "LOGIN_ID")
+
 	public String getUserName() {
 		return userName;
 	}
@@ -40,13 +50,11 @@ public class Login {
 		this.password = password;
 	}
 	
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "USER_ID")
-	public int getUserId() {
+	public Integer getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
 

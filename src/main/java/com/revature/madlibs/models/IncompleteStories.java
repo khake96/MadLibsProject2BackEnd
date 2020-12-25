@@ -1,19 +1,27 @@
 package com.revature.madlibs.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class IncompleteStories {
 	
-	private int storyId;
-	private int storyLevel;
-	private int categoryId;
+	@Id
+	private Integer storyId;
+    @OneToOne(targetEntity=UserLevel.class,cascade=CascadeType.ALL)
+    @JoinColumn(name = "LEVEL_ID")
+	private Integer storyLevel;
+    @OneToOne(targetEntity=StoryCategory.class,cascade=CascadeType.ALL)
+    @JoinColumn(name = "STORY_CATEGORY_ID")
+	private Integer categoryId;
 	private String incompleteStory;
-	private int missingWordCount;
+	private Integer missingWordCount;
 	
-	public IncompleteStories(int storyId, int storyLevel, int categoryId, String incompleteStory,
-			int missingWordCount) {
+	public IncompleteStories(Integer storyId, Integer storyLevel, Integer categoryId, String incompleteStory,
+			Integer missingWordCount) {
 		super();
 		this.storyId = storyId;
 		this.storyLevel = storyLevel;
@@ -32,28 +40,27 @@ public class IncompleteStories {
 				+ ", incompleteStory=" + incompleteStory + ", missingWordCount=" + missingWordCount + "]";
 	}
 
-	@Id
-	public int getStoryId() {
+	public Integer getStoryId() {
 		return storyId;
 	}
 
-	public void setStoryId(int storyId) {
+	public void setStoryId(Integer storyId) {
 		this.storyId = storyId;
 	}
 
-	public int getStoryLevel() {
+	public Integer getStoryLevel() {
 		return storyLevel;
 	}
 
-	public void setStoryLevel(int storyLevel) {
+	public void setStoryLevel(Integer storyLevel) {
 		this.storyLevel = storyLevel;
 	}
 
-	public int getCategoryId() {
+	public Integer rgetCategoryId() {
 		return categoryId;
 	}
 
-	public void setCategoryId(int categoryId) {
+	public void setCategoryId(Integer categoryId) {
 		this.categoryId = categoryId;
 	}
 
@@ -65,11 +72,11 @@ public class IncompleteStories {
 		this.incompleteStory = incompleteStory;
 	}
 
-	public int getMissingWordCount() {
+	public Integer getMissingWordCount() {
 		return missingWordCount;
 	}
 
-	public void setMissingWordCount(int missingWordCount) {
+	public void setMissingWordCount(Integer missingWordCount) {
 		this.missingWordCount = missingWordCount;
 	}
 	

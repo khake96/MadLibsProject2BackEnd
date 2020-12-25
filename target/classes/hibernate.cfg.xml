@@ -11,7 +11,7 @@
 		<!-- These properties are set via env variables prior to Session being created -->
 		<property name="hibernate.connection.username">postgres</property> 
 		<property name="hibernate.connection.password">postgres</property>
-		<property name="hibernate.connection.url">jdbc:postgresql://javafs201130.c7jaqnx6gsaq.us-east-1.rds.amazonaws.com/madlibs</property>
+		<property name="hibernate.connection.url">jdbc:postgresql://javafs201130.c7jaqnx6gsaq.us-east-1.rds.amazonaws.com:5432/madlibs</property>
 		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
 		<!-- Hibernate Properties -->
 		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
@@ -22,8 +22,12 @@
 		<!-- DDL -->
 		<property name="hibernate.hbm2ddl.auto">create</property>
 		
-		<!-- We will map our classes here -->
-		<mapping class="com.revature.models.Book"/>
-		<mapping class="com.revature.models.Author"/>
+		<!-- We will map our classes here  -->
+		<mapping class="com.revature.madlibs.models.User"/>
+		<mapping class="com.revature.madlibs.models.CompletedStories"/>
+		<mapping class="com.revature.madlibs.models.IncompleteStories"/>
+		<mapping class="com.revature.madlibs.models.Login"/>
+		<mapping class="com.revature.madlibs.models.StoryCategory"/>
+		<mapping class="com.revature.madlibs.models.UserLevel"/>
 	</session-factory>
 </hibernate-configuration>

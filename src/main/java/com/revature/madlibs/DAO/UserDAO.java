@@ -14,18 +14,4 @@ public class UserDAO {
 		//HibernateUtility.closeSession();
 	}
 
-	public void update(User user) {
-		Session ses = HibernateUtilities.getSession();
-		
-		ses.merge(user);
-	}
-
-	public User selectById(int id) {
-		Session ses = HibernateUtilities.getSession();
-		
-		User author = ses.get(User.class, id);
-		
-		return author;
-	}
-
 }

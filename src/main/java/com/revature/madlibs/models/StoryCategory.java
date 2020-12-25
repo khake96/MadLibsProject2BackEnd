@@ -7,10 +7,12 @@ import javax.persistence.Id;
 @Entity
 public class StoryCategory {
 	
-	private int categoryId;
+    @Id
+    @Column(name = "STORY_CATEGORY_ID")
+	private Integer categoryId;
 	private String categoryDesc;
 	
-	public StoryCategory(int categoryId, String categoryDesc) {
+	public StoryCategory(Integer categoryId, String categoryDesc) {
 		super();
 		this.categoryId = categoryId;
 		this.categoryDesc = categoryDesc;
@@ -21,13 +23,12 @@ public class StoryCategory {
 		// TODO Auto-generated constructor stub
 	}
 
-    @Id
-    @Column(name = "STORY_CATEGORY_ID")
-	public int getCategoryId() {
+
+	public Integer getCategoryId() {
 		return categoryId;
 	}
 
-	public void setCategoryId(int categoryId) {
+	public void setCategoryId(Integer categoryId) {
 		this.categoryId = categoryId;
 	}
 
