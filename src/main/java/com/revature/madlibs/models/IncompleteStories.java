@@ -21,7 +21,8 @@ public class IncompleteStories {
 	private StoryCategory category;
     @Column(length=10000)
 	private String incompleteStory;
-    private String author;
+    private String authorFirstName;
+    private String authorLastName;
 	private int missingWordCount;
 	
 	public IncompleteStories() {
@@ -30,23 +31,25 @@ public class IncompleteStories {
 	}
 
 	public IncompleteStories(int storyId, UserLevel storyLevel, StoryCategory category, String incompleteStory,
-			String author, int missingWordCount) {
+			String authorFirstName, String authorLastName, int missingWordCount) {
 		super();
 		this.storyId = storyId;
 		this.storyLevel = storyLevel;
 		this.category = category;
 		this.incompleteStory = incompleteStory;
-		this.author =author;
+		this.authorFirstName =authorFirstName;
+		this.authorLastName =authorLastName;
 		this.missingWordCount = missingWordCount;
 	}
 
 	public IncompleteStories(UserLevel storyLevel, StoryCategory category, String incompleteStory,
-			String author, int missingWordCount) {
+			String authorFirstName, String authorLastName, int missingWordCount) {
 		super();
 		this.storyLevel = storyLevel;
 		this.category = category;
 		this.incompleteStory = incompleteStory;
-		this.author = author;
+		this.authorFirstName =authorFirstName;
+		this.authorLastName =authorLastName;
 		this.missingWordCount = missingWordCount;
 	}
 
@@ -90,18 +93,26 @@ public class IncompleteStories {
 		this.missingWordCount = missingWordCount;
 	}
 
-	public String getAuthor() {
-		return author;
+	public String getAuthorFirstName() {
+		return authorFirstName;
 	}
 
-	public void setAuthor(String author) {
-		this.author = author;
+	public void setAuthorFirstName(String authorFirstName) {
+		this.authorFirstName = authorFirstName;
+	}
+	
+	public String getAuthorLastName() {
+		return authorLastName;
+	}
+
+	public void setAuthorLastName(String authorLastName) {
+		this.authorLastName = authorLastName;
 	}
 
 	@Override
 	public String toString() {
 		return "IncompleteStories [storyId=" + storyId + ", storyLevel=" + storyLevel + ", category=" + category
-				+ ", incompleteStory=" + incompleteStory + ", author=" + author + ", missingWordCount="
+				+ ", incompleteStory=" + incompleteStory + " , authorFirstName=" + authorFirstName + ", authorLastName=" + authorLastName + ", missingWordCount="
 				+ missingWordCount + "]";
 	}
 

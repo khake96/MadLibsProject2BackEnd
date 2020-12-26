@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -25,7 +24,7 @@ public class CompletedStories {
     @ManyToOne(targetEntity=User.class, cascade = CascadeType.DETACH)
 	private User completer;	
 	private int upvoteCount;
-	@OneToOne(targetEntity=IncompleteStories.class, cascade = CascadeType.DETACH)
+	@ManyToOne(targetEntity=IncompleteStories.class, cascade = CascadeType.DETACH)
 	private IncompleteStories parentStory;
 	@Temporal(TemporalType.DATE)
 	private Date completedDate;

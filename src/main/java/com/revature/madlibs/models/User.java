@@ -1,13 +1,16 @@
 package com.revature.madlibs.models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -28,13 +31,16 @@ public class User {
 	@Temporal(TemporalType.DATE)
 	private Date enroll_date;
 	
+	@OneToMany (targetEntity=CompletedStories.class, fetch=FetchType.LAZY)
+	List<CompletedStories> myCompletedStories;
+	
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	public User(int user_id, String first_name, String last_name, int dob, UserLevel userLevel,
-			String email, Date enroll_date) {
+			String email, Date enroll_date, List<CompletedStories> myCompletedStories) {
 		super();
 		this.user_id = user_id;
 		this.first_name = first_name;
@@ -43,6 +49,7 @@ public class User {
 		this.userLevel = userLevel;
 		this.email = email;
 		this.enroll_date = enroll_date;
+		this.myCompletedStories = myCompletedStories;
 	}
 	
 
@@ -110,6 +117,14 @@ public class User {
 
 	public void setEnroll_date(Date enroll_date) {
 		this.enroll_date = enroll_date;
+	}
+	
+	public List<CompletedStories> getMyCompletedStories() {
+		return myCompletedStories;
+	}
+
+	public void setMyCompletedStories(List<CompletedStories> myCompletedStories) {
+		this.myCompletedStories = myCompletedStories;
 	}
 
 	@Override
