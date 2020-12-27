@@ -7,26 +7,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.revature.madlibs.controller.LoginController;
 
 public class LoginServlet extends HttpServlet {
 
+	private LoginController lc = new LoginController();
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
-		System.out.println("I'm in doPost");
 		res.setContentType("application/json");
-
 		res.setStatus(403); // We override it, if everything is okay
 
 		final String URI = req.getRequestURI().replace("/madlibs/", "");
-		System.out.println(URI);
+
 		switch (URI) {
-		case "login":
-			System.out.println(req.getAttributeNames());
-			System.out.println(req.getAttribute("password"));
-			System.out.println(req.getAttribute("userName"));	
-			res.setStatus(200);
-			break;
+		case "login":	
+			try {
+				lc.login(req, res);
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 	}

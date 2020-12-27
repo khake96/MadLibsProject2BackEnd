@@ -30,5 +30,30 @@ public class LoginDAO {
 		
 		return login;
 	}
+	
+	public boolean validate(String uName, String password) {
+
+        Transaction transaction = null;
+        Login user = null;
+        try (Session session = HibernateUtilities.getSession()) {
+            // start a transaction
+            transaction = session.beginTransaction();
+            // get an user object
+            user = (Login) session.createQuery("FROM User U WHERE U.userName = :uName").setParameter("uName", uName)
+                .uniqueResult();
+
+            if (user != null && user.getPassword().equals(password)) {
+                return true;
+            }
+            // commit transaction
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+        return false;
+    }
 
 }

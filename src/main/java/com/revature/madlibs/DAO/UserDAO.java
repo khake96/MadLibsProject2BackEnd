@@ -5,7 +5,6 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import com.revature.madlibs.models.CompletedStories;
 import com.revature.madlibs.models.User;
 import com.revature.madlibs.utils.HibernateUtilities;
 

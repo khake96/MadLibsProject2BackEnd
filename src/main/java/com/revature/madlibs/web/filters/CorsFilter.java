@@ -28,10 +28,10 @@ public class CorsFilter implements Filter {
 //		
 		System.out.println("CORS Filter leveraged");
 //		
-		 if(!(response instanceof HttpServletResponse)) {
-		 	chain.doFilter(request, response);
-		 	return;
-		 }
+//		 if(!(response instanceof HttpServletResponse)) {
+//		 	chain.doFilter(request, response);
+//		 	return;
+//		 }
 //		
 //		// Cast the response as an HttpServletResponse
 //		// Which is important, because we are going to set
