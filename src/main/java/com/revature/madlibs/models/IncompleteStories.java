@@ -1,67 +1,80 @@
 package com.revature.madlibs.models;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity
 public class IncompleteStories {
 	
 	@Id
-	private Integer storyId;
+    @Column(name = "INCOMPLETE_STORY_ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int storyId;
     @OneToOne(targetEntity=UserLevel.class,cascade=CascadeType.ALL)
-    @JoinColumn(name = "LEVEL_ID")
-	private Integer storyLevel;
+	private UserLevel storyLevel;
     @OneToOne(targetEntity=StoryCategory.class,cascade=CascadeType.ALL)
-    @JoinColumn(name = "STORY_CATEGORY_ID")
-	private Integer categoryId;
+	private StoryCategory category;
+    @Column(length=10000)
 	private String incompleteStory;
-	private Integer missingWordCount;
+    private String authorFirstName;
+    private String authorLastName;
+	private int missingWordCount;
 	
-	public IncompleteStories(Integer storyId, Integer storyLevel, Integer categoryId, String incompleteStory,
-			Integer missingWordCount) {
+	public IncompleteStories() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public IncompleteStories(int storyId, UserLevel storyLevel, StoryCategory category, String incompleteStory,
+			String authorFirstName, String authorLastName, int missingWordCount) {
 		super();
 		this.storyId = storyId;
 		this.storyLevel = storyLevel;
-		this.categoryId = categoryId;
+		this.category = category;
 		this.incompleteStory = incompleteStory;
+		this.authorFirstName =authorFirstName;
+		this.authorLastName =authorLastName;
 		this.missingWordCount = missingWordCount;
 	}
 
-	public IncompleteStories() {
+	public IncompleteStories(UserLevel storyLevel, StoryCategory category, String incompleteStory,
+			String authorFirstName, String authorLastName, int missingWordCount) {
 		super();
+		this.storyLevel = storyLevel;
+		this.category = category;
+		this.incompleteStory = incompleteStory;
+		this.authorFirstName =authorFirstName;
+		this.authorLastName =authorLastName;
+		this.missingWordCount = missingWordCount;
 	}
 
-	@Override
-	public String toString() {
-		return "IncompleteStories [storyId=" + storyId + ", storyLevel=" + storyLevel + ", categoryId=" + categoryId
-				+ ", incompleteStory=" + incompleteStory + ", missingWordCount=" + missingWordCount + "]";
-	}
-
-	public Integer getStoryId() {
+	public int getStoryId() {
 		return storyId;
 	}
 
-	public void setStoryId(Integer storyId) {
+	public void setStoryId(int storyId) {
 		this.storyId = storyId;
 	}
 
-	public Integer getStoryLevel() {
+	public UserLevel getStoryLevel() {
 		return storyLevel;
 	}
 
-	public void setStoryLevel(Integer storyLevel) {
+	public void setStoryLevel(UserLevel storyLevel) {
 		this.storyLevel = storyLevel;
 	}
 
-	public Integer rgetCategoryId() {
-		return categoryId;
+	public StoryCategory getCategory() {
+		return category;
 	}
 
-	public void setCategoryId(Integer categoryId) {
-		this.categoryId = categoryId;
+	public void setCategory(StoryCategory category) {
+		this.category = category;
 	}
 
 	public String getIncompleteStory() {
@@ -72,18 +85,37 @@ public class IncompleteStories {
 		this.incompleteStory = incompleteStory;
 	}
 
-	public Integer getMissingWordCount() {
+	public int getMissingWordCount() {
 		return missingWordCount;
 	}
 
-	public void setMissingWordCount(Integer missingWordCount) {
+	public void setMissingWordCount(int missingWordCount) {
 		this.missingWordCount = missingWordCount;
 	}
+
+	public String getAuthorFirstName() {
+		return authorFirstName;
+	}
+
+	public void setAuthorFirstName(String authorFirstName) {
+		this.authorFirstName = authorFirstName;
+	}
 	
-	
-	
-	
-	
-	
+	public String getAuthorLastName() {
+		return authorLastName;
+	}
+
+	public void setAuthorLastName(String authorLastName) {
+		this.authorLastName = authorLastName;
+	}
+
+	@Override
+	public String toString() {
+		return "IncompleteStories [storyId=" + storyId + ", storyLevel=" + storyLevel + ", category=" + category
+				+ ", incompleteStory=" + incompleteStory + " , authorFirstName=" + authorFirstName + ", authorLastName=" + authorLastName + ", missingWordCount="
+				+ missingWordCount + "]";
+	}
+
+
 	
 }
