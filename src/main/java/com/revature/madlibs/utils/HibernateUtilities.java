@@ -14,9 +14,12 @@ public class HibernateUtilities {
 		//** Pull db url, password and username from environmental variables. **/
 		
 		if(session==null) {
-			cfg.setProperty("hibernate.connection.url", System.getenv("madlibsPostgresPath"));
-			cfg.setProperty("hibernate.connection.password", System.getenv("postgresPassword"));
-			cfg.setProperty("hibernate.connection.username", System.getenv("postgresUserName"));
+//			cfg.setProperty("hibernate.connection.url", System.getenv("madlibsPostgresPath"));
+//			cfg.setProperty("hibernate.connection.password", System.getenv("postgresPassword"));
+//			cfg.setProperty("hibernate.connection.username", System.getenv("postgresUserName"));
+			cfg.setProperty("hibernate.connection.url", "jdbc:postgresql://javafs201130.c7jaqnx6gsaq.us-east-1.rds.amazonaws.com:5432/madlibs");
+			cfg.setProperty("hibernate.connection.password", "postgres");
+			cfg.setProperty("hibernate.connection.username", "postgres");
 			SessionFactory sessionFactory = cfg.buildSessionFactory();
 			session = sessionFactory.openSession();
 		}

@@ -39,7 +39,7 @@ public class LoginDAO {
             // start a transaction
             transaction = session.beginTransaction();
             // get an user object
-            user = (Login) session.createQuery("FROM User U WHERE U.userName = :uName").setParameter("uName", uName)
+            user = (Login) session.createQuery("FROM Login U WHERE U.userName = :uName").setParameter("uName", uName)
                 .uniqueResult();
 
             if (user != null && user.getPassword().equals(password)) {
