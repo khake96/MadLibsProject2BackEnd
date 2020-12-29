@@ -36,6 +36,7 @@ public class LoginController {
 		if (ld.validate(login.getUserName(), login.getPassword())) {
 			ses.setAttribute("loggedin", true);
 			ses.setAttribute("result", "success");
+			res.setHeader("status", "success!");
 			res.setStatus(200);
 		}
 		

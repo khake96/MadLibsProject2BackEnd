@@ -36,13 +36,17 @@ public class LoginDAO {
         Transaction transaction = null;
         Login user = null;
         try (Session session = HibernateUtilities.getSession()) {
+//        	Session session = HibernateUtilities.getSession();
             // start a transaction
+        	System.out.println("inside LoginDAO validate: "+session);
             transaction = session.beginTransaction();
             // get an user object
             user = (Login) session.createQuery("FROM Login U WHERE U.userName = :uName").setParameter("uName", uName)
                 .uniqueResult();
-
+            
             if (user != null && user.getPassword().equals(password)) {
+
+        		HibernateUtilities.closeSession();
                 return true;
             }
             // commit transaction
@@ -53,6 +57,8 @@ public class LoginDAO {
             }
             e.printStackTrace();
         }
+
+		HibernateUtilities.closeSession();
         return false;
     }
 

@@ -58,7 +58,7 @@ public class Driver {
 		
 		
 		System.out.println("Done");
-		HibernateUtilities.closeSession();
+//		HibernateUtilities.closeSession();
 
 	}
 
