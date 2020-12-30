@@ -2,6 +2,7 @@ package com.revature.madlibs.utils;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 
 import com.revature.madlibs.DAO.CompletedStoriesDAO;
 import com.revature.madlibs.DAO.IncompletedStoriesDAO;
@@ -51,6 +52,8 @@ public class Driver {
 		scDao.insert(sc);
 		isDao.insert(is);
 		csDao.insert(cs);
+		
+		List<StoryCategory> categoryList = scDao.findAll();
 		
 		System.out.println("user: "+ uDao.selectById(1));
 		System.out.println("empty story: "+ uDao.selectById(1));
