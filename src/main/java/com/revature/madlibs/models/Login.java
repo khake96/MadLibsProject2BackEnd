@@ -19,9 +19,9 @@ public class Login {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "login_id")
     private int loginId;
-    @Column(name = "user_name", unique=true)
+    @Column(name = "user_name", unique=true, nullable=false)
 	private String userName;
-    @Column(name="pword")
+    @Column(name="pword", nullable=false)
 	private String pword;
     @OneToOne(targetEntity=User.class,cascade=CascadeType.ALL,fetch=FetchType.LAZY)
     @JoinColumn

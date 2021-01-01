@@ -27,17 +27,17 @@ public class User {
     @Column(name = "USER_ID")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int user_id;
-    @Column(name="first_name")
+    @Column(name="first_name", nullable=false)
 	private String first_name;
-    @Column(name="last_name")
+    @Column(name="last_name", nullable=false)
 	private String last_name;
-    @Column(name="dob")
+    @Column(name="dob", nullable=false)
 	private int dob;
     @ManyToOne(targetEntity=UserLevel.class, cascade = CascadeType.ALL,fetch=FetchType.LAZY)
 	@JoinColumn(name="user_level")
 	@JsonBackReference
     private UserLevel userLevel;
-    @Column(name="email")
+    @Column(name="email", unique=true, nullable=false)
 	private String email;
 	@Temporal(TemporalType.DATE)
 	@Column(name="enroll_date")
