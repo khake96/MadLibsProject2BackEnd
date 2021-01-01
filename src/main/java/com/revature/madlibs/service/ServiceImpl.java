@@ -75,8 +75,8 @@ public class ServiceImpl implements Iservice {
 
 	@Override
 	public List<CompletedStories> getCompletedStories() {
-		// TODO Auto-generated method stub
-		return null;
+		 List<CompletedStories> list = completedStoriesDAO.findAll();
+		return  list;
 	}
 
 	@Override

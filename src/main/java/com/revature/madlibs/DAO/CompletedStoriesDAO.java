@@ -52,6 +52,7 @@ public class CompletedStoriesDAO implements IcompletedStoriesDAO{
 		Session session = sf.getCurrentSession();
 		CriteriaQuery<CompletedStories> cq = session.getCriteriaBuilder().createQuery(CompletedStories.class);
 		cq.from(CompletedStories.class);
+		System.out.println("inside DAO findAll  "+session.createQuery(cq).getResultList());
 		return session.createQuery(cq).getResultList();	
 	}
 		
