@@ -15,7 +15,6 @@
     http://www.springframework.org/schema/aop 
     http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-	<aop:aspectj-autoproxy/>
 	<context:component-scan base-package="com.revature"></context:component-scan>
 	<tx:annotation-driven/>
 	<mvc:annotation-driven></mvc:annotation-driven>
@@ -28,7 +27,7 @@
 		<!-- You will need to set your own RDS location for the URL along with 
 			your Username and Password -->
 		<property name="url"
-			value="jdbc:postgresql://javafs201130.chtpcni0nkep.us-east-2.rds.amazonaws.com:5432/postgres" />
+			value="jdbc:postgresql://javafs201130.c7jaqnx6gsaq.us-east-1.rds.amazonaws.com:5432/madlibs" />
 		<property name="username" value="postgres" />
 		<property name="password" value="postgres" />
 		
@@ -42,8 +41,8 @@
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
 				<prop key="show_sql">true</prop>
-				<prop key="hibernate.hbm2ddl.auto">create</prop>
-				<prop key="hibernate.default_schema">pokeorm</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.default_schema">madlibs</prop>
 			</props>
 		</property>
 	</bean>

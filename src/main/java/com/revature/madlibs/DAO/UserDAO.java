@@ -6,7 +6,6 @@ import javax.persistence.criteria.CriteriaQuery;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,25 +19,20 @@ public class UserDAO implements IuserDAO {
 	private SessionFactory sf;
 	
 	@Autowired
-	public UserDAO(SessionFactory sf) {
-		super();
+	public void IuserDAO(SessionFactory sf) {
 		this.sf = sf;
 	}
 	
 	@Override	
 	public void insert(User user) {
-	Session session = sf.getCurrentSession();
-    Transaction t=session.beginTransaction();        
+	Session session = sf.getCurrentSession();      
     session.persist(user);    
-    t.commit();  
 	}
 	
 	@Override	
 	public void update(User user) {
-		Session session = sf.getCurrentSession();
-	    Transaction t=session.beginTransaction();            
+		Session session = sf.getCurrentSession();          
 	    session.merge(user);    
-	    t.commit();  
 	}
 
 	@Override	

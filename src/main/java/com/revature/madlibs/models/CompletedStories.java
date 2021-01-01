@@ -26,19 +26,20 @@ public class CompletedStories {
     @Column(name = "COMPLETE_STORY_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int completedStoryId;
-	@Column(length=10000)
+	@Column(length=10000, name="completed_story")
 	private String completedStory;
     @ManyToOne(targetEntity=User.class, cascade = CascadeType.DETACH, fetch = FetchType.LAZY)	
-    @JoinColumn
+    @JoinColumn(name = "completer")
     @JsonBackReference
     private User completer;	
-    @Column
+    @Column(name="upvote_count")
     private int upvoteCount;
 	@ManyToOne(targetEntity=IncompleteStories.class, cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
+	@JoinColumn(name="incomplete_story_id")
 	@JsonManagedReference
 	private IncompleteStories parentStory;
+	@Column(name="completed_date")
 	@Temporal(TemporalType.DATE)
-	@Column
 	private Date completedDate;
 	
 	public CompletedStories() {

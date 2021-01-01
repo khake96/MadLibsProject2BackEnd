@@ -1,46 +1,39 @@
 package com.revature.madlibs.controller;
 
-import java.io.BufferedReader;
-import java.io.IOException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.revature.madlibs.DAO.LoginDAO;
 import com.revature.madlibs.models.Login;
+import com.revature.madlibs.models.User;
+import com.revature.madlibs.service.ServiceImpl;
 
-
+@RestController
+@RequestMapping(value="")
+@CrossOrigin // left open for now as no security concerns in dev/ops
 public class LoginController {
 	
-	private ObjectMapper om = new ObjectMapper();
-	private LoginDAO ld = new LoginDAO();
-
-	public void login(HttpServletRequest req, HttpServletResponse res) throws IOException, Exception {
-		
-		HttpSession ses = req.getSession();
-		BufferedReader reader = req.getReader();
-		StringBuilder sb = new StringBuilder();
-		String line = reader.readLine();
-
-		while (line != null) {
-			sb.append(line);
-			line = reader.readLine();
-		}
-
-		String body = new String(sb);
-
-		Login login = om.readValue(body, Login.class);
-		
-		if (ld.validate(login.getUserName(), login.getPassword())) {
-			ses.setAttribute("loggedin", true);
-			ses.setAttribute("result", "success");
-			res.setHeader("status", "success!");
-			res.setStatus(200);
-		}
-		
-		
+	private ServiceImpl service;
+	
+	@Autowired
+	public LoginController(ServiceImpl service) {
+		super();
+		this.service = service;
 	}
+
+	@GetMapping
+	public ResponseEntity<User> userLogin(@RequestBody Login login) {
+		User user = service.userLogin(login);
+		if(user.getFirst_name()!=null) {
+			return ResponseEntity.status(HttpStatus.OK).body(user);
+		} else return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
+	}
+
+
 
 }

@@ -9,6 +9,10 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/x
   <name>madlibs</name>
   <description>A crazy classics version of the madlibs game.</description>
   
+  	<build>
+		<finalName>madlibs</finalName>
+	</build>
+  
      <properties>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.source>1.8</maven.compiler.source>

@@ -6,7 +6,6 @@ import javax.persistence.criteria.CriteriaQuery;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,34 +19,27 @@ public class UserLevelDAO implements IuserLevelDAO {
 	private SessionFactory sf;
 	
 	@Autowired
-	public UserLevelDAO(SessionFactory sf) {
-		super();
+	public void IuserLevelDAO(SessionFactory sf) {
 		this.sf = sf;
 	}
 	
 	@Override
 	public void insert(UserLevel level) {
-	Session session = sf.getCurrentSession();
-    Transaction t=session.beginTransaction();      
-        
+	Session session = sf.getCurrentSession();       
     session.persist(level);    
-    t.commit();  
 	}
 
 	@Override
 	public void update(UserLevel level) {
-		Session session = sf.getCurrentSession();
-	    Transaction t=session.beginTransaction();      
-        
+		Session session = sf.getCurrentSession();    
 	    session.merge(level);    
-	    t.commit();  
 	}
+	
 
 	@Override
 	public UserLevel selectById(int id) {
 		Session session = sf.getCurrentSession();
 		UserLevel level = session.get(UserLevel.class, id);
-		
 		return level;
 	}
 	

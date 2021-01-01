@@ -7,6 +7,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -16,28 +17,31 @@ public class Login {
 	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "LOGIN_ID")
+    @Column(name = "login_id")
+    private int loginId;
+    @Column(name = "user_name", unique=true)
 	private String userName;
-    @Column
-	private String password;
+    @Column(name="pword")
+	private String pword;
     @OneToOne(targetEntity=User.class,cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+    @JoinColumn
 	private User user;
     
 	public Login() {
 		super();
 	}
 
-	public Login(String userName, String password, User user) {
+	public Login(String userName, String pword, User user) {
 		super();
 		this.userName = userName;
-		this.password = password;
+		this.pword = pword;
 		this.user = user;
 	}
 
-	public Login(String userName, String password) {
+	public Login(String userName, String pword) {
 		super();
 		this.userName = userName;
-		this.password = password;
+		this.pword = pword;
 	}
 
 	public String getUserName() {
@@ -49,11 +53,11 @@ public class Login {
 	}
 
 	public String getPassword() {
-		return password;
+		return pword;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPassword(String pword) {
+		this.pword = pword;
 	}
 
 	public User getUser() {
@@ -66,7 +70,7 @@ public class Login {
 
 	@Override
 	public String toString() {
-		return "Login [userName=" + userName + ", password=" + password + ", user=" + user + "]";
+		return "Login [userName=" + userName + ", password= *****" + ", user=" + user + "]";
 	}
     
     

@@ -20,8 +20,7 @@ public class CompletedStoriesDAO implements IcompletedStoriesDAO{
 	private SessionFactory sf;
 	
 	@Autowired
-	public CompletedStoriesDAO(SessionFactory sf) {
-		super();
+	public void IcompletedStoriesDAO(SessionFactory sf) {
 		this.sf = sf;
 	}
 	
@@ -36,8 +35,7 @@ public class CompletedStoriesDAO implements IcompletedStoriesDAO{
 	@Override
 	public void update(CompletedStories completedStory) {
 		Session session = sf.getCurrentSession();
-	    Transaction t=session.beginTransaction();      
-	        
+	    Transaction t=session.beginTransaction();      	        
 	    session.merge(completedStory);    
 	    t.commit();  
 	}
@@ -52,7 +50,6 @@ public class CompletedStoriesDAO implements IcompletedStoriesDAO{
 	@Override
 	public List<CompletedStories> findAll(){
 		Session session = sf.getCurrentSession();
-
 		CriteriaQuery<CompletedStories> cq = session.getCriteriaBuilder().createQuery(CompletedStories.class);
 		cq.from(CompletedStories.class);
 		return session.createQuery(cq).getResultList();	

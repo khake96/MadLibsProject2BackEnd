@@ -15,7 +15,7 @@ public class StoryCategory {
     @Column(name = "STORY_CATEGORY_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int categoryId;
-    @Column
+    @Column(name="category_desc")
 	private String categoryDesc;
 	
 	public StoryCategory() {

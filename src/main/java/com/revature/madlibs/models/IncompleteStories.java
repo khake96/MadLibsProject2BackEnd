@@ -7,6 +7,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -22,17 +23,19 @@ public class IncompleteStories {
 	private int storyId;
     @ManyToOne(targetEntity=UserLevel.class,cascade=CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonBackReference
+    @JoinColumn(name="user_level")
     private UserLevel storyLevel;
     @ManyToOne(targetEntity=StoryCategory.class,cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     @JsonBackReference
+    @JoinColumn(name="category")
     private StoryCategory category;
-    @Column(length=10000)
+    @Column(length=10000, name="incomplete_story")
 	private String incompleteStory;
-    @Column
+    @Column(name="author_first_name")
     private String authorFirstName;
-    @Column
+    @Column(name="author_last_name")
     private String authorLastName;
-    @Column
+    @Column(name="missing_word_count")
 	private int missingWordCount;
 	
 	public IncompleteStories() {

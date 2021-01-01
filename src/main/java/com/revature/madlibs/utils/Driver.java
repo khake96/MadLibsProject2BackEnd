@@ -4,12 +4,15 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
-import com.revature.madlibs.DAO.CompletedStoriesDAO;
-import com.revature.madlibs.DAO.IncompletedStoriesDAO;
-import com.revature.madlibs.DAO.LoginDAO;
-import com.revature.madlibs.DAO.StoryCategoryDAO;
-import com.revature.madlibs.DAO.UserDAO;
-import com.revature.madlibs.DAO.UserLevelDAO;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.revature.madlibs.DAO.IcompletedStoriesDAO;
+import com.revature.madlibs.DAO.IincompletedStoriesDAO;
+import com.revature.madlibs.DAO.IloginDAO;
+import com.revature.madlibs.DAO.IstoryCategoryDAO;
+import com.revature.madlibs.DAO.IuserDAO;
+import com.revature.madlibs.DAO.IuserLevelDAO;
 import com.revature.madlibs.models.CompletedStories;
 import com.revature.madlibs.models.IncompleteStories;
 import com.revature.madlibs.models.Login;
@@ -18,15 +21,17 @@ import com.revature.madlibs.models.User;
 import com.revature.madlibs.models.UserLevel;
 
 public class Driver {
-
+	
 	public static void main(String[] args) {
 		
-		UserLevelDAO ulDao = new UserLevelDAO();
-		UserDAO uDao = new UserDAO();
-		LoginDAO loginDao = new LoginDAO();
-		StoryCategoryDAO scDao = new StoryCategoryDAO();
-		IncompletedStoriesDAO isDao = new IncompletedStoriesDAO();
-		CompletedStoriesDAO csDao = new CompletedStoriesDAO();
+		ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
+		
+		IuserLevelDAO ulDao = ac.getBean(IuserLevelDAO.class);
+		IuserDAO uDao = ac.getBean(IuserDAO.class);
+		IloginDAO loginDao = ac.getBean(IloginDAO.class);
+		IstoryCategoryDAO scDao = ac.getBean(IstoryCategoryDAO.class);
+		IincompletedStoriesDAO isDao = ac.getBean(IincompletedStoriesDAO.class);
+		IcompletedStoriesDAO csDao = ac.getBean(IcompletedStoriesDAO.class);
 
 		UserLevel ul = new UserLevel("Rank Amateur");
 		User u = new User("John", "Smith", 2000, ul, "john.smith@gmail.com", Date.valueOf(LocalDate.now()));
@@ -58,10 +63,11 @@ public class Driver {
 		System.out.println("user: "+ uDao.selectById(1));
 		System.out.println("empty story: "+ uDao.selectById(1));
 		System.out.println("completed story: "+csDao.selectById(1));
+		System.out.println(categoryList);
 		
 		
 		System.out.println("Done");
-//		HibernateUtilities.closeSession();
+
 
 	}
 

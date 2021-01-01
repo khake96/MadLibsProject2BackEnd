@@ -11,5 +11,7 @@ public interface IloginDAO {
 	public Login selectById(String username);
 		
 	public boolean validate(String uName, String password);
+	
+	public Login get(Login login);
 
 }
