@@ -5,19 +5,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="story_category")
 public class StoryCategory {
 	
     @Id
     @Column(name = "STORY_CATEGORY_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int categoryId;
+    @Column
 	private String categoryDesc;
 	
 	public StoryCategory() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public StoryCategory(int categoryId, String categoryDesc) {

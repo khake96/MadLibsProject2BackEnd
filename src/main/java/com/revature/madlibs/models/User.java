@@ -10,12 +10,17 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
+@Table(name="user")
 public class User {
 	
     @Id
@@ -25,10 +30,14 @@ public class User {
 	private String first_name;
 	private String last_name;
 	private int dob;
-    @OneToOne(targetEntity=UserLevel.class, cascade = CascadeType.ALL)
-	private UserLevel userLevel;
+    @ManyToOne(targetEntity=UserLevel.class, cascade = CascadeType.ALL,fetch=FetchType.LAZY)
+	@JoinColumn
+	@JsonBackReference
+    private UserLevel userLevel;
+    @Column
 	private String email;
 	@Temporal(TemporalType.DATE)
+	@Column
 	private Date enroll_date;
 	
 	@OneToMany (targetEntity=CompletedStories.class, fetch=FetchType.LAZY)

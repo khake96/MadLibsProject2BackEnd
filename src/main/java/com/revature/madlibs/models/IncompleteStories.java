@@ -3,31 +3,40 @@ package com.revature.madlibs.models;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
+@Table(name = "incomplete_stories")
 public class IncompleteStories {
 	
 	@Id
     @Column(name = "INCOMPLETE_STORY_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int storyId;
-    @OneToOne(targetEntity=UserLevel.class,cascade=CascadeType.ALL)
-	private UserLevel storyLevel;
-    @OneToOne(targetEntity=StoryCategory.class,cascade=CascadeType.ALL)
-	private StoryCategory category;
+    @ManyToOne(targetEntity=UserLevel.class,cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonBackReference
+    private UserLevel storyLevel;
+    @ManyToOne(targetEntity=StoryCategory.class,cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @JsonBackReference
+    private StoryCategory category;
     @Column(length=10000)
 	private String incompleteStory;
+    @Column
     private String authorFirstName;
+    @Column
     private String authorLastName;
+    @Column
 	private int missingWordCount;
 	
 	public IncompleteStories() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public IncompleteStories(int storyId, UserLevel storyLevel, StoryCategory category, String incompleteStory,
