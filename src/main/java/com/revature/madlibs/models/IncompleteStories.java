@@ -29,6 +29,10 @@ public class IncompleteStories {
     @JsonBackReference
     @JoinColumn(name="category")
     private StoryCategory category;
+    @Column(length=10000, name="original_story")
+	private String originalStory;
+    @Column(name="author_book")
+    private String authorBook;
     @Column(length=10000, name="incomplete_story")
 	private String incompleteStory;
     @Column(name="author_first_name")
@@ -42,28 +46,36 @@ public class IncompleteStories {
 		super();
 	}
 
-	public IncompleteStories(int storyId, UserLevel storyLevel, StoryCategory category, String incompleteStory,
-			String authorFirstName, String authorLastName, int missingWordCount) {
+
+	public IncompleteStories(int storyId, UserLevel storyLevel, StoryCategory category, String originalStory,
+			String authorBook, String incompleteStory, String authorFirstName, String authorLastName,
+			int missingWordCount) {
 		super();
 		this.storyId = storyId;
 		this.storyLevel = storyLevel;
 		this.category = category;
+		this.originalStory = originalStory;
+		this.authorBook = authorBook;
 		this.incompleteStory = incompleteStory;
-		this.authorFirstName =authorFirstName;
-		this.authorLastName =authorLastName;
+		this.authorFirstName = authorFirstName;
+		this.authorLastName = authorLastName;
 		this.missingWordCount = missingWordCount;
 	}
 
-	public IncompleteStories(UserLevel storyLevel, StoryCategory category, String incompleteStory,
-			String authorFirstName, String authorLastName, int missingWordCount) {
+
+	public IncompleteStories(UserLevel storyLevel, StoryCategory category, String originalStory, String authorBook,
+			String incompleteStory, String authorFirstName, String authorLastName, int missingWordCount) {
 		super();
 		this.storyLevel = storyLevel;
 		this.category = category;
+		this.originalStory = originalStory;
+		this.authorBook = authorBook;
 		this.incompleteStory = incompleteStory;
-		this.authorFirstName =authorFirstName;
-		this.authorLastName =authorLastName;
+		this.authorFirstName = authorFirstName;
+		this.authorLastName = authorLastName;
 		this.missingWordCount = missingWordCount;
 	}
+
 
 	public int getStoryId() {
 		return storyId;
@@ -120,14 +132,35 @@ public class IncompleteStories {
 	public void setAuthorLastName(String authorLastName) {
 		this.authorLastName = authorLastName;
 	}
+	
+	
+
+	public String getOriginalStory() {
+		return originalStory;
+	}
+
+
+	public void setOriginalStory(String originalStory) {
+		this.originalStory = originalStory;
+	}
+
+
+	public String getAuthorBook() {
+		return authorBook;
+	}
+
+
+	public void setAuthorBook(String authorBook) {
+		this.authorBook = authorBook;
+	}
+
 
 	@Override
 	public String toString() {
 		return "IncompleteStories [storyId=" + storyId + ", storyLevel=" + storyLevel + ", category=" + category
-				+ ", incompleteStory=" + incompleteStory + " , authorFirstName=" + authorFirstName + ", authorLastName=" + authorLastName + ", missingWordCount="
-				+ missingWordCount + "]";
+				+ ", originalStory=" + originalStory + ", authorBook=" + authorBook + ", incompleteStory="
+				+ incompleteStory + ", authorFirstName=" + authorFirstName + ", authorLastName=" + authorLastName
+				+ ", missingWordCount=" + missingWordCount + "]";
 	}
-
-
-	
 }
+	
