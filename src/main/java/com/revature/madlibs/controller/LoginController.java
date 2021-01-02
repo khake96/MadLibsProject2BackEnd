@@ -14,7 +14,7 @@ import com.revature.madlibs.models.User;
 import com.revature.madlibs.service.ServiceImpl;
 
 @RestController
-@RequestMapping(value="")
+@RequestMapping(value="/login")
 @CrossOrigin // left open for now as no security concerns in dev/ops
 public class LoginController {
 	
@@ -26,7 +26,7 @@ public class LoginController {
 		this.service = service;
 	}
 
-	@PostMapping(value="/game")
+	@PostMapping
 	public ResponseEntity<User> userLogin(@RequestBody Login login) {
 		User user = service.userLogin(login);
 		if(user.getFirst_name()!=null) {

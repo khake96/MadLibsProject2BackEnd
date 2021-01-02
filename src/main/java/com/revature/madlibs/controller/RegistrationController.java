@@ -26,7 +26,7 @@ public class RegistrationController {
 		this.service = service;
 	}
 
-	@PostMapping(value="")
+	@PostMapping(value="/create")
 	public ResponseEntity<User> insert(User user) {
 		User returnedUser = service.registerUser(user);
 		if(returnedUser != null) {
@@ -34,12 +34,12 @@ public class RegistrationController {
 		} else return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
 	}
 
-	@GetMapping("/update")
-	public ResponseEntity<User> update(User user) {
-		User returnedUser = service.updateUser(user);
-		if(returnedUser != null) {
-			return ResponseEntity.status(HttpStatus.OK).body(user);
-		} else return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
-	}
+//	@PostMapping("/update")
+//	public ResponseEntity<User> update(User user) {
+//		User returnedUser = service.updateUser(user);
+//		if(returnedUser != null) {
+//			return ResponseEntity.status(HttpStatus.OK).body(user);
+//		} else return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
+//	}
 
 }

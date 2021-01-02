@@ -40,12 +40,12 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/x
 			<version>5.2.3.RELEASE</version>
 		</dependency>
     <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
-	<dependency>
+	<!-- <dependency>
     	<groupId>javax.servlet</groupId>
    		<artifactId>javax.servlet-api</artifactId>
     	<version>4.0.1</version>
     	<scope>provided</scope>
-	</dependency>
+	</dependency> -->
 	
 	<dependency>
    	 	<groupId>com.fasterxml.jackson.core</groupId>
@@ -84,6 +84,13 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/x
 			<artifactId>hibernate-core</artifactId>
 			<version>5.4.26.Final</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.9.5</version>
+		</dependency>
+		
 		
 	</dependencies>
 	

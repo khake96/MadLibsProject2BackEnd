@@ -3,7 +3,9 @@ package com.revature.madlibs.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.revature.madlibs.DAO.IcompletedStoriesDAO;
 import com.revature.madlibs.DAO.IincompletedStoriesDAO;
@@ -74,14 +76,15 @@ public class ServiceImpl implements Iservice {
 	}
 
 	@Override
-	public List<CompletedStories> getCompletedStories() {
+	public List<CompletedStories> getCompletedStories1() {
 		 List<CompletedStories> list = completedStoriesDAO.findAll();
 		return  list;
 	}
 
 	@Override
 	public IncompleteStories getOneIncompleteStory(StoryCategory category, UserLevel userLevel) {
-		// TODO Auto-generated method stub
+//		 <IncompleteStories> list = incompletedStoriesDAO.selectByCategoryUserLevel(category, userLevel);
+//			return  list;
 		return null;
 	}
 
@@ -96,7 +99,6 @@ public class ServiceImpl implements Iservice {
 		// TODO Auto-generated method stub
 		
 	}
-
 
 	
 	

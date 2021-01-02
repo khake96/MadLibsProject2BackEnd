@@ -15,9 +15,10 @@ public interface Iservice {
 	public User registerUser(User user);
 	public User updateUser(User user);
 	public List<StoryCategory> getStoryCategories();
-	public List<CompletedStories> getCompletedStories();
+	public List<CompletedStories> getCompletedStories1();
 	public IncompleteStories getOneIncompleteStory(StoryCategory category, UserLevel userLevel);
 	public boolean insertCompletedStory(CompletedStories completed);
 	public void updateUpvoteCounts(CompletedStories upVotedStory);
+
 
 }
