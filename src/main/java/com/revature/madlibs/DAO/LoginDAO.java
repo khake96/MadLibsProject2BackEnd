@@ -1,5 +1,9 @@
 package com.revature.madlibs.DAO;
 
+import java.util.List;
+
+import javax.persistence.criteria.CriteriaQuery;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +60,14 @@ public class LoginDAO implements IloginDAO {
 		Session session = sf.getCurrentSession();
 		Login userLogin = session.get(Login.class, login.getUserName());
 		return userLogin;
+	}
+	
+	@Override
+	public List<Login> getAll() {
+		Session session = sf.getCurrentSession();
+		CriteriaQuery<Login> cq = session.getCriteriaBuilder().createQuery(Login.class);
+		cq.from(Login.class);
+		return session.createQuery(cq).getResultList();
 	}
 
 }

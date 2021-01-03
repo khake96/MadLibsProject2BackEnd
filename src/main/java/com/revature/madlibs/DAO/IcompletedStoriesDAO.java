@@ -6,9 +6,9 @@ import com.revature.madlibs.models.CompletedStories;
 
 public interface IcompletedStoriesDAO {
 	
-	public void insert(CompletedStories completedStory);
+	public CompletedStories insert(CompletedStories completedStory);
 	
-	public void update(CompletedStories completedStory);
+	public CompletedStories update(CompletedStories completedStory);
 
 	public CompletedStories selectById(int id);
 	

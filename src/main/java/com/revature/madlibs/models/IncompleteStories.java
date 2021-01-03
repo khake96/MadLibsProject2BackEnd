@@ -31,10 +31,14 @@ public class IncompleteStories {
     private StoryCategory category;
     @Column(length=10000, name="incomplete_story")
 	private String incompleteStory;
+    @Column(length=10000, name="original_story")
+	private String originalStory;
     @Column(name="author_first_name")
     private String authorFirstName;
     @Column(name="author_last_name")
     private String authorLastName;
+    @Column(name="author_book")
+    private String authorBook;
     @Column(name="missing_word_count")
 	private int missingWordCount;
 	
@@ -42,27 +46,47 @@ public class IncompleteStories {
 		super();
 	}
 
-	public IncompleteStories(int storyId, UserLevel storyLevel, StoryCategory category, String incompleteStory,
-			String authorFirstName, String authorLastName, int missingWordCount) {
+	public IncompleteStories(int storyId, UserLevel storyLevel, StoryCategory category, String incompleteStory, 
+			String originalStory, String authorFirstName, String authorLastName, String authorBook, int missingWordCount) {
 		super();
 		this.storyId = storyId;
 		this.storyLevel = storyLevel;
 		this.category = category;
 		this.incompleteStory = incompleteStory;
+		this.originalStory = originalStory;
 		this.authorFirstName =authorFirstName;
-		this.authorLastName =authorLastName;
+		this.authorLastName = authorLastName;
+		this.authorBook = authorBook;
 		this.missingWordCount = missingWordCount;
 	}
 
-	public IncompleteStories(UserLevel storyLevel, StoryCategory category, String incompleteStory,
-			String authorFirstName, String authorLastName, int missingWordCount) {
+	public IncompleteStories(UserLevel storyLevel, StoryCategory category, String incompleteStory, 
+			String originalStory, String authorFirstName, String authorLastName, String authorBook, int missingWordCount) {
 		super();
 		this.storyLevel = storyLevel;
 		this.category = category;
 		this.incompleteStory = incompleteStory;
+		this.originalStory = originalStory;
 		this.authorFirstName =authorFirstName;
-		this.authorLastName =authorLastName;
+		this.authorLastName = authorLastName;
+		this.authorBook = authorBook;
 		this.missingWordCount = missingWordCount;
+	}
+
+	public String getOriginalStory() {
+		return originalStory;
+	}
+
+	public void setOriginalStory(String originalStory) {
+		this.originalStory = originalStory;
+	}
+
+	public String getAuthorBook() {
+		return authorBook;
+	}
+
+	public void setAuthorBook(String authorBook) {
+		this.authorBook = authorBook;
 	}
 
 	public int getStoryId() {
@@ -124,9 +148,12 @@ public class IncompleteStories {
 	@Override
 	public String toString() {
 		return "IncompleteStories [storyId=" + storyId + ", storyLevel=" + storyLevel + ", category=" + category
-				+ ", incompleteStory=" + incompleteStory + " , authorFirstName=" + authorFirstName + ", authorLastName=" + authorLastName + ", missingWordCount="
-				+ missingWordCount + "]";
+				+ ", incompleteStory=" + incompleteStory + ", originalStory=" + originalStory + ", authorFirstName="
+				+ authorFirstName + ", authorLastName=" + authorLastName + ", authorBook=" + authorBook
+				+ ", missingWordCount=" + missingWordCount + "]";
 	}
+
+
 
 
 	

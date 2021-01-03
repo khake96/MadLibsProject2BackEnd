@@ -25,19 +25,23 @@ public class CompletedStoriesDAO implements IcompletedStoriesDAO{
 	}
 	
 	@Override
-	public void insert(CompletedStories completedStory) {
+	public CompletedStories insert(CompletedStories completedStory) {
 		Session session = sf.getCurrentSession();
 		Transaction t=session.beginTransaction();             
 		session.persist(completedStory);    
-		t.commit();  
+		t.commit();
+	    return completedStory;
 	}
 		
 	@Override
-	public void update(CompletedStories completedStory) {
+	public CompletedStories update(CompletedStories completedStory) {
+		int id = completedStory.getCompletedStoryId();
 		Session session = sf.getCurrentSession();
 	    Transaction t=session.beginTransaction();      	        
 	    session.merge(completedStory);    
 	    t.commit();  
+	    CompletedStories updatedStory = session.get(CompletedStories.class, id);
+	    return updatedStory;
 	}
 
 	@Override

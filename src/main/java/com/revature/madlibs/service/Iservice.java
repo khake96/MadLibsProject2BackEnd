@@ -12,12 +12,12 @@ import com.revature.madlibs.models.UserLevel;
 public interface Iservice {
 	
 	public User userLogin(Login login);
-	public User registerUser(User user);
-	public User updateUser(User user);
+	public User registerUser(User user, Login login);
+	public User updateUser(User user, Login login);
 	public List<StoryCategory> getStoryCategories();
 	public List<CompletedStories> getCompletedStories();
 	public IncompleteStories getOneIncompleteStory(StoryCategory category, UserLevel userLevel);
-	public boolean insertCompletedStory(CompletedStories completed);
-	public void updateUpvoteCounts(CompletedStories upVotedStory);
+	public Boolean insertCompletedStory(CompletedStories completed);
+	public CompletedStories updateUpvoteCounts(CompletedStories upVotedStory);
 
 }

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+        
+<hibernate-configuration>
+	<session-factory>
+	
+		<!-- JDBC -->
+		<!-- These properties are set via env variables prior to Session being created -->
+		<property name="hibernate.connection.username"></property> 
+		<property name="hibernate.connection.password"></property>
+		<property name="hibernate.connection.url"></property>
+		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+		<!-- Hibernate Properties -->
+		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+		<property name="hibernate.default_schema">public</property>
+		<!-- Hibernate console output -->
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.format_sql">true</property>
+		<!-- DDL -->
+		<property name="hibernate.hbm2ddl.auto">create</property>
+		
+		<!-- We will map our classes here  -->
+		<mapping class="com.revature.madlibs.models.UserLevel"/>
+		<mapping class="com.revature.madlibs.models.User"/>
+		<mapping class="com.revature.madlibs.models.Login"/>
+		<mapping class="com.revature.madlibs.models.StoryCategory"/>
+		<mapping class="com.revature.madlibs.models.IncompleteStories"/>
+		<mapping class="com.revature.madlibs.models.CompletedStories"/>
+
+	</session-factory>
+</hibernate-configuration>
