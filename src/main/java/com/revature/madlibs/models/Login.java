@@ -9,7 +9,7 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class Login {
-	
+	//Hi
     @Id
     @Column(name = "LOGIN_ID")
 	private String userName;
