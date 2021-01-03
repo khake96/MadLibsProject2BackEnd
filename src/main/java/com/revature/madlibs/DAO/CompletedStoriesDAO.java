@@ -41,7 +41,7 @@ public class CompletedStoriesDAO implements IcompletedStoriesDAO{
 	}
 
 	@Override
-	public CompletedStories selectById(int id) {
+	public CompletedStories selectCompletedById(int id) {
 		Session session = sf.getCurrentSession();
 		CompletedStories story = session.get(CompletedStories.class, id);
 		return story;
@@ -52,7 +52,7 @@ public class CompletedStoriesDAO implements IcompletedStoriesDAO{
 		Session session = sf.getCurrentSession();
 		CriteriaQuery<CompletedStories> cq = session.getCriteriaBuilder().createQuery(CompletedStories.class);
 		cq.from(CompletedStories.class);
-		System.out.println("inside DAO findAll  "+session.createQuery(cq).getResultList());
+	//	System.out.println("inside DAO findAll  "+session.createQuery(cq).getResultList());
 		return session.createQuery(cq).getResultList();	
 	}
 		

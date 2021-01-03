@@ -23,12 +23,36 @@ public class Login {
 	private String userName;
     @Column(name="pword", nullable=false)
 	private String pword;
-    @OneToOne(targetEntity=User.class,cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+    @OneToOne(targetEntity=User.class,cascade=CascadeType.ALL,fetch=FetchType.EAGER)
     @JoinColumn
 	private User user;
     
 	public Login() {
 		super();
+	}
+
+	public int getLoginId() {
+		return loginId;
+	}
+
+	public void setLoginId(int loginId) {
+		this.loginId = loginId;
+	}
+
+	public String getPword() {
+		return pword;
+	}
+
+	public void setPword(String pword) {
+		this.pword = pword;
+	}
+
+	public Login(int loginId, String userName, String pword, User user) {
+		super();
+		this.loginId = loginId;
+		this.userName = userName;
+		this.pword = pword;
+		this.user = user;
 	}
 
 	public Login(String userName, String pword, User user) {
@@ -70,10 +94,12 @@ public class Login {
 
 	@Override
 	public String toString() {
-		return "Login [userName=" + userName + ", password= *****" + ", user=" + user + "]";
+		return "Login [loginId=" + loginId + ", userName=" + userName + ", pword=" + pword + ", user=" + user + "]";
 	}
-    
-    
-	
-	
+
+//	@Override
+//	public String toString() {
+//		return "Login [userName=" + userName + ", password= *****" + ", user=" + user + "]";
+//	}
+// 
 }

@@ -2,6 +2,7 @@ package com.revature.madlibs.service;
 
 import java.util.List;
 
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import com.revature.madlibs.DAO.IloginDAO;
 import com.revature.madlibs.DAO.IstoryCategoryDAO;
 import com.revature.madlibs.DAO.IuserDAO;
 import com.revature.madlibs.DAO.IuserLevelDAO;
+import com.revature.madlibs.DAO.LoginDAO;
 import com.revature.madlibs.models.CompletedStories;
 import com.revature.madlibs.models.IncompleteStories;
 import com.revature.madlibs.models.Login;
@@ -100,6 +102,19 @@ public class ServiceImpl implements Iservice {
 		
 	}
 
-	
-	
+	@Override
+	public List<Login> getAllLogins() {
+		List<Login> list = loginDAO.findAllLogins();
+		return  list;
+	}
+
+	@Override
+	public Login findLoginById(int id) {
+		System.out.println("Inside Service - findLoginById");
+		Login login = loginDAO.findLoginById(id);
+		System.out.println("login = " + login);
+		
+		return login;
+	}
+
 }

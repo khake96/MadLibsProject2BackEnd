@@ -10,7 +10,7 @@ public interface IcompletedStoriesDAO {
 	
 	public void update(CompletedStories completedStory);
 
-	public CompletedStories selectById(int id);
+	public CompletedStories selectCompletedById(int id);
 	
 	public List<CompletedStories> findAll();
 }
