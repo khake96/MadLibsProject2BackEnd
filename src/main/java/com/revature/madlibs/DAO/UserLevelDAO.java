@@ -1,17 +1,54 @@
 package com.revature.madlibs.DAO;
 
+import java.util.List;
+
+import javax.persistence.criteria.CriteriaQuery;
+
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.madlibs.models.UserLevel;
-import com.revature.madlibs.utils.HibernateUtilities;
 
-public class UserLevelDAO {
+@Repository
+@Transactional
+public class UserLevelDAO implements IuserLevelDAO {
+
+	private SessionFactory sf;
 	
-	public void insert(UserLevel cs) {
-	Session ses = HibernateUtilities.getSession();
+	@Autowired
+	public void IuserLevelDAO(SessionFactory sf) {
+		this.sf = sf;
+	}
 	
-	ses.save(cs);
-	//HibernateUtility.closeSession();
+	@Override
+	public void insert(UserLevel level) {
+	Session session = sf.getCurrentSession();       
+    session.persist(level);    
+	}
+
+	@Override
+	public void update(UserLevel level) {
+		Session session = sf.getCurrentSession();    
+	    session.merge(level);    
+	}
+	
+
+	@Override
+	public UserLevel selectById(int id) {
+		Session session = sf.getCurrentSession();
+		UserLevel level = session.get(UserLevel.class, id);
+		return level;
+	}
+	
+	@Override
+	public List<UserLevel> findAll(){
+		Session session = sf.getCurrentSession();
+		CriteriaQuery<UserLevel> cq = session.getCriteriaBuilder().createQuery(UserLevel.class);	
+		cq.from(UserLevel.class);
+		return session.createQuery(cq).getResultList();				
 	}
 
 }

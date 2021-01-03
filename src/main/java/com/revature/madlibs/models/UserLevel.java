@@ -2,32 +2,47 @@ package com.revature.madlibs.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="user_level")
 public class UserLevel {
 	
     @Id
     @Column(name = "LEVEL_ID")
-	private Integer level_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int level_id;
+    @Column
 	private String level_desc;
 	
-	public UserLevel(Integer level_id, String level_desc) {
+	public UserLevel(int level_id, String level_desc) {
 		super();
 		this.level_id = level_id;
 		this.level_desc = level_desc;
 	}
+	
+	
+
+	public UserLevel(String level_desc) {
+		super();
+		this.level_desc = level_desc;
+	}
+
+
 
 	public UserLevel() {
 		super();
 	}
 
 
-	public Integer getLevel_id() {
+	public int getLevel_id() {
 		return level_id;
 	}
 
-	public void setLevel_id(Integer level_id) {
+	public void setLevel_id(int level_id) {
 		this.level_id = level_id;
 	}
 

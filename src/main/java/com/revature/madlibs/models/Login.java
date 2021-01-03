@@ -3,94 +3,77 @@ package com.revature.madlibs.models;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "login")
 public class Login {
 	//Hi
     @Id
-    @Column(name = "LOGIN_ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "login_id")
+    private int loginId;
+    @Column(name = "user_name", unique=true, nullable=false)
 	private String userName;
-	private String password;
-    @OneToOne(targetEntity=User.class,cascade=CascadeType.ALL)
-    @JoinColumn(name = "USER_ID")
-	private Integer userId;
-	
-	public Login(String userName, String password, Integer userId) {
-		super();
-		this.userName = userName;
-		this.password = password;
-		this.userId = userId;
-	}
-	
-	public Login(String userName, String password) {
-		super();
-		this.userName = userName;
-		this.password = password;
-	}
-	
-	
+    @Column(name="pword", nullable=false)
+	private String pword;
+    @OneToOne(targetEntity=User.class,cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+    @JoinColumn
+	private User user;
+    
 	public Login() {
 		super();
 	}
-	
+
+	public Login(String userName, String pword, User user) {
+		super();
+		this.userName = userName;
+		this.pword = pword;
+		this.user = user;
+	}
+
+	public Login(String userName, String pword) {
+		super();
+		this.userName = userName;
+		this.pword = pword;
+	}
 
 	public String getUserName() {
 		return userName;
 	}
+
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+
 	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
-	public Integer getUserId() {
-		return userId;
+		return pword;
 	}
 
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setPassword(String pword) {
+		this.pword = pword;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
-		return result;
+	public User getUser() {
+		return user;
 	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Login other = (Login) obj;
-		if (password == null) {
-			if (other.password != null)
-				return false;
-		} else if (!password.equals(other.password))
-			return false;
-		if (userName == null) {
-			if (other.userName != null)
-				return false;
-		} else if (!userName.equals(other.userName))
-			return false;
-		return true;
+
+	public void setUser(User user) {
+		this.user = user;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Login [userName=" + userName + ", password=" + password + "]";
+		return "Login [userName=" + userName + ", password= *****" + ", user=" + user + "]";
 	}
+    
+    
+	
 	
 }

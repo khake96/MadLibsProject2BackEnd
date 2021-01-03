@@ -1,56 +1,87 @@
 package com.revature.madlibs.models;
 
-import java.sql.Timestamp;
+import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
+@Table(name="user_table")
 public class User {
 	
     @Id
     @Column(name = "USER_ID")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer user_id;
+	private int user_id;
+    @Column(name="first_name", nullable=false)
 	private String first_name;
+    @Column(name="last_name", nullable=false)
 	private String last_name;
-	private Integer dob;
-    @OneToOne(targetEntity=UserLevel.class, cascade = CascadeType.DETACH)
-    @JoinColumn(name = "LEVEL_ID")
-	private Integer level_id;
+    @Column(name="dob", nullable=false)
+	private int dob;
+    @ManyToOne(targetEntity=UserLevel.class, cascade = CascadeType.ALL,fetch=FetchType.LAZY)
+	@JoinColumn(name="user_level")
+	@JsonBackReference
+    private UserLevel userLevel;
+    @Column(name="email", unique=true, nullable=false)
 	private String email;
-	private Timestamp enroll_date;
+	@Temporal(TemporalType.DATE)
+	@Column(name="enroll_date")
+	private Date enrollDate;
 	
+	@OneToMany (targetEntity=CompletedStories.class, fetch=FetchType.LAZY)
+	List<CompletedStories> myCompletedStories;
 	
-	public User(String first_name, String last_name, Integer dob, Integer level_id, String email) {
+	public User() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public User(int user_id, String first_name, String last_name, int dob, UserLevel userLevel,
+			String email, Date enrollDate, List<CompletedStories> myCompletedStories) {
+		super();
+		this.user_id = user_id;
+		this.first_name = first_name;
+		this.last_name = last_name;
+		this.dob = dob;
+		this.userLevel = userLevel;
+		this.email = email;
+		this.enrollDate = enrollDate;
+		this.myCompletedStories = myCompletedStories;
+	}
+	
+
+	public User(String first_name, String last_name, int dob, UserLevel userLevel, String email, Date enrollDate) {
 		super();
 		this.first_name = first_name;
 		this.last_name = last_name;
 		this.dob = dob;
-		this.level_id = level_id;
+		this.userLevel = userLevel;
 		this.email = email;
+		this.enrollDate = enrollDate;
 	}
 
-
-	public User() {
-		super();
-	}
-
-	public Integer getUser_id() {
+	public int getUser_id() {
 		return user_id;
 	}
 
-//	public void setUser_id(Integer user_id) {
-//		this.user_id = user_id;
-//	}
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
+	}
 
 	public String getFirst_name() {
 		return first_name;
@@ -68,21 +99,20 @@ public class User {
 		this.last_name = last_name;
 	}
 
-	public Integer getDob() {
+	public int getDob() {
 		return dob;
 	}
 
-	public void setDob(Integer dob) {
+	public void setDob(int dob) {
 		this.dob = dob;
 	}
-	
 
-	public Integer getLevel_id() {
-		return level_id;
+	public UserLevel getUserLevel() {
+		return userLevel;
 	}
 
-	public void setLevel_id(Integer level_id) {
-		this.level_id = level_id;
+	public void setUserLevel(UserLevel userLevel) {
+		this.userLevel = userLevel;
 	}
 
 	public String getEmail() {
@@ -93,74 +123,29 @@ public class User {
 		this.email = email;
 	}
 
-
-	public Timestamp getEnroll_date() {
-		return enroll_date;
+	public Date getEnroll_date() {
+		return enrollDate;
 	}
 
-	public void setEnroll_date(Timestamp enroll_date) {
-		this.enroll_date = enroll_date;
+	public void setEnroll_date(Date enroll_date) {
+		this.enrollDate = enroll_date;
+	}
+	
+	public List<CompletedStories> getMyCompletedStories() {
+		return myCompletedStories;
 	}
 
-	@Override
-	public int hashCode() {
-		final Integer prime = 31;
-		int result = 1;
-		result = prime * result + dob;
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((enroll_date == null) ? 0 : enroll_date.hashCode());
-		result = prime * result + ((first_name == null) ? 0 : first_name.hashCode());
-		result = prime * result + ((last_name == null) ? 0 : last_name.hashCode());
-		result = prime * result + level_id;
-		result = prime * result + user_id;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		User other = (User) obj;
-		if (dob != other.dob)
-			return false;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (enroll_date == null) {
-			if (other.enroll_date != null)
-				return false;
-		} else if (!enroll_date.equals(other.enroll_date))
-			return false;
-		if (first_name == null) {
-			if (other.first_name != null)
-				return false;
-		} else if (!first_name.equals(other.first_name))
-			return false;
-		if (last_name == null) {
-			if (other.last_name != null)
-				return false;
-		} else if (!last_name.equals(other.last_name))
-			return false;
-		if (level_id != other.level_id)
-			return false;
-		if (user_id != other.user_id)
-			return false;
-		return true;
+	public void setMyCompletedStories(List<CompletedStories> myCompletedStories) {
+		this.myCompletedStories = myCompletedStories;
 	}
 
 	@Override
 	public String toString() {
-		return "User [user_id=" + user_id + ", first_name=" + first_name + ", last_name=" + last_name + ", dob=" + dob
-				+ ", level_id=" + level_id + ", email=" + email + ", enroll_date=" + enroll_date + "]";
-	} 
+		return "User [user_id=" + user_id + ", first_name=" + first_name + ", last_name=" + last_name + ", dob=" + dob + ", userLevel=" + userLevel + ", email=" + email + ", enrollDate="
+				+ enrollDate + "]";
+	}
 	
-	
+
 	
 	
 	

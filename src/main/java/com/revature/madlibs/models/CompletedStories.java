@@ -1,68 +1,77 @@
 package com.revature.madlibs.models;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
+@Table(name="completed_stories")
 public class CompletedStories {
 
 	@Id
     @Column(name = "COMPLETE_STORY_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer completedStoryId;
+	private int completedStoryId;
+	@Column(length=10000, name="completed_story")
 	private String completedStory;
-    @OneToOne(targetEntity=IncompleteStories.class, cascade = CascadeType.DETACH)
-    @JoinColumn(name = "INCOMPLETE_STORY_ID")
-	private Integer completerId;	
-	private Integer upvoteCount;
-	private Integer incompleteStoryId;
-	private Timestamp completedDate;
+    @ManyToOne(targetEntity=User.class, cascade = CascadeType.DETACH, fetch = FetchType.LAZY)	
+    @JoinColumn(name = "completer")
+    @JsonBackReference
+    private User completer;	
+    @Column(name="upvote_count")
+    private int upvoteCount;
+	@ManyToOne(targetEntity=IncompleteStories.class, cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
+	@JoinColumn(name="incomplete_story_id")
+	@JsonManagedReference
+	private IncompleteStories parentStory;
+	@Column(name="completed_date")
+	@Temporal(TemporalType.DATE)
+	private Date completedDate;
 	
-	public CompletedStories(Integer completedStoryId, String completedStory, Integer completerId, Integer incompleteStoryId, Integer upvoteCount) {
-		super();
-		this.completedStoryId = completedStoryId;
-		this.completedStory = completedStory;
-		this.completerId = completerId;
-		this.incompleteStoryId = incompleteStoryId;
-		this.upvoteCount = upvoteCount;
-	}
-
-	public CompletedStories(String completedStory, Integer incompleteStoryId, Integer completerId) {
-		super();
-		this.completedStory = completedStory;
-		this.incompleteStoryId = incompleteStoryId;
-		this.completerId = completerId;
-	}
-
 	public CompletedStories() {
 		super();
 	}
-	
 
-    public Integer getIncompletStoryId() {
-		return incompleteStoryId;
+	public CompletedStories(int completedStoryId, String completedStory, User completer, int upvoteCount,
+			IncompleteStories parentStory, Date completedDate) {
+		super();
+		this.completedStoryId = completedStoryId;
+		this.completedStory = completedStory;
+		this.completer = completer;
+		this.upvoteCount = upvoteCount;
+		this.parentStory = parentStory;
+		this.completedDate = completedDate;
 	}
 
-	public void setIncompletStoryId(Integer incompletStoryId) {
-		this.incompleteStoryId = incompletStoryId;
+	public CompletedStories(String completedStory, User completer, int upvoteCount, IncompleteStories parentStory,
+			Date completedDate) {
+		super();
+		this.completedStory = completedStory;
+		this.completer = completer;
+		this.upvoteCount = upvoteCount;
+		this.parentStory = parentStory;
+		this.completedDate = completedDate;
 	}
 
-
-	public Integer getCompletedStoryId() {
+	public int getCompletedStoryId() {
 		return completedStoryId;
 	}
 
-	public void setCompletedStoryId(Integer completedStoryId) {
+	public void setCompletedStoryId(int completedStoryId) {
 		this.completedStoryId = completedStoryId;
 	}
 
@@ -73,39 +82,47 @@ public class CompletedStories {
 	public void setCompletedStory(String completedStory) {
 		this.completedStory = completedStory;
 	}
-	
 
-	public Integer getCompleterId() {
- 
-		return completerId;
+	public User getCompleter() {
+		return completer;
 	}
 
-	public void setCompleterId(Integer completerId) {
-		this.completerId = completerId;
+	public void setCompleter(User completer) {
+		this.completer = completer;
 	}
 
-	public Integer getUpvoteCount() {
+	public int getUpvoteCount() {
 		return upvoteCount;
 	}
 
-	public Timestamp getCompletedDate() {
+	public void setUpvoteCount(int upvoteCount) {
+		this.upvoteCount = upvoteCount;
+	}
+
+	public IncompleteStories getParentStory() {
+		return parentStory;
+	}
+
+	public void setParentStory(IncompleteStories parentStory) {
+		this.parentStory = parentStory;
+	}
+
+	public Date getCompletedDate() {
 		return completedDate;
 	}
 
-	public void setCompletedDate(Timestamp completedDate) {
+	public void setCompletedDate(Date completedDate) {
 		this.completedDate = completedDate;
 	}
 
 	@Override
 	public String toString() {
 		return "CompletedStories [completedStoryId=" + completedStoryId + ", completedStory=" + completedStory
-				+ ", completerId=" + completerId + ", upvoteCount=" + upvoteCount + "]";
+				+ ", completer=" + completer + ", upvoteCount=" + upvoteCount + ", parentStory=" + parentStory
+				+ ", completedDate=" + completedDate + "]";
 	}
+	
+	
 
-	public void setUpvoteCount(Integer upvoteCount) {
-		this.upvoteCount = upvoteCount;
-	}
-	
-	
 
 }

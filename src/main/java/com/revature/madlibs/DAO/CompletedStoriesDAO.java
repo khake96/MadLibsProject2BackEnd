@@ -1,16 +1,64 @@
 package com.revature.madlibs.DAO;
 
+import java.util.List;
+
+import javax.persistence.criteria.CriteriaQuery;
+
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.madlibs.models.CompletedStories;
-import com.revature.madlibs.utils.HibernateUtilities;
 
-public class CompletedStoriesDAO {
+@Repository
+@Transactional
+public class CompletedStoriesDAO implements IcompletedStoriesDAO{
+
+	private SessionFactory sf;
 	
-		public void insert(CompletedStories cs) {
-		Session ses = HibernateUtilities.getSession();
+	@Autowired
+	public void IcompletedStoriesDAO(SessionFactory sf) {
+		this.sf = sf;
+	}
+	
+	@Override
+	public CompletedStories insert(CompletedStories completedStory) {
+		Session session = sf.getCurrentSession();
+		Transaction t=session.beginTransaction();             
+		session.persist(completedStory);    
+		t.commit();
+	    return completedStory;
+	}
 		
-		ses.save(cs);
-		//HibernateUtility.closeSession();
-		}
+	@Override
+	public CompletedStories update(CompletedStories completedStory) {
+		int id = completedStory.getCompletedStoryId();
+		Session session = sf.getCurrentSession();
+	    Transaction t=session.beginTransaction();      	        
+	    session.merge(completedStory);    
+	    t.commit();  
+	    CompletedStories updatedStory = session.get(CompletedStories.class, id);
+	    return updatedStory;
+	}
+
+	@Override
+	public CompletedStories selectById(int id) {
+		Session session = sf.getCurrentSession();
+		CompletedStories story = session.get(CompletedStories.class, id);
+		return story;
+	}
+	
+	@Override
+	public List<CompletedStories> findAll(){
+		Session session = sf.getCurrentSession();
+		CriteriaQuery<CompletedStories> cq = session.getCriteriaBuilder().createQuery(CompletedStories.class);
+		cq.from(CompletedStories.class);
+		return session.createQuery(cq).getResultList();	
+	}
+		
+		
+		
 }
