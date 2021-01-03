@@ -10,26 +10,38 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
+@Table(name="user_table")
 public class User {
 	
     @Id
     @Column(name = "USER_ID")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int user_id;
+    @Column(name="first_name", nullable=false)
 	private String first_name;
+    @Column(name="last_name", nullable=false)
 	private String last_name;
+    @Column(name="dob", nullable=false)
 	private int dob;
-    @OneToOne(targetEntity=UserLevel.class, cascade = CascadeType.ALL)
-	private UserLevel userLevel;
+    @ManyToOne(targetEntity=UserLevel.class, cascade = CascadeType.ALL,fetch=FetchType.LAZY)
+	@JoinColumn(name="user_level")
+	@JsonBackReference
+    private UserLevel userLevel;
+    @Column(name="email", unique=true, nullable=false)
 	private String email;
 	@Temporal(TemporalType.DATE)
-	private Date enroll_date;
+	@Column(name="enroll_date")
+	private Date enrollDate;
 	
 	@OneToMany (targetEntity=CompletedStories.class, fetch=FetchType.LAZY)
 	List<CompletedStories> myCompletedStories;
@@ -40,7 +52,7 @@ public class User {
 	}
 
 	public User(int user_id, String first_name, String last_name, int dob, UserLevel userLevel,
-			String email, Date enroll_date, List<CompletedStories> myCompletedStories) {
+			String email, Date enrollDate, List<CompletedStories> myCompletedStories) {
 		super();
 		this.user_id = user_id;
 		this.first_name = first_name;
@@ -48,19 +60,19 @@ public class User {
 		this.dob = dob;
 		this.userLevel = userLevel;
 		this.email = email;
-		this.enroll_date = enroll_date;
+		this.enrollDate = enrollDate;
 		this.myCompletedStories = myCompletedStories;
 	}
 	
 
-	public User(String first_name, String last_name, int dob, UserLevel userLevel, String email, Date enroll_date) {
+	public User(String first_name, String last_name, int dob, UserLevel userLevel, String email, Date enrollDate) {
 		super();
 		this.first_name = first_name;
 		this.last_name = last_name;
 		this.dob = dob;
 		this.userLevel = userLevel;
 		this.email = email;
-		this.enroll_date = enroll_date;
+		this.enrollDate = enrollDate;
 	}
 
 	public int getUser_id() {
@@ -112,11 +124,11 @@ public class User {
 	}
 
 	public Date getEnroll_date() {
-		return enroll_date;
+		return enrollDate;
 	}
 
 	public void setEnroll_date(Date enroll_date) {
-		this.enroll_date = enroll_date;
+		this.enrollDate = enroll_date;
 	}
 	
 	public List<CompletedStories> getMyCompletedStories() {
@@ -129,8 +141,8 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [user_id=" + user_id + ", first_name=" + first_name + ", last_name=" + last_name + ", dob=" + dob + ", userLevel=" + userLevel + ", email=" + email + ", enroll_date="
-				+ enroll_date + "]";
+		return "User [user_id=" + user_id + ", first_name=" + first_name + ", last_name=" + last_name + ", dob=" + dob + ", userLevel=" + userLevel + ", email=" + email + ", enrollDate="
+				+ enrollDate + "]";
 	}
 	
 

@@ -5,14 +5,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="user_level")
 public class UserLevel {
 	
     @Id
     @Column(name = "LEVEL_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int level_id;
+    @Column
 	private String level_desc;
 	
 	public UserLevel(int level_id, String level_desc) {
