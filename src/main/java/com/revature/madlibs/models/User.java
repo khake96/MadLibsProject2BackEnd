@@ -33,7 +33,7 @@ public class User {
 	private String last_name;
     @Column(name="dob", nullable=false)
 	private int dob;
-    @ManyToOne(targetEntity=UserLevel.class, cascade = CascadeType.ALL,fetch=FetchType.LAZY)
+    @ManyToOne(targetEntity=UserLevel.class, cascade = CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinColumn(name="user_level")
 	@JsonBackReference
     private UserLevel userLevel;
@@ -43,7 +43,7 @@ public class User {
 	@Column(name="enroll_date")
 	private Date enrollDate;
 	
-	@OneToMany (targetEntity=CompletedStories.class, fetch=FetchType.LAZY)
+	@OneToMany (targetEntity=CompletedStories.class, fetch=FetchType.EAGER)
 	List<CompletedStories> myCompletedStories;
 	
 	public User() {
