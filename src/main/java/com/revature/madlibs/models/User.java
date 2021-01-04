@@ -26,11 +26,16 @@ public class User {
 	private String last_name;
 	private int dob;
 <<<<<<< HEAD
+<<<<<<< HEAD
     @ManyToOne(targetEntity=UserLevel.class, cascade = CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinColumn(name="user_level")
 	@JsonBackReference
     private UserLevel userLevel;
     @Column(name="email", unique=true, nullable=false)
+=======
+    @OneToOne(targetEntity=UserLevel.class, cascade = CascadeType.ALL)
+	private UserLevel userLevel;
+>>>>>>> parent of cce3ef8... final version more or less
 =======
     @OneToOne(targetEntity=UserLevel.class, cascade = CascadeType.ALL)
 	private UserLevel userLevel;

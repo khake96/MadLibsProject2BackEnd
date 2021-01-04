@@ -2,6 +2,7 @@ package com.revature.madlibs.DAO;
 
 import java.util.List;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -13,6 +14,11 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 =======
+=======
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+>>>>>>> parent of cce3ef8... final version more or less
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -40,6 +46,7 @@ public class IncompletedStoriesDAO {
 	    session.merge(incompleteStory);    
 	    t.commit();  
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	
 	@Override
@@ -86,4 +93,22 @@ public class IncompletedStoriesDAO {
 >>>>>>> parent of cce3ef8... final version more or less
 	}
 
+=======
+
+	public IncompleteStories selectById(int id) {
+		Session session = HibernateUtilities.getSession();
+		IncompleteStories incompleteStory = session.get(IncompleteStories.class, id);
+		
+		return incompleteStory;
+	}
+	
+	public List<IncompleteStories> findAll(){
+		Session session = HibernateUtilities.getSession();
+		
+		List<IncompleteStories> list = session.createQuery("FROM IncompleteStories").list();
+		
+		return list;		
+	}
+
+>>>>>>> parent of cce3ef8... final version more or less
 }

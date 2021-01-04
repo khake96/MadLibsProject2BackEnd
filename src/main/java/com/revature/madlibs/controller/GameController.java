@@ -34,9 +34,7 @@ public class GameController {
 	@GetMapping(value= "/read")
 	public ResponseEntity<List<CompletedStories>> getCompletedStories() {
 		List<CompletedStories> list = service.getCompletedStories1();
-		
 				return ResponseEntity.status(HttpStatus.OK).body(list);
- 
 	}
 	@GetMapping(value= "/write")
 	public ResponseEntity<IncompleteStories> getIncompletedStories(@RequestBody StoryCategory category, @RequestBody UserLevel level) {

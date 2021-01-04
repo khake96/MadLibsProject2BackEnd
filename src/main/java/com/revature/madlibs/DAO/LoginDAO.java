@@ -26,6 +26,7 @@ public class LoginDAO {
 
 	public Login selectById(String username) {
 		Session session = HibernateUtilities.getSession();
+<<<<<<< HEAD
 		Login login = session.get(Login.class, username);
 		
 		return login;
@@ -35,9 +36,13 @@ public class LoginDAO {
 	@Override
 	public Login selectByName(String username) {
 		Session session = sf.getCurrentSession();
+=======
+>>>>>>> parent of cce3ef8... final version more or less
 		Login login = session.get(Login.class, username);
+		
 		return login;
 	}
+<<<<<<< HEAD
 	
 	@Override
 	public boolean validate(String uName, String password) {		
@@ -74,6 +79,8 @@ public class LoginDAO {
 		Session s = sf.getCurrentSession();
 		return s.get(Login.class, id);
 	}
+=======
+>>>>>>> parent of cce3ef8... final version more or less
 =======
 >>>>>>> parent of cce3ef8... final version more or less
 

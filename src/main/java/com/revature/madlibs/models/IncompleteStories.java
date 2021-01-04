@@ -16,6 +16,7 @@ public class IncompleteStories {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int storyId;
 <<<<<<< HEAD
+<<<<<<< HEAD
     @ManyToOne(targetEntity=UserLevel.class,cascade=CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonBackReference
     @JoinColumn(name="user_level")
@@ -32,18 +33,25 @@ public class IncompleteStories {
 	private String incompleteStory;
     @Column(name="author_first_name")
 =======
+=======
+>>>>>>> parent of cce3ef8... final version more or less
     @OneToOne(targetEntity=UserLevel.class,cascade=CascadeType.ALL)
 	private UserLevel storyLevel;
     @OneToOne(targetEntity=StoryCategory.class,cascade=CascadeType.ALL)
 	private StoryCategory category;
     @Column(length=10000)
 	private String incompleteStory;
+<<<<<<< HEAD
 >>>>>>> parent of cce3ef8... final version more or less
     private String authorFirstName;
     private String authorLastName;
 <<<<<<< HEAD
     @Column(name="missing_word_count")
 =======
+>>>>>>> parent of cce3ef8... final version more or less
+=======
+    private String authorFirstName;
+    private String authorLastName;
 >>>>>>> parent of cce3ef8... final version more or less
 	private int missingWordCount;
 	
@@ -53,6 +61,7 @@ public class IncompleteStories {
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	public IncompleteStories(int storyId, UserLevel storyLevel, StoryCategory category, String originalStory,
 			String authorBook, String incompleteStory, String authorFirstName, String authorLastName,
@@ -61,10 +70,15 @@ public class IncompleteStories {
 	public IncompleteStories(int storyId, UserLevel storyLevel, StoryCategory category, String incompleteStory,
 			String authorFirstName, String authorLastName, int missingWordCount) {
 >>>>>>> parent of cce3ef8... final version more or less
+=======
+	public IncompleteStories(int storyId, UserLevel storyLevel, StoryCategory category, String incompleteStory,
+			String authorFirstName, String authorLastName, int missingWordCount) {
+>>>>>>> parent of cce3ef8... final version more or less
 		super();
 		this.storyId = storyId;
 		this.storyLevel = storyLevel;
 		this.category = category;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		this.originalStory = originalStory;
 		this.authorBook = authorBook;
@@ -89,6 +103,25 @@ public class IncompleteStories {
 	}
 
 
+=======
+		this.incompleteStory = incompleteStory;
+		this.authorFirstName =authorFirstName;
+		this.authorLastName =authorLastName;
+		this.missingWordCount = missingWordCount;
+	}
+
+	public IncompleteStories(UserLevel storyLevel, StoryCategory category, String incompleteStory,
+			String authorFirstName, String authorLastName, int missingWordCount) {
+		super();
+		this.storyLevel = storyLevel;
+		this.category = category;
+		this.incompleteStory = incompleteStory;
+		this.authorFirstName =authorFirstName;
+		this.authorLastName =authorLastName;
+		this.missingWordCount = missingWordCount;
+	}
+
+>>>>>>> parent of cce3ef8... final version more or less
 =======
 		this.incompleteStory = incompleteStory;
 		this.authorFirstName =authorFirstName;
@@ -190,6 +223,7 @@ public class IncompleteStories {
 	@Override
 	public String toString() {
 		return "IncompleteStories [storyId=" + storyId + ", storyLevel=" + storyLevel + ", category=" + category
+<<<<<<< HEAD
 				+ ", originalStory=" + originalStory + ", authorBook=" + authorBook + ", incompleteStory="
 				+ incompleteStory + ", authorFirstName=" + authorFirstName + ", authorLastName=" + authorLastName
 				+ ", missingWordCount=" + missingWordCount + "]";
@@ -201,6 +235,11 @@ public class IncompleteStories {
 				+ ", incompleteStory=" + incompleteStory + " , authorFirstName=" + authorFirstName + ", authorLastName=" + authorLastName + ", missingWordCount="
 				+ missingWordCount + "]";
 	}
+=======
+				+ ", incompleteStory=" + incompleteStory + " , authorFirstName=" + authorFirstName + ", authorLastName=" + authorLastName + ", missingWordCount="
+				+ missingWordCount + "]";
+	}
+>>>>>>> parent of cce3ef8... final version more or less
 
 
 	

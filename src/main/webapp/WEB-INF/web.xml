@@ -20,6 +20,7 @@
 	</filter-mapping>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener> 
@@ -33,10 +34,15 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 =======
+=======
+>>>>>>> parent of cce3ef8... final version more or less
 	<servlet>
 		<display-name>LoginServlet</display-name>
 		<servlet-name>LoginServlet</servlet-name>
 		<servlet-class>com.revature.madlibs.web.LoginServlet</servlet-class>
+<<<<<<< HEAD
+>>>>>>> parent of cce3ef8... final version more or less
+=======
 >>>>>>> parent of cce3ef8... final version more or less
 	</servlet>
 	<servlet-mapping>

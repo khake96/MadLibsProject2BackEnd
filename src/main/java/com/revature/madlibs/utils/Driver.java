@@ -24,6 +24,7 @@ public class Driver {
 	public static void main(String[] args) {
 		
 <<<<<<< HEAD
+<<<<<<< HEAD
 //		ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
 //		
 //		IuserLevelDAO ulDao = ac.getBean(IuserLevelDAO.class);
@@ -69,6 +70,8 @@ public class Driver {
 //		System.out.println("Done");
 
 =======
+=======
+>>>>>>> parent of cce3ef8... final version more or less
 		UserLevelDAO ulDao = new UserLevelDAO();
 		UserDAO uDao = new UserDAO();
 		LoginDAO loginDao = new LoginDAO();
@@ -108,6 +111,9 @@ public class Driver {
 		
 		System.out.println("Done");
 		HibernateUtilities.closeSession();
+<<<<<<< HEAD
+>>>>>>> parent of cce3ef8... final version more or less
+=======
 >>>>>>> parent of cce3ef8... final version more or less
 
 	}

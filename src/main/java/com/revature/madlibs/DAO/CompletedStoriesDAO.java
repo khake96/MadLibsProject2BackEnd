@@ -11,6 +11,7 @@ import com.revature.madlibs.utils.HibernateUtilities;
 public class CompletedStoriesDAO {
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
 	@Autowired
 	public void IcompletedStoriesDAO(SessionFactory sf) {
 		this.sf = sf;
@@ -64,6 +65,24 @@ public class CompletedStoriesDAO {
 		    t.commit();  
 		}
 
+=======
+		public void insert(CompletedStories completedStory) {
+		Session session = HibernateUtilities.getSession();
+	    Transaction t=session.beginTransaction();      
+	        
+	    session.persist(completedStory);    
+	    t.commit();  
+		}
+		
+		public void update(CompletedStories completedStory) {
+			Session session = HibernateUtilities.getSession();
+		    Transaction t=session.beginTransaction();      
+	        
+		    session.merge(completedStory);    
+		    t.commit();  
+		}
+
+>>>>>>> parent of cce3ef8... final version more or less
 		public CompletedStories selectById(int id) {
 			Session session = HibernateUtilities.getSession();
 			CompletedStories completedStory = session.get(CompletedStories.class, id);
@@ -78,6 +97,9 @@ public class CompletedStoriesDAO {
 			
 			return list;		
 		}
+<<<<<<< HEAD
+>>>>>>> parent of cce3ef8... final version more or less
+=======
 >>>>>>> parent of cce3ef8... final version more or less
 		
 		

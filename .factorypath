@@ -1,5 +1,6 @@
 <factorypath>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/spring-context/5.2.3.RELEASE/spring-context-5.2.3.RELEASE.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/spring-aop/5.2.3.RELEASE/spring-aop-5.2.3.RELEASE.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/spring-beans/5.2.3.RELEASE/spring-beans-5.2.3.RELEASE.jar" enabled="true" runInBatchMode="false"/>
@@ -12,6 +13,8 @@
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/spring-jdbc/5.2.3.RELEASE/spring-jdbc-5.2.3.RELEASE.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/spring-tx/5.2.3.RELEASE/spring-tx-5.2.3.RELEASE.jar" enabled="true" runInBatchMode="false"/>
 =======
+=======
+>>>>>>> parent of cce3ef8... final version more or less
     <factorypathentry kind="VARJAR" id="M2_REPO/javax/servlet/javax.servlet-api/4.0.1/javax.servlet-api-4.0.1.jar" enabled="true" runInBatchMode="false"/>
 >>>>>>> parent of cce3ef8... final version more or less
     <factorypathentry kind="VARJAR" id="M2_REPO/com/fasterxml/jackson/core/jackson-databind/2.12.0/jackson-databind-2.12.0.jar" enabled="true" runInBatchMode="false"/>

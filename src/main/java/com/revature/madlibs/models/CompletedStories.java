@@ -22,6 +22,7 @@ public class CompletedStories {
 	@Column(length=10000)
 	private String completedStory;
 <<<<<<< HEAD
+<<<<<<< HEAD
     @ManyToOne(targetEntity=User.class, cascade = CascadeType.DETACH, fetch = FetchType.EAGER)	
     @JoinColumn(name = "completer")
     @JsonBackReference
@@ -32,10 +33,15 @@ public class CompletedStories {
 	@JoinColumn(name="incomplete_story_id")
 	@JsonManagedReference
 =======
+=======
+>>>>>>> parent of cce3ef8... final version more or less
     @ManyToOne(targetEntity=User.class, cascade = CascadeType.DETACH)
 	private User completer;	
 	private int upvoteCount;
 	@ManyToOne(targetEntity=IncompleteStories.class, cascade = CascadeType.DETACH)
+<<<<<<< HEAD
+>>>>>>> parent of cce3ef8... final version more or less
+=======
 >>>>>>> parent of cce3ef8... final version more or less
 	private IncompleteStories parentStory;
 	@Temporal(TemporalType.DATE)

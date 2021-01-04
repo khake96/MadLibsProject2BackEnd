@@ -14,10 +14,15 @@ public class Login {
     @Column(name = "LOGIN_ID")
 	private String userName;
 <<<<<<< HEAD
+<<<<<<< HEAD
     @Column(name="pword", nullable=false)
 	private String pword;
     @OneToOne(targetEntity=User.class,cascade=CascadeType.ALL,fetch=FetchType.EAGER)
     @JoinColumn
+=======
+	private String password;
+    @OneToOne(targetEntity=User.class,cascade=CascadeType.ALL)
+>>>>>>> parent of cce3ef8... final version more or less
 =======
 	private String password;
     @OneToOne(targetEntity=User.class,cascade=CascadeType.ALL)
@@ -28,6 +33,7 @@ public class Login {
 		super();
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	public int getLoginId() {
 		return loginId;
@@ -46,13 +52,17 @@ public class Login {
 	}
 
 	public Login(int loginId, String userName, String pword, User user) {
+=======
+	public Login(String userName, String password, User user) {
+>>>>>>> parent of cce3ef8... final version more or less
 		super();
 		this.loginId = loginId;
 		this.userName = userName;
-		this.pword = pword;
+		this.password = password;
 		this.user = user;
 	}
 
+<<<<<<< HEAD
 	public Login(String userName, String pword, User user) {
 =======
 	public Login(String userName, String password, User user) {
@@ -67,6 +77,12 @@ public class Login {
 		super();
 		this.userName = userName;
 		this.password = password;
+=======
+	public Login(String userName, String password) {
+		super();
+		this.userName = userName;
+		this.password = password;
+>>>>>>> parent of cce3ef8... final version more or less
 	}
 
 	public String getUserName() {
@@ -96,7 +112,11 @@ public class Login {
 	@Override
 	public String toString() {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return "Login [loginId=" + loginId + ", userName=" + userName + ", pword=" + pword + ", user=" + user + "]";
+=======
+		return "Login [userName=" + userName + ", password=" + password + ", user=" + user + "]";
+>>>>>>> parent of cce3ef8... final version more or less
 =======
 		return "Login [userName=" + userName + ", password=" + password + ", user=" + user + "]";
 >>>>>>> parent of cce3ef8... final version more or less
