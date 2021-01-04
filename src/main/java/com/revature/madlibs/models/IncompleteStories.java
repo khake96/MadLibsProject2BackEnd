@@ -3,24 +3,19 @@ package com.revature.madlibs.models;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import javax.persistence.OneToOne;
 
 @Entity
-@Table(name = "incomplete_stories")
 public class IncompleteStories {
 	
 	@Id
     @Column(name = "INCOMPLETE_STORY_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int storyId;
+<<<<<<< HEAD
     @ManyToOne(targetEntity=UserLevel.class,cascade=CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonBackReference
     @JoinColumn(name="user_level")
@@ -36,24 +31,41 @@ public class IncompleteStories {
     @Column(length=10000, name="incomplete_story")
 	private String incompleteStory;
     @Column(name="author_first_name")
+=======
+    @OneToOne(targetEntity=UserLevel.class,cascade=CascadeType.ALL)
+	private UserLevel storyLevel;
+    @OneToOne(targetEntity=StoryCategory.class,cascade=CascadeType.ALL)
+	private StoryCategory category;
+    @Column(length=10000)
+	private String incompleteStory;
+>>>>>>> parent of cce3ef8... final version more or less
     private String authorFirstName;
-    @Column(name="author_last_name")
     private String authorLastName;
+<<<<<<< HEAD
     @Column(name="missing_word_count")
+=======
+>>>>>>> parent of cce3ef8... final version more or less
 	private int missingWordCount;
 	
 	public IncompleteStories() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
+<<<<<<< HEAD
 
 	public IncompleteStories(int storyId, UserLevel storyLevel, StoryCategory category, String originalStory,
 			String authorBook, String incompleteStory, String authorFirstName, String authorLastName,
 			int missingWordCount) {
+=======
+	public IncompleteStories(int storyId, UserLevel storyLevel, StoryCategory category, String incompleteStory,
+			String authorFirstName, String authorLastName, int missingWordCount) {
+>>>>>>> parent of cce3ef8... final version more or less
 		super();
 		this.storyId = storyId;
 		this.storyLevel = storyLevel;
 		this.category = category;
+<<<<<<< HEAD
 		this.originalStory = originalStory;
 		this.authorBook = authorBook;
 		this.incompleteStory = incompleteStory;
@@ -77,6 +89,25 @@ public class IncompleteStories {
 	}
 
 
+=======
+		this.incompleteStory = incompleteStory;
+		this.authorFirstName =authorFirstName;
+		this.authorLastName =authorLastName;
+		this.missingWordCount = missingWordCount;
+	}
+
+	public IncompleteStories(UserLevel storyLevel, StoryCategory category, String incompleteStory,
+			String authorFirstName, String authorLastName, int missingWordCount) {
+		super();
+		this.storyLevel = storyLevel;
+		this.category = category;
+		this.incompleteStory = incompleteStory;
+		this.authorFirstName =authorFirstName;
+		this.authorLastName =authorLastName;
+		this.missingWordCount = missingWordCount;
+	}
+
+>>>>>>> parent of cce3ef8... final version more or less
 	public int getStoryId() {
 		return storyId;
 	}
@@ -135,6 +166,7 @@ public class IncompleteStories {
 	
 	
 
+<<<<<<< HEAD
 	public String getOriginalStory() {
 		return originalStory;
 	}
@@ -162,5 +194,16 @@ public class IncompleteStories {
 				+ incompleteStory + ", authorFirstName=" + authorFirstName + ", authorLastName=" + authorLastName
 				+ ", missingWordCount=" + missingWordCount + "]";
 	}
+=======
+	@Override
+	public String toString() {
+		return "IncompleteStories [storyId=" + storyId + ", storyLevel=" + storyLevel + ", category=" + category
+				+ ", incompleteStory=" + incompleteStory + " , authorFirstName=" + authorFirstName + ", authorLastName=" + authorLastName + ", missingWordCount="
+				+ missingWordCount + "]";
+	}
+
+
+	
+>>>>>>> parent of cce3ef8... final version more or less
 }
 	

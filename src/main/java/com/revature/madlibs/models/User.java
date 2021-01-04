@@ -10,38 +10,34 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 @Entity
-@Table(name="user_table")
 public class User {
 	
     @Id
     @Column(name = "USER_ID")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int user_id;
-    @Column(name="first_name", nullable=false)
 	private String first_name;
-    @Column(name="last_name", nullable=false)
 	private String last_name;
-    @Column(name="dob", nullable=false)
 	private int dob;
+<<<<<<< HEAD
     @ManyToOne(targetEntity=UserLevel.class, cascade = CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinColumn(name="user_level")
 	@JsonBackReference
     private UserLevel userLevel;
     @Column(name="email", unique=true, nullable=false)
+=======
+    @OneToOne(targetEntity=UserLevel.class, cascade = CascadeType.ALL)
+	private UserLevel userLevel;
+>>>>>>> parent of cce3ef8... final version more or less
 	private String email;
 	@Temporal(TemporalType.DATE)
-	@Column(name="enroll_date")
-	private Date enrollDate;
+	private Date enroll_date;
 	
 	@OneToMany (targetEntity=CompletedStories.class, fetch=FetchType.EAGER)
 	List<CompletedStories> myCompletedStories;
@@ -52,7 +48,7 @@ public class User {
 	}
 
 	public User(int user_id, String first_name, String last_name, int dob, UserLevel userLevel,
-			String email, Date enrollDate, List<CompletedStories> myCompletedStories) {
+			String email, Date enroll_date, List<CompletedStories> myCompletedStories) {
 		super();
 		this.user_id = user_id;
 		this.first_name = first_name;
@@ -60,19 +56,19 @@ public class User {
 		this.dob = dob;
 		this.userLevel = userLevel;
 		this.email = email;
-		this.enrollDate = enrollDate;
+		this.enroll_date = enroll_date;
 		this.myCompletedStories = myCompletedStories;
 	}
 	
 
-	public User(String first_name, String last_name, int dob, UserLevel userLevel, String email, Date enrollDate) {
+	public User(String first_name, String last_name, int dob, UserLevel userLevel, String email, Date enroll_date) {
 		super();
 		this.first_name = first_name;
 		this.last_name = last_name;
 		this.dob = dob;
 		this.userLevel = userLevel;
 		this.email = email;
-		this.enrollDate = enrollDate;
+		this.enroll_date = enroll_date;
 	}
 
 	public int getUser_id() {
@@ -124,11 +120,11 @@ public class User {
 	}
 
 	public Date getEnroll_date() {
-		return enrollDate;
+		return enroll_date;
 	}
 
 	public void setEnroll_date(Date enroll_date) {
-		this.enrollDate = enroll_date;
+		this.enroll_date = enroll_date;
 	}
 	
 	public List<CompletedStories> getMyCompletedStories() {
@@ -141,8 +137,8 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [user_id=" + user_id + ", first_name=" + first_name + ", last_name=" + last_name + ", dob=" + dob + ", userLevel=" + userLevel + ", email=" + email + ", enrollDate="
-				+ enrollDate + "]";
+		return "User [user_id=" + user_id + ", first_name=" + first_name + ", last_name=" + last_name + ", dob=" + dob + ", userLevel=" + userLevel + ", email=" + email + ", enroll_date="
+				+ enroll_date + "]";
 	}
 	
 

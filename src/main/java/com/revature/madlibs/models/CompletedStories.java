@@ -5,29 +5,23 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 @Entity
-@Table(name="completed_stories")
 public class CompletedStories {
 
 	@Id
     @Column(name = "COMPLETE_STORY_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int completedStoryId;
-	@Column(length=10000, name="completed_story")
+	@Column(length=10000)
 	private String completedStory;
+<<<<<<< HEAD
     @ManyToOne(targetEntity=User.class, cascade = CascadeType.DETACH, fetch = FetchType.EAGER)	
     @JoinColumn(name = "completer")
     @JsonBackReference
@@ -37,8 +31,13 @@ public class CompletedStories {
 	@ManyToOne(targetEntity=IncompleteStories.class, cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
 	@JoinColumn(name="incomplete_story_id")
 	@JsonManagedReference
+=======
+    @ManyToOne(targetEntity=User.class, cascade = CascadeType.DETACH)
+	private User completer;	
+	private int upvoteCount;
+	@ManyToOne(targetEntity=IncompleteStories.class, cascade = CascadeType.DETACH)
+>>>>>>> parent of cce3ef8... final version more or less
 	private IncompleteStories parentStory;
-	@Column(name="completed_date")
 	@Temporal(TemporalType.DATE)
 	private Date completedDate;
 	

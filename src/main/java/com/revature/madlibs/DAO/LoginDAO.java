@@ -1,46 +1,36 @@
 package com.revature.madlibs.DAO;
 
-import java.util.List;
-
-import javax.persistence.criteria.CriteriaQuery;
-
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+import org.hibernate.Transaction;
 
 import com.revature.madlibs.models.Login;
+import com.revature.madlibs.utils.HibernateUtilities;
 
-@Repository
-@Transactional
-public class LoginDAO implements IloginDAO {
+public class LoginDAO {
 	
-	private SessionFactory sf;
-	
-	@Autowired
-	public void IloginDAO(SessionFactory sf) {
-		this.sf = sf;
-	}
-	
-	@Override
 	public void insert(Login login) {
-	Session session = sf.getCurrentSession();         
+	Session session = HibernateUtilities.getSession();
+    Transaction t=session.beginTransaction();      
+        
     session.persist(login);    
+    t.commit();  
 	}
 	
-	@Override
 	public void update(Login login) {
-		Session session = sf.getCurrentSession();        
+		Session session = HibernateUtilities.getSession();
+	    Transaction t=session.beginTransaction();      
+        
 	    session.merge(login);    
+	    t.commit();  
 	}
 
-	@Override
 	public Login selectById(String username) {
-		Session session = sf.getCurrentSession();
+		Session session = HibernateUtilities.getSession();
 		Login login = session.get(Login.class, username);
+		
 		return login;
 	}
+<<<<<<< HEAD
 	
 	@Override
 	public Login selectByName(String username) {
@@ -84,5 +74,7 @@ public class LoginDAO implements IloginDAO {
 		Session s = sf.getCurrentSession();
 		return s.get(Login.class, id);
 	}
+=======
+>>>>>>> parent of cce3ef8... final version more or less
 
 }

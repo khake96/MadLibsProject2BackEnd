@@ -2,52 +2,44 @@ package com.revature.madlibs.DAO;
 
 import java.util.List;
 
-import javax.persistence.criteria.CriteriaQuery;
-
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+import org.hibernate.Transaction;
 
+import com.revature.madlibs.models.CompletedStories;
 import com.revature.madlibs.models.User;
+import com.revature.madlibs.utils.HibernateUtilities;
 
-@Repository
-@Transactional
-public class UserDAO implements IuserDAO {
+public class UserDAO {
 	
-	private SessionFactory sf;
-	
-	@Autowired
-	public void IuserDAO(SessionFactory sf) {
-		this.sf = sf;
-	}
-	
-	@Override	
 	public void insert(User user) {
-	Session session = sf.getCurrentSession();      
+	Session session = HibernateUtilities.getSession();
+    Transaction t=session.beginTransaction();      
+        
     session.persist(user);    
+    t.commit();  
 	}
 	
-	@Override	
 	public void update(User user) {
-		Session session = sf.getCurrentSession();          
+		Session session = HibernateUtilities.getSession();
+	    Transaction t=session.beginTransaction();      
+        
 	    session.merge(user);    
+	    t.commit();  
 	}
 
-	@Override	
 	public User selectById(int id) {
-		Session session = sf.getCurrentSession();
-		User user = session.get(User.class, id);	
+		Session session = HibernateUtilities.getSession();
+		User user = session.get(User.class, id);
+		
 		return user;
 	}
 	
-	@Override	
 	public List<User> findAll(){
-		Session session = sf.getCurrentSession();
-		CriteriaQuery<User> cq = session.getCriteriaBuilder().createQuery(User.class);	
-		cq.from(User.class);
-		return session.createQuery(cq).getResultList();			
+		Session session = HibernateUtilities.getSession();
+		
+		List<User> list = session.createQuery("FROM User").list();
+		
+		return list;		
 	}
 
 }

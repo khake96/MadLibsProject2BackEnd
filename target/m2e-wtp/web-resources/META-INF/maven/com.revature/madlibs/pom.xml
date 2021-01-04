@@ -9,36 +9,12 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/x
   <name>madlibs</name>
   <description>A crazy classics version of the madlibs game.</description>
   
-  	<build>
-		<finalName>madlibs</finalName>
-	</build>
-  
-     <properties>
+        <properties>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.source>1.8</maven.compiler.source>
 	</properties>
 	
 	<dependencies>
-	<!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-			<version>5.2.3.RELEASE</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<version>5.2.3.RELEASE</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-orm</artifactId>
-			<version>5.2.3.RELEASE</version>
-		</dependency>
     <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
 	<!-- <dependency>
     	<groupId>javax.servlet</groupId>

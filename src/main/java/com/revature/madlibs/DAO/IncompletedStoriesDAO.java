@@ -1,6 +1,7 @@
 package com.revature.madlibs.DAO;
 
 import java.util.List;
+<<<<<<< HEAD
 
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -11,34 +12,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
+=======
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+>>>>>>> parent of cce3ef8... final version more or less
 
 import com.revature.madlibs.models.CompletedStories;
 import com.revature.madlibs.models.IncompleteStories;
-import com.revature.madlibs.models.StoryCategory;
-import com.revature.madlibs.models.UserLevel;
+import com.revature.madlibs.models.User;
+import com.revature.madlibs.utils.HibernateUtilities;
 
-@Repository
-@Transactional
-public class IncompletedStoriesDAO implements IincompletedStoriesDAO {
+public class IncompletedStoriesDAO {
 	
-	private SessionFactory sf;
-	
-	@Autowired
-	public void IincompletedStoriesDAO(SessionFactory sf) {
-		this.sf = sf;
-	}
-	
-	@Override
 	public void insert(IncompleteStories incompleteStory) {
-	Session session = sf.getCurrentSession();           
+	Session session = HibernateUtilities.getSession();
+    Transaction t=session.beginTransaction();      
+        
     session.persist(incompleteStory);    
+    t.commit();  
 	}
 	
-	@Override
 	public void update(IncompleteStories incompleteStory) {
-		Session session = sf.getCurrentSession();       
+		Session session = HibernateUtilities.getSession();
+	    Transaction t=session.beginTransaction();      
+        
 	    session.merge(incompleteStory);    
+	    t.commit();  
 	}
+<<<<<<< HEAD
 	
 	@Override
 	public IncompleteStories selectByCategoryUserLevel(StoryCategory category, UserLevel level) {
@@ -66,6 +68,22 @@ public class IncompletedStoriesDAO implements IincompletedStoriesDAO {
 		
 			
 		
+=======
+
+	public IncompleteStories selectById(int id) {
+		Session session = HibernateUtilities.getSession();
+		IncompleteStories incompleteStory = session.get(IncompleteStories.class, id);
+		
+		return incompleteStory;
+	}
+	
+	public List<IncompleteStories> findAll(){
+		Session session = HibernateUtilities.getSession();
+		
+		List<IncompleteStories> list = session.createQuery("FROM IncompleteStories").list();
+		
+		return list;		
+>>>>>>> parent of cce3ef8... final version more or less
 	}
 
 }
