@@ -28,7 +28,7 @@ public class CompletedStories {
 	private int completedStoryId;
 	@Column(length=10000, name="completed_story")
 	private String completedStory;
-    @ManyToOne(targetEntity=User.class, cascade = CascadeType.DETACH, fetch = FetchType.LAZY)	
+    @ManyToOne(targetEntity=User.class, cascade = CascadeType.DETACH, fetch = FetchType.EAGER)	
     @JoinColumn(name = "completer")
     @JsonBackReference
     private User completer;	

@@ -23,7 +23,7 @@ public class Login {
 	private String userName;
     @Column(name="pword", nullable=false)
 	private String pword;
-    @OneToOne(targetEntity=User.class,cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+    @OneToOne(targetEntity=User.class,cascade=CascadeType.ALL,fetch=FetchType.EAGER)
     @JoinColumn
 	private User user;
     
