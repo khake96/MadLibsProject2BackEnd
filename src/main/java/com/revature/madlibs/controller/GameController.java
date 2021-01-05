@@ -39,7 +39,7 @@ public class GameController {
 				return ResponseEntity.status(HttpStatus.OK).body(list);
 	}
 	
-	@GetMapping(value= "/write")
+	@PostMapping //  Not a RESTful way to accomplish this task....
 	public ResponseEntity<IncompleteStories> getIncompletedStory(@RequestBody StoryCategory category, @RequestBody UserLevel level, @RequestBody int missingWordCount) {
 		IncompleteStories list = service.getOneIncompleteStory(category, level, missingWordCount);	
 		if (list != null) {
