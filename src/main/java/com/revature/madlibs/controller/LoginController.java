@@ -36,7 +36,6 @@ public class LoginController {
 				return ResponseEntity.status(HttpStatus.OK).body(list);
 	}
 
-
 	@PostMapping
 	public ResponseEntity<User> userLogin(@RequestBody Login login) {
 		User user = service.userLogin(login);

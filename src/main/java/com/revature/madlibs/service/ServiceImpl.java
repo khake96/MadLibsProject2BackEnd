@@ -63,9 +63,9 @@ public class ServiceImpl implements Iservice {
 	}
 
 	@Override
-	public User registerUser(User user) {
+	public User registerUser(User user, Login login) {
 		if(serviceLogic.isValidUser(user)) {
-			userDAO.insert(user);
+			userDAO.insert(user, login);
 		}
 		return user;
 	}
