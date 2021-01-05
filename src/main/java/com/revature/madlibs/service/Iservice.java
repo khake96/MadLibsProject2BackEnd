@@ -12,7 +12,6 @@ import com.revature.madlibs.models.UserLevel;
 public interface Iservice {
 	
 	public User userLogin(Login login);
-	public User registerUser(User user);
 	public User updateUser(User user);
 	public List<StoryCategory> getStoryCategories();
 	public List<CompletedStories> getCompletedStories1();
@@ -22,4 +21,5 @@ public interface Iservice {
 	public List<UserLevel> findAllUserLevels();
 	public IncompleteStories getOneIncompleteStory(StoryCategory category, UserLevel userLevel, int missingWordCount);
 	public CompletedStories getLastCompletedStory();
+	public User registerUser(User user, Login login);
 }

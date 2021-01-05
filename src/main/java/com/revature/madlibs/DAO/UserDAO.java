@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.revature.madlibs.models.Login;
 import com.revature.madlibs.models.User;
 
 @Repository
@@ -66,10 +67,11 @@ public class UserDAO implements IuserDAO {
 	}
 
 	@Override
-	public User insert(User user) {
+	public User insert(User user, Login login) {
 		Session session = sf.getCurrentSession();
 		try {
 			session.update(user);
+			session.update(login);
 			User returnUser = (User) session.createNativeQuery("SELECT * FROM user_table \r\n"
 					+ "WHERE user_id = (\r\n"
 					+ "   SELECT MAX (user_id)\r\n"

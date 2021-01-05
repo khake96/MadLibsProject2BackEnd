@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.madlibs.models.Login;
 import com.revature.madlibs.models.User;
 import com.revature.madlibs.service.ServiceImpl;
 
@@ -25,8 +26,8 @@ public class RegistrationController {
 	}
 
 	@PostMapping(value="/create")
-	public ResponseEntity<User> insert(User user) {
-		User returnedUser = service.registerUser(user);
+	public ResponseEntity<User> insert(User user, Login login) {
+		User returnedUser = service.registerUser(user, login);
 		if(returnedUser != null) {
 			return ResponseEntity.status(HttpStatus.OK).body(returnedUser);
 		} else return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
