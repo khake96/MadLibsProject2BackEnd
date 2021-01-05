@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,18 +35,12 @@ public class LoginController {
 	//	System.out.println("Inside LoginController - getLogins()");
 				return ResponseEntity.status(HttpStatus.OK).body(list);
 	}
-	
-	@GetMapping(value="/{id}")
-	public ResponseEntity<Login> getLoginById(@PathVariable("id") int id) {
-//		Login login = service.findLoginById(id);
-		System.out.println("inside: LoginController - getLoginById");
-		return ResponseEntity.status(HttpStatus.OK).body(service.findLoginById(id));
-	}
+
 
 	@PostMapping
 	public ResponseEntity<User> userLogin(@RequestBody Login login) {
 		User user = service.userLogin(login);
-		if(user.getFirst_name()!=null) {
+		if(user.getFirstName()!=null) {
 			return ResponseEntity.status(HttpStatus.OK).body(user);
 		} else return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
 	}

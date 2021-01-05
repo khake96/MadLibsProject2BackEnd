@@ -5,27 +5,30 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "TRAINERS")
 public class UserLevel {
 	
     @Id
     @Column(name = "LEVEL_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int level_id;
-	private String level_desc;
+    @Column(name = "level_desc")
+	private String levelDesc;
 	
-	public UserLevel(int level_id, String level_desc) {
+	public UserLevel(int level_id, String levelDesc) {
 		super();
 		this.level_id = level_id;
-		this.level_desc = level_desc;
+		this.levelDesc = levelDesc;
 	}
 	
 	
 
-	public UserLevel(String level_desc) {
+	public UserLevel(String levelDesc) {
 		super();
-		this.level_desc = level_desc;
+		this.levelDesc = levelDesc;
 	}
 
 
@@ -44,18 +47,18 @@ public class UserLevel {
 	}
 
 	public String getLevel_desc() {
-		return level_desc;
+		return levelDesc;
 	}
 
-	public void setLevel_desc(String level_desc) {
-		this.level_desc = level_desc;
+	public void setLevel_desc(String levelDesc) {
+		this.levelDesc = levelDesc;
 	}
 
 	@Override
 	public int hashCode() {
 		final Integer prime = 31;
 		Integer result = 1;
-		result = prime * result + ((level_desc == null) ? 0 : level_desc.hashCode());
+		result = prime * result + ((levelDesc == null) ? 0 : levelDesc.hashCode());
 		result = prime * result + level_id;
 		return result;
 	}
@@ -69,10 +72,10 @@ public class UserLevel {
 		if (getClass() != obj.getClass())
 			return false;
 		UserLevel other = (UserLevel) obj;
-		if (level_desc == null) {
-			if (other.level_desc != null)
+		if (levelDesc == null) {
+			if (other.levelDesc != null)
 				return false;
-		} else if (!level_desc.equals(other.level_desc))
+		} else if (!levelDesc.equals(other.levelDesc))
 			return false;
 		if (level_id != other.level_id)
 			return false;
@@ -81,7 +84,7 @@ public class UserLevel {
 
 	@Override
 	public String toString() {
-		return "UserLevel [level_id=" + level_id + ", level_desc=" + level_desc + "]";
+		return "UserLevel [level_id=" + level_id + ", level_desc=" + levelDesc + "]";
 	}
 
 

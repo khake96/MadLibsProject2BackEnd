@@ -2,106 +2,120 @@ package com.revature.madlibs.DAO;
 
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaQuery;
+
 import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.madlibs.models.CompletedStories;
-import com.revature.madlibs.utils.HibernateUtilities;
 
-public class CompletedStoriesDAO {
+@Repository
+@Transactional
+public class CompletedStoriesDAO implements IcompletedStoriesDAO {
+
+	private SessionFactory sf;
 	
-<<<<<<< HEAD
-<<<<<<< HEAD
 	@Autowired
-	public void IcompletedStoriesDAO(SessionFactory sf) {
+	public CompletedStoriesDAO(SessionFactory sf) {
+		super();
 		this.sf = sf;
 	}
-	
+
+	public CompletedStoriesDAO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
-	public void insert(CompletedStories completedStory) {
-		Session session = sf.getCurrentSession();
-		Transaction t=session.beginTransaction();             
-		session.persist(completedStory);    
-		t.commit();  
+	public CompletedStories insert(CompletedStories completedStory) {
+		Session session = sf.getCurrentSession();  
+		try {
+			session.save(completedStory); 
+			CompletedStories latestStory = (CompletedStories) session.createNativeQuery("SELECT * FROM completed_stories cs \r\n"
+					+ "WHERE complete_story_id = (\r\n"
+					+ "   SELECT MAX (complete_story_id)\r\n"
+					+ "   FROM completed_stories cs2 \r\n"
+					+ ");").getSingleResult();
+			return latestStory; 
+		} catch (Exception e) {
+			com.revature.madlibs.Logger.log.debug("insert CompletedStories error: "+ e.getMessage());
+		}
+		return null;
+		 
 	}
 		
 	@Override
-	public void update(CompletedStories completedStory) {
-		Session session = sf.getCurrentSession();
-	    Transaction t=session.beginTransaction();      	        
-	    session.merge(completedStory);    
-	    t.commit();  
+	public CompletedStories update(CompletedStories completedStory) {
+		Session session = sf.getCurrentSession(); 
+		try {
+		    session.merge(completedStory);    
+			CompletedStories latestStory = (CompletedStories) session.createNativeQuery("SELECT * FROM completed_stories cs \r\n"
+					+ "WHERE complete_story_id = (\r\n"
+					+ "   SELECT MAX (complete_story_id)\r\n"
+					+ "   FROM completed_stories cs2 \r\n"
+					+ ");").getSingleResult();
+			return latestStory;  
+		} catch (Exception e) {	
+			com.revature.madlibs.Logger.log.debug("update CompletedStories error: "+ e.getMessage());
+		}
+		return null;
+ 
 	}
 
 	@Override
 	public CompletedStories selectCompletedById(int id) {
-		Session session = sf.getCurrentSession();
-		CompletedStories story = session.get(CompletedStories.class, id);
-		return story;
+		try {
+			Session session = sf.getCurrentSession();
+			CompletedStories story = session.get(CompletedStories.class, id);
+			return story;
+		} catch (Exception e) {
+			com.revature.madlibs.Logger.log.debug("select by ID CompletedStories error: "+ e.getMessage());
+		}
+		return null;
 	}
 	
 	@Override
 	public List<CompletedStories> findAll(){
-		Session session = sf.getCurrentSession();
-		CriteriaQuery<CompletedStories> cq = session.getCriteriaBuilder().createQuery(CompletedStories.class);
-		cq.from(CompletedStories.class);
-	//	System.out.println("inside DAO findAll  "+session.createQuery(cq).getResultList());
-		return session.createQuery(cq).getResultList();	
+		try {
+			Session session = sf.getCurrentSession();
+			CriteriaQuery<CompletedStories> cq = session.getCriteriaBuilder().createQuery(CompletedStories.class);
+			cq.from(CompletedStories.class);
+			return session.createQuery(cq).getResultList();	
+		} catch (Exception e) {
+			com.revature.madlibs.Logger.log.debug("findAll CompletedStories error: "+ e.getMessage());
+		}
+		return null;
 	}
-=======
-		public void insert(CompletedStories completedStory) {
-		Session session = HibernateUtilities.getSession();
-	    Transaction t=session.beginTransaction();      
-	        
-	    session.persist(completedStory);    
-	    t.commit();  
-		}
-		
-		public void update(CompletedStories completedStory) {
-			Session session = HibernateUtilities.getSession();
-		    Transaction t=session.beginTransaction();      
-	        
-		    session.merge(completedStory);    
-		    t.commit();  
-		}
 
-=======
-		public void insert(CompletedStories completedStory) {
-		Session session = HibernateUtilities.getSession();
-	    Transaction t=session.beginTransaction();      
-	        
-	    session.persist(completedStory);    
-	    t.commit();  
-		}
-		
-		public void update(CompletedStories completedStory) {
-			Session session = HibernateUtilities.getSession();
-		    Transaction t=session.beginTransaction();      
-	        
-		    session.merge(completedStory);    
-		    t.commit();  
-		}
-
->>>>>>> parent of cce3ef8... final version more or less
-		public CompletedStories selectById(int id) {
-			Session session = HibernateUtilities.getSession();
+	@Override
+	public CompletedStories selectById(int id) {
+		try {
+			Session session =  sf.getCurrentSession();
 			CompletedStories completedStory = session.get(CompletedStories.class, id);
-			
 			return completedStory;
+		} catch (Exception e) {
+			com.revature.madlibs.Logger.log.debug("select by ID CompletedStories error: "+ e.getMessage());
 		}
-		
-		public List<CompletedStories> findAll(){
-			Session session = HibernateUtilities.getSession();
-			
-			List<CompletedStories> list = session.createQuery("FROM CompletedStories").list();
-			
-			return list;		
+		return null;
+	}
+	
+	@Override
+	public CompletedStories getLastIn() {
+		try {
+			Session session = sf.getCurrentSession();
+			CompletedStories latestStory = (CompletedStories) session.createNativeQuery("SELECT * FROM completed_stories cs \r\n"
+					+ "WHERE complete_story_id = (\r\n"
+					+ "   SELECT MAX (complete_story_id)\r\n"
+					+ "   FROM completed_stories cs2 \r\n"
+					+ ");").getSingleResult();
+			return latestStory;
+		} catch (Exception e) {
+			com.revature.madlibs.Logger.log.debug("getLastIn CompletedStories error: "+ e.getMessage());
 		}
-<<<<<<< HEAD
->>>>>>> parent of cce3ef8... final version more or less
-=======
->>>>>>> parent of cce3ef8... final version more or less
-		
-		
-		
+		return null;
+	}
+
 }

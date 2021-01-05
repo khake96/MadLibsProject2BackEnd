@@ -3,86 +3,61 @@ package com.revature.madlibs.models;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "login")
 public class Login {
 	
     @Id
-    @Column(name = "LOGIN_ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "login_id")
+    private int loginId;
+    @Column(name = "user_name", unique=true, nullable=false)
 	private String userName;
-<<<<<<< HEAD
-<<<<<<< HEAD
     @Column(name="pword", nullable=false)
 	private String pword;
     @OneToOne(targetEntity=User.class,cascade=CascadeType.ALL,fetch=FetchType.EAGER)
     @JoinColumn
-=======
-	private String password;
-    @OneToOne(targetEntity=User.class,cascade=CascadeType.ALL)
->>>>>>> parent of cce3ef8... final version more or less
-=======
-	private String password;
-    @OneToOne(targetEntity=User.class,cascade=CascadeType.ALL)
->>>>>>> parent of cce3ef8... final version more or less
 	private User user;
     
 	public Login() {
 		super();
 	}
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+	public Login(int loginId, String userName, String pword, User user) {
+		super();
+		this.loginId = loginId;
+		this.userName = userName;
+		this.pword = pword;
+		this.user = user;
+	}
+
+	public Login(String userName, String pword) {
+		super();
+		this.userName = userName;
+		this.pword = pword;
+	}
+
+	public Login(String userName, String pword, User user) {
+		super();
+		this.userName = userName;
+		this.pword = pword;
+		this.user = user;
+	}
+
 	public int getLoginId() {
 		return loginId;
 	}
 
 	public void setLoginId(int loginId) {
 		this.loginId = loginId;
-	}
-
-	public String getPword() {
-		return pword;
-	}
-
-	public void setPword(String pword) {
-		this.pword = pword;
-	}
-
-	public Login(int loginId, String userName, String pword, User user) {
-=======
-	public Login(String userName, String password, User user) {
->>>>>>> parent of cce3ef8... final version more or less
-		super();
-		this.loginId = loginId;
-		this.userName = userName;
-		this.password = password;
-		this.user = user;
-	}
-
-<<<<<<< HEAD
-	public Login(String userName, String pword, User user) {
-=======
-	public Login(String userName, String password, User user) {
->>>>>>> parent of cce3ef8... final version more or less
-		super();
-		this.userName = userName;
-		this.password = password;
-		this.user = user;
-	}
-
-	public Login(String userName, String password) {
-		super();
-		this.userName = userName;
-		this.password = password;
-=======
-	public Login(String userName, String password) {
-		super();
-		this.userName = userName;
-		this.password = password;
->>>>>>> parent of cce3ef8... final version more or less
 	}
 
 	public String getUserName() {
@@ -93,12 +68,12 @@ public class Login {
 		this.userName = userName;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getPword() {
+		return pword;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPword(String pword) {
+		this.pword = pword;
 	}
 
 	public User getUser() {
@@ -111,20 +86,11 @@ public class Login {
 
 	@Override
 	public String toString() {
-<<<<<<< HEAD
-<<<<<<< HEAD
 		return "Login [loginId=" + loginId + ", userName=" + userName + ", pword=" + pword + ", user=" + user + "]";
-=======
-		return "Login [userName=" + userName + ", password=" + password + ", user=" + user + "]";
->>>>>>> parent of cce3ef8... final version more or less
-=======
-		return "Login [userName=" + userName + ", password=" + password + ", user=" + user + "]";
->>>>>>> parent of cce3ef8... final version more or less
 	}
 
-//	@Override
-//	public String toString() {
-//		return "Login [userName=" + userName + ", password= *****" + ", user=" + user + "]";
-//	}
-// 
+
+	
+	
 }
+

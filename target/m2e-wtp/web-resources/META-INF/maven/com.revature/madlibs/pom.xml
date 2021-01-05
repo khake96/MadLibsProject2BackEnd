@@ -9,6 +9,10 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/x
   <name>madlibs</name>
   <description>A crazy classics version of the madlibs game.</description>
   
+  <build>
+  	<finalName>madlibs</finalName>
+  </build>
+  
         <properties>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.source>1.8</maven.compiler.source>
@@ -22,6 +26,30 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/x
     	<version>4.0.1</version>
     	<scope>provided</scope>
 	</dependency> -->
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-cont -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>5.2.3.RELEASE</version>
+		</dependency>
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>5.2.3.RELEASE</version>
+		</dependency>
+	<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.4.26.Final</version>
+		</dependency>
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>5.2.3.RELEASE</version>
+		</dependency>
 	
 	<dependency>
    	 	<groupId>com.fasterxml.jackson.core</groupId>
@@ -41,7 +69,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/x
 		<artifactId>postgresql</artifactId>
 		<version>42.2.5</version>
 	</dependency>
-	
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
@@ -52,13 +79,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/x
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-core</artifactId>
 			<version>2.13.3</version>
-		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-core</artifactId>
-			<version>5.4.26.Final</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
 		<dependency>

@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 //import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,32 +32,39 @@ public class GameController {
 		super();
 		this.service = service;
 	}
+	
 	@GetMapping(value= "/read")
 	public ResponseEntity<List<CompletedStories>> getCompletedStories() {
 		List<CompletedStories> list = service.getCompletedStories1();
 				return ResponseEntity.status(HttpStatus.OK).body(list);
 	}
+	
 	@GetMapping(value= "/write")
-	public ResponseEntity<IncompleteStories> getIncompletedStories(@RequestBody StoryCategory category, @RequestBody UserLevel level) {
-		
-//		<IncompleteStories> list1 = service.getOneInCompleteStory(category, level);
-//		
-//		if (list1 != null) {
-//			return ResponseEntity.status(HttpStatus.OK).body(list1);
-//		} else return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
-	return null;
+	public ResponseEntity<IncompleteStories> getIncompletedStory(@RequestBody StoryCategory category, @RequestBody UserLevel level, @RequestBody int missingWordCount) {
+		IncompleteStories list = service.getOneIncompleteStory(category, level, missingWordCount);	
+		if (list != null) {
+			return ResponseEntity.status(HttpStatus.OK).body(list);
+		} else return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
 	}
 	
-//	@PostMapping("/game")
-//	public ResponseEntity saveCompletedStories(@RequestBody CompletedStories story) {
-//		return null;
-//		
-//	}
-//	
-//	@PostMapping("/game")
-//	public ResponseEntity<CompletedStories> updateCompletedStories(@RequestBody CompletedStories story) {
-//		return null;
-//		
-//	}	
+	@PostMapping(value="/save")
+	public ResponseEntity<CompletedStories> saveCompletedStories(@RequestBody CompletedStories story) {
+		CompletedStories returnStory;
+		service.insertCompletedStory(story);
+		returnStory = service.getLastCompletedStory();
+		if(returnStory != null) {
+			return ResponseEntity.status(HttpStatus.OK).body(returnStory);		
+		} else return ResponseEntity.status(HttpStatus.FAILED_DEPENDENCY).build();
+	}
+	
+	@PostMapping(value="/update")
+	public ResponseEntity<CompletedStories> updateCompletedStories(@RequestBody CompletedStories story) {
+		CompletedStories returnStory;
+		service.updateUpvoteCounts(story);
+		returnStory = service.getLastCompletedStory();
+		if(returnStory != null) {
+			return ResponseEntity.status(HttpStatus.OK).body(returnStory);		
+		} else return ResponseEntity.status(HttpStatus.FAILED_DEPENDENCY).build();
+	}	
 
 }

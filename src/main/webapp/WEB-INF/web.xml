@@ -1,31 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
-  <display-name>madlibs</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
-  
-  <filter>
-		<filter-name>Cors</filter-name>
-		<filter-class>com.revature.madlibs.web.filters.CorsFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>Cors</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+	<display-name>Madlibs</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-  	<listener>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/applicationContext.xml</param-value>
+	</context-param>
+
+	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener> 
-  
-  	<servlet>
+	</listener>
+
+	<servlet>
 		<servlet-name>DispatcherServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
@@ -33,23 +31,11 @@
 			<param-value>/WEB-INF/dispatcherContext.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
-=======
-=======
->>>>>>> parent of cce3ef8... final version more or less
-	<servlet>
-		<display-name>LoginServlet</display-name>
-		<servlet-name>LoginServlet</servlet-name>
-		<servlet-class>com.revature.madlibs.web.LoginServlet</servlet-class>
-<<<<<<< HEAD
->>>>>>> parent of cce3ef8... final version more or less
-=======
->>>>>>> parent of cce3ef8... final version more or less
 	</servlet>
+
 	<servlet-mapping>
-		<servlet-name>LoginServlet</servlet-name>
-		<url-pattern>/*</url-pattern>
+		<servlet-name>DispatcherServlet</servlet-name>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	
-	
-	
+
 </web-app>

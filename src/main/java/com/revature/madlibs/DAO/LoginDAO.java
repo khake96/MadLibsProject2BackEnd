@@ -1,87 +1,113 @@
 package com.revature.madlibs.DAO;
 
+import java.util.List;
+
+import javax.persistence.criteria.CriteriaQuery;
+
 import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.madlibs.models.Login;
-import com.revature.madlibs.utils.HibernateUtilities;
+import com.revature.madlibs.models.User;
 
-public class LoginDAO {
+@Repository
+@Transactional
+public class LoginDAO implements IloginDAO{
 	
+	
+	private SessionFactory sf;
+	
+	public LoginDAO() {
+		super();
+	}
+	
+	@Autowired
+	public LoginDAO(SessionFactory sf) {
+		super();
+		this.sf = sf;
+	}
+
+	@Override
 	public void insert(Login login) {
-	Session session = HibernateUtilities.getSession();
-    Transaction t=session.beginTransaction();      
-        
-    session.persist(login);    
-    t.commit();  
+		try {
+			Session session = sf.getCurrentSession();
+			session.saveOrUpdate(login);
+		} catch (Exception e) {
+			com.revature.madlibs.Logger.log.debug("insert Login error: "+ e.getMessage());
+		}
 	}
 	
+	@Override
 	public void update(Login login) {
-		Session session = HibernateUtilities.getSession();
-	    Transaction t=session.beginTransaction();      
-        
-	    session.merge(login);    
-	    t.commit();  
+		try {
+			Session session = sf.getCurrentSession();      
+		    session.merge(login); 
+		} catch (Exception e) {
+			com.revature.madlibs.Logger.log.debug("update Login error: "+ e.getMessage());
+		}
+   
 	}
 
-	public Login selectById(String username) {
-		Session session = HibernateUtilities.getSession();
-<<<<<<< HEAD
-		Login login = session.get(Login.class, username);
-		
-		return login;
-	}
-<<<<<<< HEAD
-	
 	@Override
 	public Login selectByName(String username) {
-		Session session = sf.getCurrentSession();
-=======
->>>>>>> parent of cce3ef8... final version more or less
-		Login login = session.get(Login.class, username);
-		
-		return login;
+		try {
+			Session session = sf.getCurrentSession(); 
+			Login login = session.get(Login.class, username);
+			return login;
+		} catch (Exception e) {
+			com.revature.madlibs.Logger.log.debug("selectByName Login error: "+ e.getMessage());
+		}
+		return null;
 	}
-<<<<<<< HEAD
 	
 	@Override
-	public boolean validate(String uName, String password) {		
+	public User validate(String uName, String password) {		
 		Session session = sf.getCurrentSession();
-        Login user = null;
-        System.out.println("inside LoginDAO validate: "+session);
-        user = (Login) session.createQuery("FROM Login U WHERE U.userName = :uName").setParameter("uName", uName)
-            .uniqueResult();           
-        if (user != null && user.getPassword().equals(password)) {
-            return true;
-            }
-        return false;
+        Login login = null;
+        User user = null;
+        try {
+            login = (Login) session.createQuery("FROM Login U WHERE U.userName = :uName").setParameter("uName", uName)
+                    .uniqueResult();           
+                if (login != null && login.getPword().equals(password)) {
+                    user = session.get(User.class, login.getUser().getUser_id());
+                	return user;
+                    }
+                return null;
+    	} catch (Exception e) {
+			com.revature.madlibs.Logger.log.debug("validate Login error: "+ e.getMessage());
+		}
+		return null;
+
     }
 
 	@Override
 	public Login get(Login login) {
-		Session session = sf.getCurrentSession();
-		Login userLogin = session.get(Login.class, login.getUserName());
-		return userLogin;
+		try {
+			Session session = sf.getCurrentSession();
+			Login userLogin = session.get(Login.class, login.getUserName());
+			return userLogin;
+    	} catch (Exception e) {
+			com.revature.madlibs.Logger.log.debug("get Login error: "+ e.getMessage());
+		}
+		return null;
+
 	}
 
 	@Override
 	public List<Login> findAllLogins() {
 		Session session = sf.getCurrentSession();
-		CriteriaQuery<Login> cq = session.getCriteriaBuilder().createQuery(Login.class);
-		cq.from(Login.class);
-	 	System.out.println("inside DAO findAllLogins  "+session.createQuery(cq).getResultList());
-		return session.createQuery(cq).getResultList();	
-	}
-	
-	@Override
-	public Login findLoginById(int id) {
-		System.out.println("Inside: LoginDAO - findLoginById");
-		Session s = sf.getCurrentSession();
-		return s.get(Login.class, id);
-	}
-=======
->>>>>>> parent of cce3ef8... final version more or less
-=======
->>>>>>> parent of cce3ef8... final version more or less
+		try {
+			CriteriaQuery<Login> cq = session.getCriteriaBuilder().createQuery(Login.class);
+			cq.from(Login.class);
+		 	System.out.println("inside DAO findAllLogins  "+session.createQuery(cq).getResultList());
+			return session.createQuery(cq).getResultList();	
+    	} catch (Exception e) {
+			com.revature.madlibs.Logger.log.debug("findAllLogins Login error: "+ e.getMessage());
+		}
+		return null;
 
+	}
 }

@@ -17,10 +17,9 @@ public interface Iservice {
 	public List<StoryCategory> getStoryCategories();
 	public List<CompletedStories> getCompletedStories1();
 	public List<Login> getAllLogins();
-	public Login findLoginById(int id);
-	public IncompleteStories getOneIncompleteStory(StoryCategory category, UserLevel userLevel);
-	public boolean insertCompletedStory(CompletedStories completed);
-	public void updateUpvoteCounts(CompletedStories upVotedStory);
-
-
+	public CompletedStories insertCompletedStory(CompletedStories completed);
+	public CompletedStories updateUpvoteCounts(CompletedStories upVotedStory);
+	public List<UserLevel> findAllUserLevels();
+	public IncompleteStories getOneIncompleteStory(StoryCategory category, UserLevel userLevel, int missingWordCount);
+	public CompletedStories getLastCompletedStory();
 }
