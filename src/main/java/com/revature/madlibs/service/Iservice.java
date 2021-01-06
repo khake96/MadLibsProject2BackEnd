@@ -22,4 +22,5 @@ public interface Iservice {
 	public IncompleteStories getOneIncompleteStory(StoryCategory category, UserLevel userLevel, int missingWordCount);
 	public CompletedStories getLastCompletedStory();
 	public User registerUser(User user, Login login);
+	public IncompleteStories getOneIncompleteStoryById(int id);
 }

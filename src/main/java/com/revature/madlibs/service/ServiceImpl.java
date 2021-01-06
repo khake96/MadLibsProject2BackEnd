@@ -95,6 +95,12 @@ public class ServiceImpl implements Iservice {
 		 IncompleteStories list = incompletedStoriesDAO.selectByCategoryUserLevel(category, userLevel, missingWordCount);
 			return  list;
 	}
+	
+	@Override
+	public IncompleteStories getOneIncompleteStoryById(int id) {
+		 IncompleteStories list = incompletedStoriesDAO.selectById(id);
+		return  list;
+	}
 
 	@Override
 	public CompletedStories insertCompletedStory(CompletedStories completed) {
