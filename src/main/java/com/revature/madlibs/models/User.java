@@ -63,15 +63,13 @@ public class User {
 		this.myCompletedStories = myCompletedStories;
 	}
 	
-
-	public User(String firstName, String lastName, int dob, UserLevel userLevel, String email, Date enrollDate) {
+	public User(String firstName, String lastName, int dob, UserLevel userLevel, String email) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.dob = dob;
 		this.userLevel = userLevel;
 		this.email = email;
-		this.enrollDate = enrollDate;
 	}
 
 	public int getUser_id() {
