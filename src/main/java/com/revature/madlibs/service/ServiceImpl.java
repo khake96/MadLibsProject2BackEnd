@@ -42,32 +42,17 @@ public class ServiceImpl implements Iservice {
 		this.loginDAO = loginDAO;
 		this.serviceLogic = serviceLogic;
 	}
-	
-	@Override
-	public List<UserLevel> findAllUserLevels() {
-		List<UserLevel> ulList = userLevelDAO.findAll();
-		return ulList;
-	}
 
 	@Override
-	public User userLogin(Login login) {
+	public com.revature.madlibs.models.User userLogin(Login login) {
 		User user = null;
 		String pword = "";
 		if(serviceLogic.isValidLogin(login)) {
 			pword = Utils.encrypt(login.getPword(), login.getUserName());
 			login.setPword(pword);
 			user = loginDAO.validate(login.getUserName(), login.getPword());
-			//user =loginDAO.get(login).getUser();
 			return user;
 		} else return user;
-	}
-
-	@Override
-	public User registerUser(User user, Login login) {
-		if(serviceLogic.isValidUser(user)) {
-			userDAO.insert(user, login);
-		}
-		return user;
 	}
 
 	@Override
@@ -76,6 +61,10 @@ public class ServiceImpl implements Iservice {
 			userDAO.update(user);
 		}
 		return user;
+	}	@Override
+	public List<UserLevel> findAllUserLevels() {
+		List<UserLevel> ulList = userLevelDAO.findAll();
+		return ulList;
 	}
 
 	@Override
@@ -91,9 +80,9 @@ public class ServiceImpl implements Iservice {
 	}
 
 	@Override
-	public IncompleteStories getOneIncompleteStory(StoryCategory category, UserLevel userLevel, int missingWordCount) {
-		 IncompleteStories list = incompletedStoriesDAO.selectByCategoryUserLevel(category, userLevel, missingWordCount);
-			return  list;
+	public List<Login> getAllLogins() {
+		List<Login> list = loginDAO.findAllLogins();
+		return  list;
 	}
 
 	@Override
@@ -110,16 +99,25 @@ public class ServiceImpl implements Iservice {
 		return upVotedStory;
 	}
 
+
 	@Override
-	public List<Login> getAllLogins() {
-		List<Login> list = loginDAO.findAllLogins();
-		return  list;
+	public IncompleteStories getOneIncompleteStory(StoryCategory category, UserLevel userLevel, int missingWordCount) {
+		 IncompleteStories list = incompletedStoriesDAO.selectByCategoryUserLevel(category, userLevel, missingWordCount);
+			return  list;
 	}
 
+	@Override
 	public CompletedStories getLastCompletedStory() {
 		 CompletedStories lastIn = completedStoriesDAO.getLastIn();
 		return lastIn;
 	}
 
-
+	@Override
+	public User registerUser(User user, Login login) {
+		if(serviceLogic.isValidUser(user)) {
+			userDAO.insert(user, login);
+		}
+		return user;
+	}
+	
 }

@@ -7,7 +7,6 @@ public class LoginCheck {
 	
 	public LoginCheck() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public LoginCheck(String userName, String pword) {

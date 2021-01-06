@@ -5,13 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.madlibs.models.CompletedStories;
@@ -22,7 +21,7 @@ import com.revature.madlibs.service.ServiceImpl;
 
 @RestController
 @RequestMapping(value="/game")
-@CrossOrigin // No security concern so this is left open
+@CrossOrigin 
 public class GameController {
 	
 	private ServiceImpl service;
@@ -34,9 +33,13 @@ public class GameController {
 	}
 	
 	@GetMapping(value= "/read")
-	public ResponseEntity<List<CompletedStories>> getCompletedStories() {
-		List<CompletedStories> list = service.getCompletedStories1();
-				return ResponseEntity.status(HttpStatus.OK).body(list);
+	public ResponseEntity<List<CompletedStories>> getCompletedStories(@CookieValue(value = "userName",
+            defaultValue = "unknown") String firstName) {
+		if(firstName!=null) {
+			List<CompletedStories> list = service.getCompletedStories1();
+			return ResponseEntity.status(HttpStatus.OK).body(list);
+		} else return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+
 	}
 	
 	@PostMapping //  Not a RESTful way to accomplish this task....
