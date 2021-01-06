@@ -56,8 +56,8 @@ public class ServiceImpl implements Iservice {
 		if(serviceLogic.isValidLogin(login)) {
 			pword = Utils.encrypt(login.getPword(), login.getUserName());
 			login.setPword(pword);
-			loginDAO.validate(login.getUserName(), login.getPword());
-			user = loginDAO.get(login).getUser();
+			user = loginDAO.validate(login.getUserName(), login.getPword());
+			//user =loginDAO.get(login).getUser();
 			return user;
 		} else return user;
 	}
