@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,11 +43,12 @@ public class GameController {
 
 	}
 	
-	@PostMapping //  Not a RESTful way to accomplish this task....
-	public ResponseEntity<IncompleteStories> getIncompletedStory(@RequestBody StoryCategory category, @RequestBody UserLevel level, @RequestBody int missingWordCount) {
-		IncompleteStories list = service.getOneIncompleteStory(category, level, missingWordCount);	
-		if (list != null) {
-			return ResponseEntity.status(HttpStatus.OK).body(list);
+//	@PostMapping(path = "/write", consumes = "application/json", produces = "application/json")
+	@GetMapping(value= "/write/{id}")
+	public ResponseEntity<IncompleteStories> getIncompletedStory(@PathVariable("id") int id) {
+		IncompleteStories story = service.getOneIncompleteStoryById(id);
+		if (story != null) {
+			return ResponseEntity.status(HttpStatus.OK).body(story);
 		} else return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
 	}
 	

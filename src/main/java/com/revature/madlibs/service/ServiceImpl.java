@@ -84,6 +84,12 @@ public class ServiceImpl implements Iservice {
 		List<Login> list = loginDAO.findAllLogins();
 		return  list;
 	}
+	
+	@Override
+	public IncompleteStories getOneIncompleteStoryById(int id) {
+		 IncompleteStories list = incompletedStoriesDAO.selectById(id);
+		return  list;
+	}
 
 	@Override
 	public CompletedStories insertCompletedStory(CompletedStories completed) {
