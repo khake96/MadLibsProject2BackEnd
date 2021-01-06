@@ -33,6 +33,7 @@ public class ServiceLogic implements IserviceLogic {
 
 	@Override
 	public boolean isValidLogin(Login login) {
+		System.out.println("Inside Service Login: isValidLogin");
 		boolean isValid = false;
         Pattern patt = Pattern.compile("[\\s]"); 
 		if(login.getPword().length()>7 || login.getPword().length()<50) {
