@@ -70,7 +70,8 @@ public class LoginDAO implements IloginDAO{
         User user = null;
         try {
             login = (Login) session.createQuery("FROM Login U WHERE U.userName = :uName").setParameter("uName", uName)
-                    .uniqueResult();           
+                    .uniqueResult();
+                System.out.println("Inside LoginDAO - validate: "+login);
                 if (login != null && login.getPword().equals(password)) {
                     user = session.get(User.class, login.getUser().getUser_id());
                 	return user;

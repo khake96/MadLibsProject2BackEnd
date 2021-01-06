@@ -66,6 +66,11 @@ public class Utils {
 
 //	    public static void main(String[] args) {
 //			
+//	    	System.out.println(Utils.encrypt("password","JohnSmith"));
+//	    	System.out.println(Utils.encrypt("password","GaryGreat1"));
+//	    	System.out.println(Utils.encrypt("password","MonaLisa"));
+//	    	System.out.println(Utils.encrypt("password","JJones"));
+//	    	System.out.println(Utils.encrypt("password","slooser"));
 //	    	System.out.println(Utils.encrypt("password","SuperSonic"));
 //		}
 }
