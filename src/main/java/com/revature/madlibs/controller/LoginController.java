@@ -51,4 +51,13 @@ public class LoginController {
 		} else return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
 	}
 	
+
+	@ResponseStatus(value = HttpStatus.OK)
+	@PostMapping(value="/done")
+	public ResponseEntity<Object> userLogout() {				
+	    ResponseCookie cookie = ResponseCookie.from("userName", null).build();
+	    return ResponseEntity.status(HttpStatus.OK).header(HttpHeaders.SET_COOKIE, cookie.toString()).build();
+	}
+	
+	
 }

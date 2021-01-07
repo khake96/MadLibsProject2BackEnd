@@ -66,7 +66,6 @@ public class UserDAO implements IuserDAO {
 			com.revature.madlibs.Logger.log.debug("getAllUsers User error: "+ e.getMessage());
 		}
 		return null;
-
 	}
 	
 //	
@@ -102,9 +101,13 @@ public class UserDAO implements IuserDAO {
 			 int maxUserId =  (int) session.createNativeQuery(SQLgetUser).getSingleResult();
 //			 System.out.println("Max = " + maxUserId);
 			 
+
 			 singleUser = new User(maxUserId, user.getFirstName(), user.getLastName(),
 					                          user.getDob(), user.getUserLevel(), user.getEmail() ); 
 //			 System.out.println("returned user from userDAO" + singleUser);
+
+//			 returnUser = (User) session.createNativeQuery("select * from madlibs.madlibs.user_table ut where first_name = '"+user.getFirstName()+"';").getSingleResult();
+
 
 			 			 
 			String encrypPword = Utils.encrypt(login.getPword(), login.getUserName());
