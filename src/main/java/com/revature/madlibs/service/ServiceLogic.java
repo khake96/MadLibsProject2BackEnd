@@ -2,10 +2,12 @@ package com.revature.madlibs.service;
 
 import java.util.regex.Pattern;
 
+import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.stereotype.Service;
 
 import com.revature.madlibs.models.CompletedStories;
 import com.revature.madlibs.models.Login;
+import com.revature.madlibs.models.NewUser;
 import com.revature.madlibs.models.User;
 
 @Service
@@ -55,14 +57,16 @@ public class ServiceLogic implements IserviceLogic {
 	public boolean isValidCompletedStory(CompletedStories complete) {
 		boolean isValid = false;
 		if(complete.getCompletedStory().length()>30 && complete.getCompletedStory().length()<410000) {
-			if(this.isValidUser(complete.getCompleter())) {
+		//	if(this.isValidUser(complete.getCompleter())) {
 				if(complete.getUpvoteCount()>=0) {
 					if(complete.getParentStory().getAuthorBook().length()<1) {
 						isValid = true;
 					} System.out.println ("completed story error parent story: " + complete);	
 				} System.out.println ("completed story error upvote count error: " + complete);						
 			} System.out.println ("completed story error invalid user: " + complete);
-		} System.out.println ("completed story error invalid length: " + complete);
+		System.out.println("completed story error invalid length: " +complete);
+		
+	//System.out.println("completed story error invalid length: " +complete);
 		return isValid;
-	}
-}
+	}}
+

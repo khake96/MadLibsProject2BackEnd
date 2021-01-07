@@ -1,5 +1,6 @@
 package com.revature.madlibs.service;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import com.revature.madlibs.DAO.IuserLevelDAO;
 import com.revature.madlibs.models.CompletedStories;
 import com.revature.madlibs.models.IncompleteStories;
 import com.revature.madlibs.models.Login;
+import com.revature.madlibs.models.NewUser;
 import com.revature.madlibs.models.StoryCategory;
 import com.revature.madlibs.models.User;
 import com.revature.madlibs.models.UserLevel;
@@ -53,6 +55,35 @@ public class ServiceImpl implements Iservice {
 			user = loginDAO.validate(login.getUserName(), login.getPword());
 			return user;
 		} else return user;
+	}
+
+	@Override
+	public User registerUser(NewUser newUser) {
+		User user = new User(newUser.getFirstName(), newUser.getLastName(), newUser.getYob(), new UserLevel(newUser.getPlayerLevel(), ""), newUser.getEmail());
+		Login login = new Login(newUser.getUserName(), newUser.getPassword1());
+		
+//			login.setUserName(newUser.getUserName());
+//			login.setPword(newUser.getPassword1());
+//			
+//			user.setFirstName(newUser.getFirstName());
+//			user.setLastName(newUser.getLastName());
+//			user.setEmail(newUser.getEmail());
+//			user.setDob(newUser.getYob());
+//			
+//			user.setUserLevel(new UserLevel(newUser.getPlayerLevel(), ""));
+//		
+	//		user.setMyCompletedStories(null);
+			
+
+		if(serviceLogic.isValidUser(user)) {
+			
+			System.out.println("in ServiceImpl"+user);
+			
+			
+			
+			userDAO.insert(user, login);
+		}
+		return user;
 	}
 
 	@Override
