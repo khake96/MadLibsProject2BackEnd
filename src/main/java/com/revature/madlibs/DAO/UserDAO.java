@@ -64,7 +64,6 @@ public class UserDAO implements IuserDAO {
 			com.revature.madlibs.Logger.log.debug("getAllUsers User error: "+ e.getMessage());
 		}
 		return null;
-
 	}
 	
 //	
@@ -87,7 +86,7 @@ public class UserDAO implements IuserDAO {
 					" values( "+user.getDob() +",'"+ user.getEmail()+"',NOW(), '"+user.getFirstName()+"','"+user.getLastName()+"',"+user.getUserLevel().getLevel_id()+");").executeUpdate();
 
 			 
-			 returnUser = (User) session.createNativeQuery("select * from madlibs.user_table where first_name = '"+user.getFirstName()+"';").getSingleResult();
+			 returnUser = (User) session.createNativeQuery("select * from madlibs.madlibs.user_table ut where first_name = '"+user.getFirstName()+"';").getSingleResult();
 
 			 			 
 			 //			  returnUser = (User) session.createNativeQuery("SELECT * FROM madlibs.user_table \r\n"
