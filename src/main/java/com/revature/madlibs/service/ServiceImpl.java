@@ -1,5 +1,6 @@
 package com.revature.madlibs.service;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import com.revature.madlibs.DAO.IuserLevelDAO;
 import com.revature.madlibs.models.CompletedStories;
 import com.revature.madlibs.models.IncompleteStories;
 import com.revature.madlibs.models.Login;
+import com.revature.madlibs.models.NewUser;
 import com.revature.madlibs.models.StoryCategory;
 import com.revature.madlibs.models.User;
 import com.revature.madlibs.models.UserLevel;
@@ -42,29 +44,43 @@ public class ServiceImpl implements Iservice {
 		this.loginDAO = loginDAO;
 		this.serviceLogic = serviceLogic;
 	}
-	
-	@Override
-	public List<UserLevel> findAllUserLevels() {
-		List<UserLevel> ulList = userLevelDAO.findAll();
-		return ulList;
-	}
 
 	@Override
-	public User userLogin(Login login) {
+	public com.revature.madlibs.models.User userLogin(Login login) {
 		User user = null;
 		String pword = "";
 		if(serviceLogic.isValidLogin(login)) {
 			pword = Utils.encrypt(login.getPword(), login.getUserName());
 			login.setPword(pword);
 			user = loginDAO.validate(login.getUserName(), login.getPword());
-			//user =loginDAO.get(login).getUser();
 			return user;
 		} else return user;
 	}
 
 	@Override
-	public User registerUser(User user, Login login) {
+	public User registerUser(NewUser newUser) {
+		User user = new User(newUser.getFirstName(), newUser.getLastName(), newUser.getYob(), new UserLevel(newUser.getPlayerLevel(), ""), newUser.getEmail());
+		Login login = new Login(newUser.getUserName(), newUser.getPassword1());
+		
+//			login.setUserName(newUser.getUserName());
+//			login.setPword(newUser.getPassword1());
+//			
+//			user.setFirstName(newUser.getFirstName());
+//			user.setLastName(newUser.getLastName());
+//			user.setEmail(newUser.getEmail());
+//			user.setDob(newUser.getYob());
+//			
+//			user.setUserLevel(new UserLevel(newUser.getPlayerLevel(), ""));
+//		
+	//		user.setMyCompletedStories(null);
+			
+
 		if(serviceLogic.isValidUser(user)) {
+			
+			System.out.println("in ServiceImpl"+user);
+			
+			
+			
 			userDAO.insert(user, login);
 		}
 		return user;
@@ -76,6 +92,10 @@ public class ServiceImpl implements Iservice {
 			userDAO.update(user);
 		}
 		return user;
+	}	@Override
+	public List<UserLevel> findAllUserLevels() {
+		List<UserLevel> ulList = userLevelDAO.findAll();
+		return ulList;
 	}
 
 	@Override
@@ -91,9 +111,15 @@ public class ServiceImpl implements Iservice {
 	}
 
 	@Override
-	public IncompleteStories getOneIncompleteStory(StoryCategory category, UserLevel userLevel, int missingWordCount) {
-		 IncompleteStories list = incompletedStoriesDAO.selectByCategoryUserLevel(category, userLevel, missingWordCount);
-			return  list;
+	public List<Login> getAllLogins() {
+		List<Login> list = loginDAO.findAllLogins();
+		return  list;
+	}
+	
+	@Override
+	public IncompleteStories getOneIncompleteStoryById(int id) {
+		 IncompleteStories list = incompletedStoriesDAO.selectById(id);
+		return  list;
 	}
 
 	@Override
@@ -110,16 +136,25 @@ public class ServiceImpl implements Iservice {
 		return upVotedStory;
 	}
 
+
 	@Override
-	public List<Login> getAllLogins() {
-		List<Login> list = loginDAO.findAllLogins();
-		return  list;
+	public IncompleteStories getOneIncompleteStory(StoryCategory category, UserLevel userLevel, int missingWordCount) {
+		 IncompleteStories list = incompletedStoriesDAO.selectByCategoryUserLevel(category, userLevel, missingWordCount);
+			return  list;
 	}
 
+	@Override
 	public CompletedStories getLastCompletedStory() {
 		 CompletedStories lastIn = completedStoriesDAO.getLastIn();
 		return lastIn;
 	}
 
-
+	@Override
+	public User registerUser(User user, Login login) {
+		if(serviceLogic.isValidUser(user)) {
+			userDAO.insert(user, login);
+		}
+		return user;
+	}
+	
 }

@@ -235,14 +235,14 @@ class TestServiceLayer {
 		assertFalse(result);
 	}
 	
-	// Check Login Invalid User
-	@Test
-	void testBusinessLogicLoginInvalidUser() {
-		boolean result = userActions.isValidLogin(loginInvalidUser);
-		//System.out.println("Invalid user DOB: "+ userInvalidEmail.toString());
-		com.revature.madlibs.Logger.log.debug("Invalid user e-mail: "+  loginInvalidUser.toString());
-		assertFalse(result);
-	}
+//	// Check Login Invalid User
+//	@Test
+//	void testBusinessLogicLoginInvalidUser() {
+//		boolean result = userActions.isValidLogin(loginInvalidUser);
+//		//System.out.println("Invalid user DOB: "+ userInvalidEmail.toString());
+//		com.revature.madlibs.Logger.log.debug("Invalid user e-mail: "+  loginInvalidUser.toString());
+//		assertFalse(result);
+//	}
 	
 	// Check Login Multiple Invalid
 	@Test
