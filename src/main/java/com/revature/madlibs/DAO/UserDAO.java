@@ -81,22 +81,32 @@ public class UserDAO implements IuserDAO {
 		Session session = sf.getCurrentSession();
 		 User returnUser=null;
 		try {
-			//session.update(user);
-			
-			 session.createNativeQuery("insert into madlibs.user_table (dob, email, enroll_date, first_name, last_name, user_level)" +
+			session.createNativeQuery("insert into madlibs.user_table (dob, email, enroll_date, first_name, last_name, user_level)" +
 					" values( "+user.getDob() +",'"+ user.getEmail()+"',NOW(), '"+user.getFirstName()+"','"+user.getLastName()+"',"+user.getUserLevel().getLevel_id()+");").executeUpdate();
-
 			 
-			 returnUser = (User) session.createNativeQuery("select * from madlibs.user_table where first_name = '"+user.getFirstName()+"';").getSingleResult();
+			 System.out.println("In UserDAO - insert: Back from User Write");
+			 System.out.println("In UserDAO - insert: Attempting User Read");
+			 
+			 // String SQLgetUser =  // "select * from madlibs.madlibs.user_table where first_name = '"+user.getFirstName()+"';";
+			 String SQLgetUser = "SELECT max(user_id) FROM madlibs.user_table;";
+			 System.out.println("DB query = " + SQLgetUser);
+			 
+			 int maxUserId =  (int) session.createNativeQuery(SQLgetUser).getSingleResult();
+			 System.out.println("Max = " + maxUserId);
+//			 
+//			 singleUser = (User) session.createNativeQuery(
+//					   "select * from madlibs.user_table where user_id=" + maxUserId +";").getSingleResult();
+//			 
+//			 System.out.println("returned user from userDAO" + singleUser);
 
 			 			 
 			 //			  returnUser = (User) session.createNativeQuery("SELECT * FROM madlibs.user_table \r\n"
 //						+ "WHERE user_id = (\r\n"
 //						+ "   SELECT MAX (user_id)\r\n"
 //						+ "   FROM madlibs.user_table \r\n"
-//						+ ");").getSingleResult();		
-			System.out.println("returneduser from userDAO"+returnUser);
-			session.createNativeQuery("insert into madlibs.login(user_name, pword, user_user_id) values( '"+login.getUserName()+"','"+login.getPword()+"',"+returnUser.getUser_id()+");").executeUpdate();
+//						+ ");").getSingleResult();
+			 
+			session.createNativeQuery("insert into madlibs.login(user_name, pword, user_user_id) values( '"+login.getUserName()+"','"+login.getPword()+"');").executeUpdate();
 
 		//	session.update(login);
 			
@@ -104,9 +114,52 @@ public class UserDAO implements IuserDAO {
 			System.out.println("login info from userDAO"+login);
 			
 			return returnUser;
+			
+			
+			
+			//session.update(user);
+			
+//			 session.createNativeQuery("insert into madlibs.user_table (dob, email, enroll_date, first_name, last_name, user_level, user_id)" +
+//					" values( "+user.getDob() +",'"+ user.getEmail()+"',NOW(), '"+user.getFirstName()+"','"+user.getLastName()+"',"+user.getUserLevel().getLevel_id()+","select MAX(user.getUser_id())+1 from madlibs.user_table);".executeUpdate();
+//
+//			 session.createNativeQuery("SELECT * FROM madlibs.user_table \r\n"
+//						+ "WHERE user_id = (\r\n"
+//						+ "   SELECT MAX (user_id)\r\n"
+//						+ "   FROM madlibs.user_table \r\n"
+//						+ ");").getSingleResult();
+			// returnUser = (User) session.createNativeQuery("select * from madlibs.user_table where first_name = '"+user.getFirstName()+"';").getSingleResult();
+		//	 session.createNativeQuery("select * from madlibs.user_table where first_name = '"+user.getFirstName()+"';").getSingleResult();
+			 			 
+			 //			  returnUser = (User) session.createNativeQuery("SELECT * FROM madlibs.user_table \r\n"
+//						+ "WHERE user_id = (\r\n"
+//						+ "   SELECT MAX (user_id)\r\n"
+//						+ "   FROM madlibs.user_table \r\n"
+//						+ ");").getSingleResult();		
+	//		System.out.println("returneduser from userDAO"+returnUser);
+			//session.createNativeQuery("insert into madlibs.login(user_name, pword, user_user_id) values( '"+login.getUserName()+"','"+login.getPword()+"',"+returnUser.getUser_id()+");").executeUpdate();
+	//		session.createNativeQuery("insert into madlibs.login(user_name, pword) values( '"+login.getUserName()+"','"+login.getPword()+"');").executeUpdate();
+
+		//	session.update(login);
+			
+
+	//		System.out.println("login info from userDAO"+login);
+			
+	//		return returnUser;
 		} catch (Exception e) {
+			
+			System.out.println("in userDAO "+e.getMessage());
 			com.revature.madlibs.Logger.log.debug("insert User error: "+ e.getMessage());
 		}
 		return returnUser;
+	}
+
+	private Object select(int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private int MAX(int user_id) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

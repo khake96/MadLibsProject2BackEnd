@@ -116,6 +116,7 @@ public class ServiceImpl implements Iservice {
 		return  list;
 	}
 	
+
 	@Override
 	public IncompleteStories getOneIncompleteStoryById(int id) {
 		 IncompleteStories list = incompletedStoriesDAO.selectById(id);
