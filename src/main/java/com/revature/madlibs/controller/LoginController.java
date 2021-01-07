@@ -41,7 +41,7 @@ public class LoginController {
 	@PostMapping
 	public ResponseEntity<User> userLogin(@RequestBody LoginCheck loginObject) {
 		System.out.println("Inside LoginController: userLogin - name = "+ loginObject );
-		System.out.println("New Login: "+  new Login(loginObject.getUserName(), loginObject.getPword() ));
+		System.out.println("New Login: "+  new Login(loginObject.getUserName(), loginObject.getPword()));
 		User user = service.userLogin(new Login(loginObject.getUserName(), loginObject.getPword() ));
 		System.out.println("User: "+ user);
 		if(user != null) {
