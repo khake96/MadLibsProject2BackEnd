@@ -39,10 +39,12 @@ public class LoginController {
 				return ResponseEntity.status(HttpStatus.OK).body(list);
 	}
 
-	@PostMapping
-	public ResponseEntity<User> userLogin(@RequestBody LoginCheck loginObject) {
-		System.out.println("Inside LoginController: userLogin - name = "+ loginObject );
-		System.out.println("New Login: "+  new Login(loginObject.getUserName(), loginObject.getPword()));
+
+
+	@ResponseStatus(value = HttpStatus.OK)
+	@PostMapping 
+	public ResponseEntity<User> userLogin(@RequestBody LoginCheck loginObject) {				
+
 		User user = service.userLogin(new Login(loginObject.getUserName(), loginObject.getPword() ));
 		if(user != null) {
 	        String userFirstName = user.getFirstName();
@@ -51,6 +53,13 @@ public class LoginController {
 		} else return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
 	}
 	
+
+	@ResponseStatus(value = HttpStatus.OK)
+	@PostMapping(value="/done")
+	public ResponseEntity<Object> userLogout() {				
+	    ResponseCookie cookie = ResponseCookie.from("userName", null).build();
+	    return ResponseEntity.status(HttpStatus.OK).header(HttpHeaders.SET_COOKIE, cookie.toString()).build();
+	}
+	
 	
 }
-

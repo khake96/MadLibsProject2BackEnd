@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.madlibs.models.CompletedStories;
 import com.revature.madlibs.models.IncompleteStories;
-import com.revature.madlibs.models.StoryCategory;
-import com.revature.madlibs.models.UserLevel;
+//import com.revature.madlibs.models.StoryCategory;
+//import com.revature.madlibs.models.UserLevel;
 import com.revature.madlibs.service.ServiceImpl;
 
 @RestController

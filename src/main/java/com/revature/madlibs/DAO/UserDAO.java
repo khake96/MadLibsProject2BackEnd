@@ -10,9 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.revature.madlibs.models.IncompleteStories;
+//import com.revature.madlibs.models.IncompleteStories;
 import com.revature.madlibs.models.Login;
 import com.revature.madlibs.models.User;
+import com.revature.madlibs.service.Utils;
+
 
 @Repository
 @Transactional
@@ -64,7 +66,6 @@ public class UserDAO implements IuserDAO {
 			com.revature.madlibs.Logger.log.debug("getAllUsers User error: "+ e.getMessage());
 		}
 		return null;
-
 	}
 	
 //	
@@ -76,11 +77,15 @@ public class UserDAO implements IuserDAO {
 //	values (1920, 'jonn.smith@email.com', NOW(), 'John', 'Smith', 4),
 //
 
+//	@SuppressWarnings("unchecked")
 	@Override
 	public User insert(User user, Login login) {
 		Session session = sf.getCurrentSession();
-		 User returnUser=null;
+//		System.out.println("In UserDAO - insert");
+		User singleUser = null;
+
 		try {
+
 			session.createNativeQuery("insert into madlibs.user_table (dob, email, enroll_date, first_name, last_name, user_level)" +
 					" values( "+user.getDob() +",'"+ user.getEmail()+"',NOW(), '"+user.getFirstName()+"','"+user.getLastName()+"',"+user.getUserLevel().getLevel_id()+");").executeUpdate();
 			 
@@ -93,11 +98,11 @@ public class UserDAO implements IuserDAO {
 			 
 			 int maxUserId =  (int) session.createNativeQuery(SQLgetUser).getSingleResult();
 			 System.out.println("Max = " + maxUserId);
-//			 
-//			 singleUser = (User) session.createNativeQuery(
-//					   "select * from madlibs.user_table where user_id=" + maxUserId +";").getSingleResult();
-//			 
-//			 System.out.println("returned user from userDAO" + singleUser);
+			 
+		 singleUser = (User) session.createNativeQuery(
+					   "select * from madlibs.user_table where user_id=" + maxUserId +";").getSingleResult();
+			 
+			 System.out.println("returned user from userDAO" + singleUser);
 
 			 			 
 			 //			  returnUser = (User) session.createNativeQuery("SELECT * FROM madlibs.user_table \r\n"
@@ -106,14 +111,49 @@ public class UserDAO implements IuserDAO {
 //						+ "   FROM madlibs.user_table \r\n"
 //						+ ");").getSingleResult();
 			 
-			session.createNativeQuery("insert into madlibs.login(user_name, pword, user_user_id) values( '"+login.getUserName()+"','"+login.getPword()+"');").executeUpdate();
+		//	session.createNativeQuery("insert into madlibs.login(user_name, pword, user_user_id) values( '"+login.getUserName()+"','"+login.getPword()+"');").executeUpdate();
 
 		//	session.update(login);
 			
 
+			//session.update(user);
+//			 System.out.println("In UserDAO - insert: Attempting User Write");
+			 
+			 session.createNativeQuery("insert into madlibs.user_table (dob, email, enroll_date, first_name, last_name, user_level)" +
+					" values( "+user.getDob() +",'"+ user.getEmail()+"',NOW(), '"+user.getFirstName()+"','"+user.getLastName()+"',"+user.getUserLevel().getLevel_id()+");").executeUpdate();
+			 
+//			 System.out.println("In UserDAO - insert: Back from User Write");
+//			 System.out.println("In UserDAO - insert: Attempting User Read");
+			 
+
+	//		 String SQLgetUser = "SELECT max(user_id) FROM madlibs.user_table;";
+//			 System.out.println("DB query = " + SQLgetUser);
+			 
+			 int maxUserId =  (int) session.createNativeQuery(SQLgetUser).getSingleResult();
+//			 System.out.println("Max = " + maxUserId);
+			 
+//
+//			 singleUser = new User(maxUserId, user.getFirstName(), user.getLastName(),
+//					                          user.getDob(), user.getUserLevel(), user.getEmail() ); 
+//			 
+//					 System.out.println("returned user from userDAO" + singleUser);
+
+//			 returnUser = (User) session.createNativeQuery("select * from madlibs.madlibs.user_table ut where first_name = '"+user.getFirstName()+"';").getSingleResult();
+
+
+		 session.createNativeQuery("insert into madlibs.login(user_name, pword, user_user_id) values( '"+login.getUserName()+"','"+login.getPword()+"',"+singleUser.getUser_id()+");").executeUpdate();
+				 
+		 			 
+
+			 			 
+		//	String encrypPword = Utils.encrypt(login.getPword(), login.getUserName());
+//			session.createNativeQuery("insert into madlibs.login(user_name, pword, user_user_id) values( '" 
+//			                          + login.getUserName() +"','" + encrypPword +"'," + maxUserId+");").executeUpdate();
+
 			System.out.println("login info from userDAO"+login);
 			
-			return returnUser;
+
+			return singleUser;
 			
 			
 			
@@ -145,12 +185,12 @@ public class UserDAO implements IuserDAO {
 	//		System.out.println("login info from userDAO"+login);
 			
 	//		return returnUser;
-		} catch (Exception e) {
-			
-			System.out.println("in userDAO "+e.getMessage());
+		}  catch (Exception e) {
+//			System.out.println("Bad User read back in insert");
+
 			com.revature.madlibs.Logger.log.debug("insert User error: "+ e.getMessage());
 		}
-		return returnUser;
+		
 	}
 
 	private Object select(int i) {

@@ -1,6 +1,6 @@
 package com.revature.madlibs.service;
 
-import java.text.SimpleDateFormat;
+//import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,31 +59,18 @@ public class ServiceImpl implements Iservice {
 
 	@Override
 	public User registerUser(NewUser newUser) {
-		User user = new User(newUser.getFirstName(), newUser.getLastName(), newUser.getYob(), new UserLevel(newUser.getPlayerLevel(), ""), newUser.getEmail());
+		User createdUser = null;
+		User user = new User(newUser.getFirstName(), newUser.getLastName(), newUser.getYob(), 
+				    new UserLevel(newUser.getPlayerLevel(), ""), newUser.getEmail());
 		Login login = new Login(newUser.getUserName(), newUser.getPassword1());
 		
-//			login.setUserName(newUser.getUserName());
-//			login.setPword(newUser.getPassword1());
-//			
-//			user.setFirstName(newUser.getFirstName());
-//			user.setLastName(newUser.getLastName());
-//			user.setEmail(newUser.getEmail());
-//			user.setDob(newUser.getYob());
-//			
-//			user.setUserLevel(new UserLevel(newUser.getPlayerLevel(), ""));
-//		
-	//		user.setMyCompletedStories(null);
-			
 
 		if(serviceLogic.isValidUser(user)) {
 			
-			System.out.println("in ServiceImpl"+user);
-			
-			
-			
-			userDAO.insert(user, login);
+//			System.out.println("in ServiceImpl"+user);
+			createdUser = userDAO.insert(user, login);
 		}
-		return user;
+		return createdUser;
 	}
 
 	@Override
@@ -157,5 +144,4 @@ public class ServiceImpl implements Iservice {
 		}
 		return user;
 	}
-	
 }
