@@ -43,7 +43,7 @@ public class ServiceLogic implements IserviceLogic {
 		System.out.println("Inside Service Login: isValidLogin");
 		boolean isValid = false;
         if(login.getUserName().length()>1 && login.getUserName().length()<50) {
-    		if(login.getPword().length()>7 && login.getPword().length()<50) {
+    		if(login.getPword().length()>3 && login.getPword().length()<50) {
     //			if(login.getUser().getFirstName().length()>1) {
     				isValid = true;
     //			} else System.out.println ("login user error: " + login.getUser().toString());
