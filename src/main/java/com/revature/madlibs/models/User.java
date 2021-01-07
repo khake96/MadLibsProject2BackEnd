@@ -63,6 +63,18 @@ public class User {
 		this.myCompletedStories = myCompletedStories;
 	}
 	
+	
+	
+	public User(int user_id, String firstName, String lastName, int dob, UserLevel userLevel, String email) {
+		super();
+		this.user_id = user_id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dob = dob;
+		this.userLevel = userLevel;
+		this.email = email;
+	}
+
 	public User(String firstName, String lastName, int dob, UserLevel userLevel, String email) {
 		super();
 		this.firstName = firstName;
