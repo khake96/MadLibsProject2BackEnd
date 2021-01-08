@@ -7,6 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+//This Literary Madlibs model class enables Spring Framework tools and ORM 
+//to abstract the Hibernate ORM from us. 
+
 @Entity
 @Table(name = "user_level")
 public class UserLevel {

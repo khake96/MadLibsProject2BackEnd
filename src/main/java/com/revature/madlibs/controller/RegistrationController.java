@@ -16,6 +16,10 @@ import com.revature.madlibs.models.NewUser;
 import com.revature.madlibs.models.User;
 import com.revature.madlibs.service.ServiceImpl;
 
+//This controller class for the Literary Madlibs application is responsible for
+//handling HTTP requests from the front end of the application. It utilizes
+//Spring MVC to abstract the Servlet handling.
+
 @RestController
 @RequestMapping(value="/registration")
 @CrossOrigin
@@ -32,7 +36,6 @@ public class RegistrationController {
 	@PostMapping(value="/create")
 	public ResponseEntity<User> insert(@RequestBody NewUser newUser) {
 		User returnedUser = service.registerUser(newUser);
-//		System.out.println("in RegistrationController....returnedUser is "+returnedUser);
 		if(returnedUser != null) {
 			return ResponseEntity.status(HttpStatus.OK).body(returnedUser);
 		} else return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();

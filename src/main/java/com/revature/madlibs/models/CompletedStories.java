@@ -18,6 +18,9 @@ import javax.persistence.TemporalType;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+//This Literary Madlibs model class enables Spring Framework tools and ORM 
+//to abstract the Hibernate ORM from us. 
+
 @Entity
 @Table(name = "completed_stories")
 public class CompletedStories {

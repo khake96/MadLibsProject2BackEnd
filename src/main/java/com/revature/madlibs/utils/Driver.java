@@ -1,21 +1,7 @@
 package com.revature.madlibs.utils;
 
-import java.sql.Date;
-import java.time.LocalDate;
-
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import com.revature.madlibs.DAO.IcompletedStoriesDAO;
-import com.revature.madlibs.DAO.IincompletedStoriesDAO;
-import com.revature.madlibs.DAO.IloginDAO;
-import com.revature.madlibs.DAO.IstoryCategoryDAO;
-import com.revature.madlibs.DAO.IuserDAO;
-import com.revature.madlibs.DAO.IuserLevelDAO;
-import com.revature.madlibs.models.Login;
-import com.revature.madlibs.models.StoryCategory;
-import com.revature.madlibs.models.User;
-import com.revature.madlibs.models.UserLevel;
+// This Literary Madlibs Driver class provides tools for pre-loading the Spring ORM driven database and for handling
+// User password encryption for manual updation.
 
 public class Driver {
 

@@ -11,6 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+//This Literary Madlibs model class enables Spring Framework tools and ORM 
+//to abstract the Hibernate ORM from us. 
+
 @Entity
 @Table(name = "login")
 public class Login {
@@ -19,10 +22,8 @@ public class Login {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "login_id")
     private int loginId;
-    //@Column(name = "user_name", unique=true, nullable=false)
     @Column(name = "user_name")
 	private String userName;
-   // @Column(name="pword", nullable=false)
     @Column(name="pword")
 	private String pword;
     @OneToOne(targetEntity=User.class,cascade=CascadeType.ALL,fetch=FetchType.EAGER)

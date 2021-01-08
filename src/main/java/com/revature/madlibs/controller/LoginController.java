@@ -20,6 +20,10 @@ import com.revature.madlibs.models.LoginCheck;
 import com.revature.madlibs.models.User;
 import com.revature.madlibs.service.ServiceImpl;
 
+//This controller class for the Literary Madlibs application is responsible for
+//handling HTTP requests from the front end of the application. It utilizes
+//Spring MVC to abstract the Servlet handling.
+
 @RestController
 @RequestMapping(value="/login")
 @CrossOrigin 

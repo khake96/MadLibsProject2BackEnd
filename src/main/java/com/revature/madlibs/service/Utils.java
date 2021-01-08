@@ -9,6 +9,9 @@ import java.util.Base64;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
+//This Literary Madlibs util class utilizes a SPring Security encryption algorithm to encrypt user passwords
+//prior to inserting in the DB or checking against an inserted element. The username is used as the salt.
+
 public class Utils {
 		 
 	    private static SecretKeySpec secretKey;

@@ -2,6 +2,8 @@ package com.revature.madlibs.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.revature.madlibs.front.UpdateRegister;
 import com.revature.madlibs.models.CompletedStories;
 import com.revature.madlibs.models.IncompleteStories;
@@ -11,6 +13,9 @@ import com.revature.madlibs.models.StoryCategory;
 import com.revature.madlibs.models.User;
 import com.revature.madlibs.models.UserLevel;
 
+//This Literary Madlibs interface allows for propert Spring Framework implementation
+
+@Service
 public interface Iservice {
 	
 	public User userLogin(Login login);
@@ -23,9 +28,7 @@ public interface Iservice {
 	public List<UserLevel> findAllUserLevels();
 	public IncompleteStories getOneIncompleteStory(StoryCategory category, UserLevel userLevel, int missingWordCount);
 	public CompletedStories getLastCompletedStory();
-	//public User registerUser(User user, Login login);
 	public User registerUser(NewUser newUser);
-
 	public User registerUser(User user, Login login);
 	public IncompleteStories getOneIncompleteStoryById(int id);
 	public User updateUser(UpdateRegister updat);

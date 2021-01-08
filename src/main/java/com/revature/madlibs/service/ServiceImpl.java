@@ -1,6 +1,5 @@
 package com.revature.madlibs.service;
 
-//import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +19,8 @@ import com.revature.madlibs.models.NewUser;
 import com.revature.madlibs.models.StoryCategory;
 import com.revature.madlibs.models.User;
 import com.revature.madlibs.models.UserLevel;
+
+// This Literary Madlibs interface allows for propert Spring Framework implementation
 
 @Service
 public class ServiceImpl implements Iservice {
@@ -67,8 +68,6 @@ public class ServiceImpl implements Iservice {
 		
 
 		if(serviceLogic.isValidUser(user)) {
-			
-//			System.out.println("in ServiceImpl"+user);
 			createdUser = userDAO.insert(user, login);
 		}
 		return createdUser;
@@ -77,9 +76,7 @@ public class ServiceImpl implements Iservice {
 	@Override
 	public User updateUser(UpdateRegister updat) {
 		User user = null;
-		//if(serviceLogic.isValidUser1(updat)) {
 			 user = userDAO.update(updat);
-		//}
 		return user;
 	}
 	@Override
@@ -150,7 +147,6 @@ public class ServiceImpl implements Iservice {
 
 	@Override
 	public NewUser updateUser(NewUser nuser) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }
