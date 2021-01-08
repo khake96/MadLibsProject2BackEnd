@@ -1,5 +1,8 @@
 package com.revature.madlibs.models;
 
+//This is a DTO object for assisting in transition between a front end user registration update object
+//and our backend Service and DAO layer objects.  
+
 public class NewUser {
 
 	
@@ -11,16 +14,8 @@ public class NewUser {
 	private int playerLevel;   //userLevel
 	private String password1;   //pword
 	private String password2;
-//	public NewUser(String firstName, String lastName, String email, int yob, int playerLevel) {
-//		super();
-//		this.firstName = firstName;
-//		this.lastName = lastName;
-//		this.email = email;
-//		this.yob = yob;
-//		this.playerLevel = playerLevel;
-//	}
 	
-	
+
 	public NewUser() {
 		super();
 		

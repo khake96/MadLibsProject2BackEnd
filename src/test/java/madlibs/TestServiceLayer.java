@@ -1,5 +1,9 @@
 package madlibs;
 
+//This class runs unit tests on the service layer of our Literary Madlibs project. The CI is
+//handled through Jenkins and thus tests are run each time code is pushed to the repository
+//prior to building and deploying on our AWS EC2.
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -23,6 +27,8 @@ class TestServiceLayer {
 	Timestamp ts = new Timestamp(0);
 	Logger logger = new Logger();
 
+	// Initializing parameters to be used during testing for passing and failing cases.
+	
 	StoryCategory storyCatValid = new StoryCategory(1,"British Literature");
 	UserLevel userLevelValid = new UserLevel(1, "Raw Amateur");
 	UserLevel userLevelInvalid = new UserLevel(12, "Invalid");
@@ -122,15 +128,6 @@ class TestServiceLayer {
 		assertTrue(result);
 	}
 	
-//	// Check valid Completed Story
-//	@Test
-//	public void testBusinessLogicIsValidCompletedStory() {
-//		boolean result = userActions.isValidCompletedStory(comStoryValid);
-//		//System.out.println("Valid Login: "+ loginValid.toString());
-//		com.revature.madlibs.Logger.log.debug("Valid CompletedStory: "+ comStoryValid.toString());
-//		assertTrue(result);
-//	}
-	
 	
 // *******INVALID TEST CASES *********************************************//
 
@@ -181,15 +178,6 @@ class TestServiceLayer {
 		assertFalse(result);
 	}
 	
-//	// Check CompleteStory Invalid Parent Story
-//	@Test
-//	void testBusinessLogicCompStoryInvalidParent() {
-//		boolean result = userActions.isValidCompletedStory(comStoryInvalidParentStory);
-//		//System.out.println("Invalid user DOB: "+ userInvalidEmail.toString());
-//		com.revature.madlibs.Logger.log.debug("Invalid Completed Story, invalid Parent: "+ comStoryInvalidParentStory.toString());
-//		assertFalse(result);
-//	}
-	
 	// Check Completed Story Invalid UpVote Count
 	@Test
 	void testBusinessLogicCompStoryInvalidUpVote() {
@@ -234,15 +222,6 @@ class TestServiceLayer {
 		com.revature.madlibs.Logger.log.debug("Invalid user e-mail: "+  loginLongPassword.toString());
 		assertFalse(result);
 	}
-	
-//	// Check Login Invalid User
-//	@Test
-//	void testBusinessLogicLoginInvalidUser() {
-//		boolean result = userActions.isValidLogin(loginInvalidUser);
-//		//System.out.println("Invalid user DOB: "+ userInvalidEmail.toString());
-//		com.revature.madlibs.Logger.log.debug("Invalid user e-mail: "+  loginInvalidUser.toString());
-//		assertFalse(result);
-//	}
 	
 	// Check Login Multiple Invalid
 	@Test

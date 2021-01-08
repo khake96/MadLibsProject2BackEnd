@@ -15,6 +15,9 @@ import com.revature.madlibs.models.IncompleteStories;
 import com.revature.madlibs.models.StoryCategory;
 import com.revature.madlibs.models.UserLevel;
 
+//This DAO layer class implements an interface in order to enable Spring Framework tools and ORM 
+//to abstract the Hibernate ORM from us. 
+
 @Repository
 @Transactional
 public class IncompletedStoriesDAO implements IincompletedStoriesDAO{

@@ -10,6 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.madlibs.models.UserLevel;
 
+//This DAO layer class implements an interface in order to enable Spring Framework tools and ORM 
+//to abstract the Hibernate ORM from us. 
+
 @Repository
 @Transactional
 public class UserLevelDAO implements IuserLevelDAO{

@@ -1,5 +1,8 @@
 package com.revature.madlibs.front;
 
+//This is a DTO object for assisting in transition between a front end user registration update object
+// and our backend Service and DAO layer objects. 
+
 public class UpdateRegister {
 	
 	
@@ -22,7 +25,6 @@ public class UpdateRegister {
 	}
 	public UpdateRegister() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public int getUser_id() {
 		return user_id;

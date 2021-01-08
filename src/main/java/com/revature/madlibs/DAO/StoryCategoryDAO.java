@@ -12,6 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.madlibs.models.StoryCategory;
 
+//This DAO layer class implements an interface in order to enable Spring Framework tools and ORM 
+//to abstract the Hibernate ORM from us. 
+
 @Repository
 @Transactional
 public class StoryCategoryDAO implements IstoryCategoryDAO{
@@ -26,7 +29,6 @@ public class StoryCategoryDAO implements IstoryCategoryDAO{
 
 	public StoryCategoryDAO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public StoryCategory selectById(int id) {

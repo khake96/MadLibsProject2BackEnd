@@ -13,6 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.revature.madlibs.models.CompletedStories;
 import com.revature.madlibs.models.User;
 
+// This DAO layer class implements an interface in order to enable Spring Framework tools and ORM 
+// to abstract the Hibernate ORM from us. 
+
 @Repository
 @Transactional
 public class CompletedStoriesDAO implements IcompletedStoriesDAO {
@@ -27,8 +30,8 @@ public class CompletedStoriesDAO implements IcompletedStoriesDAO {
 
 	public CompletedStoriesDAO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
+
 
 //	@Override
 //	public CompletedStories insert(CompletedStories completedStory) {
@@ -47,6 +50,8 @@ public class CompletedStoriesDAO implements IcompletedStoriesDAO {
 //		return null;
 //		 
 //	}
+	// This method utilizes a native query in order to access an object with multiple conditions checked in the DB.
+
 	
 	@Override
 	public CompletedStories insert(CompletedStories completedStory) {
@@ -62,6 +67,8 @@ public class CompletedStoriesDAO implements IcompletedStoriesDAO {
 		}
 		return null;
 	}
+	
+	// This method utilizes a native query in order to access an object with multiple conditions checked in the DB.
 		
 	@Override
 	public CompletedStories update(CompletedStories completedStory) {
@@ -117,6 +124,8 @@ public class CompletedStoriesDAO implements IcompletedStoriesDAO {
 		}
 		return null;
 	}
+	
+	// This method utilizes a native query in order to access an object with multiple conditions checked in the DB.
 	
 	@Override
 	public CompletedStories getLastIn() {

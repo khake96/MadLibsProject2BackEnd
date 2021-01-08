@@ -22,6 +22,10 @@ import com.revature.madlibs.models.IncompleteStories;
 //import com.revature.madlibs.models.UserLevel;
 import com.revature.madlibs.service.ServiceImpl;
 
+// This controller class for the Literary Madlibs application is responsible for
+// handling HTTP requests from the front end of the application. It utilizes
+// Spring MVC to abstract the Servlet handling.
+
 @RestController
 @RequestMapping(value="/game")
 @CrossOrigin 
@@ -45,7 +49,6 @@ public class GameController {
 
 	}
 	
-//	@PostMapping(path = "/write", consumes = "application/json", produces = "application/json")
 	@GetMapping(value= "/write/{id}")
 	public ResponseEntity<IncompleteStories> getIncompletedStory(@PathVariable("id") int id) {
 		IncompleteStories story = service.getOneIncompleteStoryById(id);
