@@ -12,6 +12,7 @@ import com.revature.madlibs.DAO.IloginDAO;
 import com.revature.madlibs.DAO.IstoryCategoryDAO;
 import com.revature.madlibs.DAO.IuserDAO;
 import com.revature.madlibs.DAO.IuserLevelDAO;
+import com.revature.madlibs.front.UpdateRegister;
 import com.revature.madlibs.models.CompletedStories;
 import com.revature.madlibs.models.IncompleteStories;
 import com.revature.madlibs.models.Login;
@@ -74,12 +75,14 @@ public class ServiceImpl implements Iservice {
 	}
 
 	@Override
-	public User updateUser(User user) {
-		if(serviceLogic.isValidUser(user)) {
-			userDAO.update(user);
-		}
+	public User updateUser(UpdateRegister updat) {
+		User user = null;
+		//if(serviceLogic.isValidUser1(updat)) {
+			 user = userDAO.update(updat);
+		//}
 		return user;
-	}	@Override
+	}
+	@Override
 	public List<UserLevel> findAllUserLevels() {
 		List<UserLevel> ulList = userLevelDAO.findAll();
 		return ulList;
@@ -103,6 +106,7 @@ public class ServiceImpl implements Iservice {
 		return  list;
 	}
 	
+
 	@Override
 	public IncompleteStories getOneIncompleteStoryById(int id) {
 		 IncompleteStories list = incompletedStoriesDAO.selectById(id);
@@ -148,5 +152,11 @@ public class ServiceImpl implements Iservice {
 			userDAO.insert(user, login);
 		}
 		return user;
+	}
+
+	@Override
+	public NewUser updateUser(NewUser nuser) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

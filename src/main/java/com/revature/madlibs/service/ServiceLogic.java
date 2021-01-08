@@ -5,8 +5,10 @@ import java.util.regex.Pattern;
 //import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.stereotype.Service;
 
+import com.revature.madlibs.front.UpdateRegister;
 import com.revature.madlibs.models.CompletedStories;
 import com.revature.madlibs.models.Login;
+import com.revature.madlibs.models.NewUser;
 //import com.revature.madlibs.models.NewUser;
 import com.revature.madlibs.models.User;
 
@@ -73,5 +75,11 @@ public class ServiceLogic implements IserviceLogic {
 		
 	//System.out.println("completed story error invalid length: " +complete);
 		return isValid;
+	}
+
+	@Override
+	public boolean isValidUser1(UpdateRegister updat) {
+		// TODO Auto-generated method stub
+		return false;
 	}}
 

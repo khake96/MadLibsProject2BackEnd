@@ -10,9 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.revature.madlibs.front.UpdateRegister;
 //import com.revature.madlibs.models.IncompleteStories;
 import com.revature.madlibs.models.Login;
 import com.revature.madlibs.models.User;
+import com.revature.madlibs.models.UserLevel;
 import com.revature.madlibs.service.Utils;
 
 
@@ -31,13 +33,37 @@ public class UserDAO implements IuserDAO {
 	public UserDAO() {
 		super();
 	}
+//	
+//	UPDATE table_name
+//	SET column1 = value1,
+//	    column2 = value2,
+//	    ...
+//	WHERE condition;
 
+	//public User(int user_id, String firstName, String lastName, int dob, UserLevel userLevel, String email)
+	
 	@Override
-	public User update(User user) {
+	public User update(UpdateRegister upreg) {
+		User singleUser = null;
 		try {
 			Session session = sf.getCurrentSession();
-			session.update(user);
-			return user;
+			
+			
+			String updateSQL = "update madlibs.user_table set first_name = '"+upreg.getFirstName()+"',  last_name = '"+upreg.getLastName()+
+			"', dob = "+upreg.getYob()+", email = '"+upreg.getEmail()+"', user_level = "+upreg.getPlayerLevel()+" where user_id = 1;"; 
+				//	+ ""+upreg.getUser_id()+");";
+			
+			    System.out.println("updated SQL query :  "+updateSQL);
+			
+			 session.createNativeQuery(updateSQL).executeUpdate();
+			
+			
+
+					
+					//System.out.println("returned user from userDAO" + singleUser);
+
+			//session.update(user);
+			return singleUser;
 		} catch (Exception e) {
 			com.revature.madlibs.Logger.log.debug("update User error: "+ e.getMessage());
 		}
@@ -123,4 +149,6 @@ public class UserDAO implements IuserDAO {
 		}
 		return singleUser;
 	}
+
+	
 }

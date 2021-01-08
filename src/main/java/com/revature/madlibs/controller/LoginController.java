@@ -40,10 +40,13 @@ public class LoginController {
 	}
 
 
+
 	@ResponseStatus(value = HttpStatus.OK)
 	@PostMapping 
 	public ResponseEntity<User> userLogin(@RequestBody LoginCheck loginObject) {				
+
 		User user = service.userLogin(new Login(loginObject.getUserName(), loginObject.getPword() ));
+		System.out.println("login controller"+user);
 		if(user != null) {
 	        String userFirstName = user.getFirstName();
 	        ResponseCookie cookie = ResponseCookie.from("userName", userFirstName).build();

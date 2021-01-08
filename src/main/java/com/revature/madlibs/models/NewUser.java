@@ -11,6 +11,15 @@ public class NewUser {
 	private int playerLevel;   //userLevel
 	private String password1;   //pword
 	private String password2;
+//	public NewUser(String firstName, String lastName, String email, int yob, int playerLevel) {
+//		super();
+//		this.firstName = firstName;
+//		this.lastName = lastName;
+//		this.email = email;
+//		this.yob = yob;
+//		this.playerLevel = playerLevel;
+//	}
+	
 	
 	public NewUser() {
 		super();

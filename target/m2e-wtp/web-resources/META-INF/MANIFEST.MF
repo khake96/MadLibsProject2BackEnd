@@ -1,5 +1,14 @@
 Manifest-Version: 1.0
-Built-By: sanya
+<<<<<<< HEAD
+Built-By: Admin
 Build-Jdk: 15.0.1
+=======
+Built-By: sanya
+<<<<<<< HEAD
+Build-Jdk: 15.0.1
+=======
+Build-Jdk: 14.0.2
+>>>>>>> 08ef26e613869bcc9281193d9099bcda3a01e6de
+>>>>>>> e1f9f3cdd3b650fa484bd68cfdd47562356848ed
 Created-By: Maven Integration for Eclipse
 
