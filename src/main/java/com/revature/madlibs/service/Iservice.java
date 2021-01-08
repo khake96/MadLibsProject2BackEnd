@@ -2,6 +2,7 @@ package com.revature.madlibs.service;
 
 import java.util.List;
 
+import com.revature.madlibs.front.UpdateRegister;
 import com.revature.madlibs.models.CompletedStories;
 import com.revature.madlibs.models.IncompleteStories;
 import com.revature.madlibs.models.Login;
@@ -13,7 +14,7 @@ import com.revature.madlibs.models.UserLevel;
 public interface Iservice {
 	
 	public User userLogin(Login login);
-	public User updateUser(User user);
+	public NewUser updateUser(NewUser nuser);
 	public List<StoryCategory> getStoryCategories();
 	public List<CompletedStories> getCompletedStories1();
 	public List<Login> getAllLogins();
@@ -27,6 +28,8 @@ public interface Iservice {
 
 	public User registerUser(User user, Login login);
 	public IncompleteStories getOneIncompleteStoryById(int id);
+	public User updateUser(UpdateRegister updat);
+	
 	
 
 

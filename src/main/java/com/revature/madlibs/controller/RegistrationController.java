@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.madlibs.front.UpdateRegister;
 //import com.revature.madlibs.models.Login;
 //import com.revature.madlibs.models.LoginCheck;
 import com.revature.madlibs.models.NewUser;
@@ -37,11 +38,12 @@ public class RegistrationController {
 		} else return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
 	}
 
-	@PostMapping("/update")
-	public ResponseEntity<User> update(User user) {
-		User returnedUser = service.updateUser(user);
+	@PostMapping(value="/update")
+	public ResponseEntity<User> update(@RequestBody UpdateRegister updat) {
+		System.out.println("in update registration"+updat);
+		User returnedUser = service.updateUser(updat);
 		if(returnedUser != null) {
-			return ResponseEntity.status(HttpStatus.OK).body(user);
+			return ResponseEntity.status(HttpStatus.OK).body(returnedUser);
 		} else return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
 	}
 }
