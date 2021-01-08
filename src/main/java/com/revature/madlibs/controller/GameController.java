@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.front.CompletedStoryFront;
 import com.revature.madlibs.models.CompletedStories;
 import com.revature.madlibs.models.IncompleteStories;
 //import com.revature.madlibs.models.StoryCategory;
@@ -55,6 +57,21 @@ public class GameController {
 	@PostMapping(value="/save")
 	public ResponseEntity<CompletedStories> saveCompletedStories(@RequestBody CompletedStories story) {
 		CompletedStories returnStory;
+		service.insertCompletedStory(story);
+		returnStory = service.getLastCompletedStory();
+		if(returnStory != null) {
+			return ResponseEntity.status(HttpStatus.OK).body(returnStory);		
+		} else return ResponseEntity.status(HttpStatus.FAILED_DEPENDENCY).build();
+	}
+	
+	@ResponseStatus(value = HttpStatus.OK)
+	@PostMapping(value="/savestory")
+	public ResponseEntity<CompletedStories> saveCompletedStory(@RequestBody CompletedStoryFront storyFront) {
+		System.out.println(storyFront);
+		CompletedStories returnStory;
+		CompletedStories story = new CompletedStories(storyFront.getCompletedStory(), service.getUserById(storyFront.getUserId()), service.getOneIncompleteStoryById(storyFront.getParentStory()));
+		System.out.println(story);
+		
 		service.insertCompletedStory(story);
 		returnStory = service.getLastCompletedStory();
 		if(returnStory != null) {

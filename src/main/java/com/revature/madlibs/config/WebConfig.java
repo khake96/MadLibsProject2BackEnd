@@ -6,7 +6,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"com.zetcode"})
+@ComponentScan(basePackages = {"com.revature"})
 public class WebConfig {
 
 }

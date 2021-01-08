@@ -108,6 +108,12 @@ public class ServiceImpl implements Iservice {
 		 IncompleteStories list = incompletedStoriesDAO.selectById(id);
 		return  list;
 	}
+	
+	@Override
+	public User getUserById(int id) {
+		User user = userDAO.getUserById(id);
+		return  user;
+	}
 
 	@Override
 	public CompletedStories insertCompletedStory(CompletedStories completed) {

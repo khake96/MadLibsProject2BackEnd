@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.madlibs.models.CompletedStories;
+import com.revature.madlibs.models.User;
 
 @Repository
 @Transactional
@@ -29,22 +30,37 @@ public class CompletedStoriesDAO implements IcompletedStoriesDAO {
 		// TODO Auto-generated constructor stub
 	}
 
+//	@Override
+//	public CompletedStories insert(CompletedStories completedStory) {
+//		Session session = sf.getCurrentSession();  
+//		try {
+//			session.save(completedStory); 
+//			CompletedStories latestStory = (CompletedStories) session.createNativeQuery("SELECT * FROM completed_stories cs \r\n"
+//					+ "WHERE complete_story_id = (\r\n"
+//					+ "   SELECT MAX (complete_story_id)\r\n"
+//					+ "   FROM completed_stories cs2 \r\n"
+//					+ ");").getSingleResult();
+//			return latestStory; 
+//		} catch (Exception e) {
+//			com.revature.madlibs.Logger.log.debug("insert CompletedStories error: "+ e.getMessage());
+//		}
+//		return null;
+//		 
+//	}
+	
 	@Override
 	public CompletedStories insert(CompletedStories completedStory) {
-		Session session = sf.getCurrentSession();  
+		Session session = sf.getCurrentSession();
 		try {
-			session.save(completedStory); 
-			CompletedStories latestStory = (CompletedStories) session.createNativeQuery("SELECT * FROM completed_stories cs \r\n"
-					+ "WHERE complete_story_id = (\r\n"
-					+ "   SELECT MAX (complete_story_id)\r\n"
-					+ "   FROM completed_stories cs2 \r\n"
-					+ ");").getSingleResult();
-			return latestStory; 
+			CompletedStories latestStory = (CompletedStories) session.save(completedStory);
+//			CompletedStories latestStory = (CompletedStories) session.createNativeQuery("insert into madlibs.completed_stories (completed_date, completedstory, upvote_count, completer, incomplete_story_id) values (NOW(), "+completedStory.getCompletedStory()+ ","+completedStory.getUpvoteCount()+ ","+completedStory.getCompleter().getUser_id()+ ","+completedStory.getParentStory().getStoryId()+");");
+//			CompletedStories latestStory = (CompletedStories) session.createNativeQuery("select * from madlibs.madlibs.completed_stories where complete_story_id = 1");
+			System.out.println("latestStory:"+latestStory);
+			return latestStory;
 		} catch (Exception e) {
 			com.revature.madlibs.Logger.log.debug("insert CompletedStories error: "+ e.getMessage());
 		}
 		return null;
-		 
 	}
 		
 	@Override

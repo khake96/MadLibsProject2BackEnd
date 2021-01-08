@@ -74,6 +74,13 @@ public class CompletedStories {
 		this.upvoteCount = upvoteCount;
 		this.parentStory = parentStory;
 	}
+	
+	public CompletedStories(String completedStory, User completer, IncompleteStories parentStory) {
+		super();
+		this.completedStory = completedStory;
+		this.completer = completer;
+		this.parentStory = parentStory;
+	}
 
 	public int getCompletedStoryId() {
 		return completedStoryId;

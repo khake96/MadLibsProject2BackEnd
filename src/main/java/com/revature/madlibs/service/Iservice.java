@@ -26,4 +26,5 @@ public interface Iservice {
 	public User registerUser(NewUser newUser);
 	public IncompleteStories getOneIncompleteStoryById(int id);
 	public User registerUser(User user, Login login);
+	public User getUserById(int id);
 }
