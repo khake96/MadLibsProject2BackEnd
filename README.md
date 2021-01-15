@@ -9,22 +9,22 @@ version for later, or just discard it.  Once played, you can compare your text t
  
  
 ## Requirements: 
--User registration. 
--User login / logout. 
--Users can update their personal information. 
--Link to the API for help with words. 
--Select incomplete passages by genre. 
--Have a chance to review and react to other players’ completed passages. 
--Validate the user’s input grammar, and check for appropriateness with the API . 
--Easy, mid-level, and advanced options to further enhance playing levels. 
+- User registration. 
+- User login / logout. 
+- Users can update their personal information. 
+- Link to the API for help with words. 
+- Select incomplete passages by genre. 
+- Have a chance to review and react to other players’ completed passages. 
+- Validate the user’s input grammar, and check for appropriateness with the API . 
+- Easy, mid-level, and advanced options to further enhance playing levels. 
  
  
 ## Stretch Goals: 
--Share it on social media.  
--Vote on other user’s results to provide a ranking for which is most amusing . 
--Beginner level will allow for randomized suggestions from the API. 
--Statistics available on words selected. 
--Password recovery via email. 
+- Share it on social media.  
+- Vote on other user’s results to provide a ranking for which is most amusing . 
+- Beginner level will allow for randomized suggestions from the API. 
+- Statistics available on words selected. 
+- Password recovery via email. 
 
 ## Development server
 
