@@ -17,13 +17,13 @@ version for later, or just discard it.  Once played, you can compare your text t
 - Easy, mid-level, and advanced options to further enhance playing levels. 
  
 ## Technologies Used
- Java - Version 8
- Maven
- Spring Tools Suite
- Spring ORM w/ Hibernate
- Spring WebMVC
- AWS EC2 w/ Jenkins pipeline
- AWS RDS hosted DB
+ - Java - Version 8
+ - Maven
+ - Spring Tools Suite
+ - Spring ORM w/ Hibernate
+ - Spring WebMVC
+ - AWS EC2 w/ Jenkins pipeline
+ - AWS RDS hosted DB
 
 ## Features
 List of features ready and TODOs for future development
@@ -41,19 +41,21 @@ To-do list:
 - Password recovery via email. 
 
 ## Getting the Backend Started
- git clone <repo>
- maven build <project>
- copy <.war file> <web container web-apps>
- tomcat run
- The DB is on an AWS RDS with limited access
- The frontend Angular file also needs to be started (see separate repo)
+ - git clone <repo>
+ - maven build <project>
+ - copy <.war file> <web container web-apps>
+ - tomcat run
+ 
+ - The DB is on an AWS RDS with limited access
+ - The frontend Angular file also needs to be started (see separate repo)
 
 ## Usage
  View of login page:
+ 
  https://github.com/khake96/MadLibsProject2FrontEnd/blob/3167104e976aba41588e0ed3e85e08d9da99c2ac/Login.jpg?raw=true
 
 ## Contributors
- O. Kulikov
- C. Svensson 
- A. Palaparthi
- K. Hake
+ - O. Kulikov
+ - C. Svensson 
+ - A. Palaparthi
+ - K. Hake
