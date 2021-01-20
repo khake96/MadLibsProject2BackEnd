@@ -17,13 +17,13 @@ version for later, or just discard it.  Once played, you can compare your text t
 - Easy, mid-level, and advanced options to further enhance playing levels. 
  
 ## Technologies Used
-Java - Version 8
-Maven
-Spring Tools Suite
-Spring ORM w/ Hibernate
-Spring WebMVC
-AWS EC2 - Jenkins
-AWS RDS
+ Java - Version 8
+ Maven
+ Spring Tools Suite
+ Spring ORM w/ Hibernate
+ Spring WebMVC
+ AWS EC2 w/ Jenkins pipeline
+ AWS RDS hosted DB
 
 ## Features
 List of features ready and TODOs for future development
